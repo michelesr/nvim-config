@@ -124,6 +124,7 @@ let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
 
 let g:deoplete#enable_at_startup = 1
+let g:deoplete#sources#jedi#show_docstring = 1
 
 let g:ranger_map_keys = 0
 let g:ranger_replace_netrw = 1
