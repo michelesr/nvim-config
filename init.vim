@@ -98,7 +98,7 @@ autocmd BufWritePre * :%s/\s\+$//ec
 augroup UserFileType
   autocmd FileType python setlocal sw=4
   autocmd FileType python set kp=:Run\ pydoc
-  autocmd FileType ruby set kp=:TRun\ ri
+  autocmd FileType ruby set kp=:TRun\ ri nocursorline
   autocmd FileType go setlocal ts=2 noet
   autocmd FileType markdown setlocal spell
 augroup end
