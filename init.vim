@@ -51,7 +51,10 @@ filetype plugin indent on
 " general options
 set number cindent ruler showcmd history=10000
 set showmode mouse=a laststatus=2 incsearch inccommand=split
-set cursorline wildmenu lazyredraw hlsearch listchars=eol:$
+set wildmenu hlsearch listchars=eol:$
+
+" avoid unnecessary redraws
+set nocursorline norelativenumber lazyredraw
 
 " never insert tabs but display existing tabs with 8 spaces
 set shiftwidth=2 tabstop=8 expandtab
@@ -98,7 +101,7 @@ autocmd BufWritePre * :%s/\s\+$//ec
 augroup UserFileType
   autocmd FileType python setlocal sw=4
   autocmd FileType python set kp=:Run\ pydoc
-  autocmd FileType ruby set kp=:TRun\ ri nocursorline
+  autocmd FileType ruby set kp=:TRun\ ri
   autocmd FileType go setlocal ts=2 noet
   autocmd FileType markdown setlocal spell
 augroup end
