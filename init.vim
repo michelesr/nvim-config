@@ -41,6 +41,9 @@ call vundle#begin('~/.config/nvim/bundle')
 
   " Undo tree visualizer
   Plugin 'mbbill/undotree'
+
+  " Like :grep but better
+  Plugin 'mileszs/ack.vim'
 call vundle#end()
 call deoplete#enable()
 
@@ -149,6 +152,11 @@ endfunction
 " export RunCmd as :Run command
 command -nargs=1 Run :call RunCmd("<args>")
 command -nargs=1 TRun :call TermRunCmd("<args>")
+
+" use ag with the Ack plugin
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
 
 let g:onedark_color_overrides = {
 \ "black": {"gui": "#1d1d2d", "cterm": "0", "cterm16": "0" },
