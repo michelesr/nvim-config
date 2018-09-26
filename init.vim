@@ -93,6 +93,9 @@ nnoremap <leader>w :Windows<CR>
 " ranger
 nnoremap <leader>r :Ranger<CR>
 
+" Ack plugin
+nnoremap <leader>a :Ack<Space>
+
 " this will bring terminal buffer in normal mode
 tnoremap <C-j>j <C-\><C-n>
 tnoremap <C-j><C-j> <C-\><C-n>
