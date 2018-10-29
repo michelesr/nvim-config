@@ -26,9 +26,6 @@ call vundle#begin('~/.config/nvim/bundle')
   " Python
   Plugin 'zchee/deoplete-jedi'
 
-  " Ruby
-  Plugin 'fishbullet/deoplete-ruby'
-
   " FZF
   Plugin 'junegunn/fzf'
   Plugin 'junegunn/fzf.vim'
