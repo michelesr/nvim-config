@@ -11,10 +11,6 @@ call vundle#begin('~/.config/nvim/bundle')
   " Git commands wrapper
   Plugin 'tpope/vim-fugitive'
 
-  " Status bar like powerline (but full vimscript)
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-
   " Ranger integration
   Plugin 'francoiscabrol/ranger.vim'
   " Close buffer without closing window (required by Ranger)
@@ -29,9 +25,6 @@ call vundle#begin('~/.config/nvim/bundle')
   " FZF
   Plugin 'junegunn/fzf'
   Plugin 'junegunn/fzf.vim'
-
-  " Multiple cursor support (CTRL-n)
-  Plugin 'terryma/vim-multiple-cursors'
 
   " Colorscheme
   Plugin 'joshdick/onedark.vim'
