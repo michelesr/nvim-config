@@ -19,18 +19,12 @@ call vundle#begin('~/.config/nvim/bundle')
   " Autocompletion backend
   Plugin 'Shougo/deoplete.nvim'
 
-  " Python
-  Plugin 'zchee/deoplete-jedi'
-
   " FZF
   Plugin 'junegunn/fzf'
   Plugin 'junegunn/fzf.vim'
 
   " Colorscheme
   Plugin 'joshdick/onedark.vim'
-
-  " Undo tree visualizer
-  Plugin 'mbbill/undotree'
 
   " Like :grep but better
   Plugin 'mileszs/ack.vim'
@@ -93,6 +87,11 @@ tnoremap <C-j><C-j> <C-\><C-n>
 " remove trailing spaces and tabs on saving
 autocmd BufWritePre * :%s/\s\+$//ec
 
+" specific file extension options
+augroup UserExtension
+  autocmd BufNewFile,BufRead Thorfile\|*.thor setlocal filetype=ruby
+augroup end
+
 " specific file type options
 augroup UserFileType
   autocmd FileType python setlocal sw=4 kp=:Run\ pydoc
@@ -101,25 +100,8 @@ augroup UserFileType
   autocmd FileType markdown setlocal spell
 augroup end
 
-" specific file extension options
-augroup UserExtension
-  autocmd BufNewFile,BufRead Thorfile\|*.thor setlocal filetype=ruby
-augroup end
-
 " close doc window (eg python jedi) when pressing ESC
 autocmd InsertLeave * pclose
-
-" airline options
-let g:airline_theme = 'onedark'
-let g:airline_powerline_fonts = 1
-
-" tabline options
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#buffer_min_count = 2
 
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
