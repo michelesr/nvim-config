@@ -99,6 +99,7 @@ augroup UserFileType
   autocmd FileType ruby setlocal re=1 kp=:TRun\ ri\ --no-pager
   autocmd FileType go setlocal ts=2 noet
   autocmd FileType markdown setlocal spell
+  autocmd FileType make setlocal ts=2 noet
 augroup end
 
 " close doc window (eg python jedi) when pressing ESC
