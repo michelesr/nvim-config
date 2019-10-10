@@ -28,6 +28,9 @@ call vundle#begin('~/.config/nvim/bundle')
 
   " Like :grep but better
   Plugin 'mileszs/ack.vim'
+
+  Plugin 'vim-airline/vim-airline'
+  Plugin 'vim-airline/vim-airline-themes'
 call vundle#end()
 call deoplete#enable()
 
@@ -142,3 +145,16 @@ let g:onedark_color_overrides = {
 
 set termguicolors
 colorscheme onedark
+
+" airline options
+let g:airline_theme = 'onedark'
+let g:airline_powerline_fonts = 1
+
+" tabline options
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#tabline#show_buffers = 0
+let g:airline#extensions#tabline#show_splits = 0
+let g:airline#extensions#tabline#show_tab_nr = 0
+let g:airline#extensions#tabline#show_close_button = 0
+let g:airline#extensions#tabline#buffer_min_count = 2
+
