@@ -92,6 +92,12 @@ tnoremap <m-j>j <C-\><C-n>
 " remove trailing spaces and tabs on saving
 autocmd BufWritePre * :%s/\s\+$//ec
 
+" workaround to enforce exiting insert mode with alt
+" even if completion popup is activated by deoplete
+for key in ["h", "j", "k", "l", "w", "e", "b", "0", "$", "x"]
+  exe "inoremap <M-". key . "> <esc>" . key
+endfor
+
 " specific file extension options
 augroup UserExtension
   autocmd BufNewFile,BufRead Thorfile\|*.thor setlocal filetype=ruby
@@ -160,9 +166,3 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
-
-" workaround to enforce exiting insert mode with alt
-" even if completion popup is activated by deoplete
-for key in ["h", "j", "k", "l", "w", "e", "b", "0", "$", "x"]
-  exe "inoremap <M-". key . "> <esc>" . key
-endfor
