@@ -163,6 +163,6 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 
 " workaround to enforce exiting insert mode with alt
 " even if completion popup is activated by deoplete
-for key in ["h", "j", "k", "l", "w", "e", "b", "0", "$"]
+for key in ["h", "j", "k", "l", "w", "e", "b", "0", "$", "x"]
   exe "inoremap <M-". key . "> <esc>" . key
 endfor
