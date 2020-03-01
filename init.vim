@@ -85,7 +85,9 @@ nnoremap <leader>a :Ack<Space>
 
 " this will bring terminal buffer in normal mode
 tnoremap <C-j>j <C-\><C-n>
+tnoremap <m-j>j <C-\><C-n>
 tnoremap <C-j><C-j> <C-\><C-n>
+tnoremap <m-j>j <C-\><C-n>
 
 " remove trailing spaces and tabs on saving
 autocmd BufWritePre * :%s/\s\+$//ec
@@ -159,3 +161,8 @@ let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
 
+" workaround to enforce exiting insert mode with alt
+" even if completion popup is activated by deoplete
+for key in ["h", "j", "k", "l", "w", "e", "b", "0", "$"]
+  exe "inoremap <M-". key . "> <esc>" . key
+endfor
