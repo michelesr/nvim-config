@@ -94,8 +94,9 @@ autocmd BufWritePre * :%s/\s\+$//ec
 
 " workaround to enforce exiting insert mode with alt
 " even if completion popup is activated by deoplete
+"   eg. inoremap <M-j> <Esc>j
 for key in ["h", "j", "k", "l", "w", "e", "b", "0", "$", "x"]
-  exe "inoremap <M-". key . "> <esc>" . key
+  exe "inoremap <M-". key . "> <Esc>" . key
 endfor
 
 " specific file extension options
