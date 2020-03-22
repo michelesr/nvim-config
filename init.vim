@@ -46,8 +46,10 @@ set wildmenu hlsearch listchars=eol:$
 " avoid unnecessary redraws
 set nocursorline norelativenumber lazyredraw
 
-" never insert tabs but display existing tabs with 8 spaces
-set shiftwidth=2 tabstop=8 expandtab
+" tab should always be visualized as 8 spaces to avoid problems when a mix of
+" tab and spaces are used for vertical alignment in languages that prefer
+" tabs; as a general rule expand tab with 4 spaces
+set shiftwidth=4 tabstop=8 softtabstop=0 expandtab
 
 " do not trigger indentation of the current line when using #
 set cinkeys-=0# indentkeys-=0#
@@ -106,12 +108,16 @@ augroup end
 
 " specific file type options
 augroup UserFileType
-  autocmd FileType python setlocal sw=4 kp=:Run\ pydoc
-  autocmd FileType rust setlocal sw=4
-  autocmd FileType ruby setlocal re=1 kp=:TRun\ ri\ --no-pager
-  autocmd FileType go setlocal ts=2 noet
+  autocmd FileType python setlocal kp=:Run\ pydoc
+  " https://github.com/rubocop-hq/ruby-style-guide#indentation
+  autocmd FileType ruby setlocal sw=2 kp=:TRun\ ri\ --no-pager
+  " golang convention (e.g gofmt) want hard tabs
+  autocmd FileType go setlocal sw=8 noet
+  " linux kernel development convention
+  autocmd FileType c setlocal sw=8 noet
+  " make requires hard tabs
+  autocmd FileType make setlocal noet
   autocmd FileType markdown setlocal spell
-  autocmd FileType make setlocal ts=2 noet
 augroup end
 
 " close doc window (eg python jedi) when pressing ESC
