@@ -48,8 +48,8 @@ set nocursorline norelativenumber lazyredraw
 
 " tab should always be visualized as 8 spaces to avoid problems when a mix of
 " tab and spaces are used for vertical alignment in languages that prefer
-" tabs; as a general rule expand tab with 4 spaces
-set shiftwidth=4 tabstop=8 softtabstop=0 expandtab
+" tabs; as a general rule expand tab with 2 spaces
+set shiftwidth=2 tabstop=8 softtabstop=0 expandtab
 
 " do not trigger indentation of the current line when using #
 set cinkeys-=0# indentkeys-=0#
@@ -108,9 +108,9 @@ augroup end
 
 " specific file type options
 augroup UserFileType
-  autocmd FileType python setlocal kp=:Run\ pydoc
+  autocmd FileType python setlocal sw=4 kp=:Run\ pydoc
   " https://github.com/rubocop-hq/ruby-style-guide#indentation
-  autocmd FileType ruby setlocal sw=2 kp=:TRun\ ri\ --no-pager
+  autocmd FileType ruby setlocal kp=:TRun\ ri\ --no-pager
   " golang convention (e.g gofmt) want hard tabs
   autocmd FileType go setlocal sw=8 noet
   " linux kernel development convention
