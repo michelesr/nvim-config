@@ -116,7 +116,7 @@ augroup UserFileType
   " linux kernel development convention
   autocmd FileType c setlocal sw=8 noet
   " make requires hard tabs
-  autocmd FileType make setlocal noet
+  autocmd FileType make setlocal sw=8 noet
   autocmd FileType markdown setlocal spell
 augroup end
 
