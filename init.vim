@@ -127,7 +127,6 @@ let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
 
 let g:ranger_map_keys = 0
-let g:ranger_replace_netrw = 1
 
 " run commands and display output in the preview window
 function RunCmd(cmd)
