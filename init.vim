@@ -18,6 +18,7 @@ call vundle#begin('~/.config/nvim/bundle')
 
   " Autocompletion backend
   Plugin 'Shougo/deoplete.nvim'
+  Plugin 'deoplete-plugins/deoplete-jedi'
 
   " FZF
   Plugin 'junegunn/fzf'
