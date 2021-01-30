@@ -18,7 +18,10 @@ call vundle#begin('~/.config/nvim/bundle')
 
   " Autocompletion backend
   Plugin 'Shougo/deoplete.nvim'
+  " Python Jedi
   Plugin 'deoplete-plugins/deoplete-jedi'
+  " Collects keyword from ctags
+  Plugin 'deoplete-plugins/deoplete-tag'
 
   " FZF
   Plugin 'junegunn/fzf'
