@@ -55,10 +55,6 @@ set nocursorline norelativenumber lazyredraw
 " tabs; as a general rule expand tab with 2 spaces
 set shiftwidth=2 tabstop=8 softtabstop=0 expandtab
 
-" do not trigger indentation of the current line when using #
-" NOTE: took this off temporarily to see whether it changes something
-" set cinkeys-=0# indentkeys-=0#
-
 " folding is a feature to reduce and expand code blocks
 set foldmethod=indent foldlevelstart=10 foldnestmax=10
 
