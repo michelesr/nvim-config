@@ -144,12 +144,9 @@ endfunction
 function Tmux()
   " create a terminal buffer with tmux
   te tmux new-session \; set status off
-  " name it tmux-n where n is the first available number
-  let n = 0
-  while bufexists("tmux-" . n)
-    let n += 1
-  endwhile
-  exe "f" "tmux-" . n
+
+  " rename it to simply tmux
+  exe "f" substitute(bufname(), "tmux.*", "tmux", "")
 endfunction
 
 " export RunCmd as :Run command
