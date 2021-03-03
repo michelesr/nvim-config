@@ -141,12 +141,23 @@ function TermRunCmd(cmd)
   silent exe "sp term://" . a:cmd
 endfunction
 
+function Tmux()
+  " create a terminal buffer with tmux
+  te tmux new-session \; set status off
+  " name it tmux-n where n is the first available number
+  let n = 0
+  while bufexists("tmux-" . n)
+    let n += 1
+  endwhile
+  exe "f" "tmux-" . n
+endfunction
+
 " export RunCmd as :Run command
 command -nargs=1 Run :call RunCmd("<args>")
 command -nargs=1 TRun :call TermRunCmd("<args>")
 
 " run tmux in a terminal window
-command T :te tmux new-session \; set status off
+command -nargs=0 T :call Tmux()
 
 " use ag with the Ack plugin
 if executable('ag')
