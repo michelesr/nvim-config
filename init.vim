@@ -145,6 +145,9 @@ endfunction
 command -nargs=1 Run :call RunCmd("<args>")
 command -nargs=1 TRun :call TermRunCmd("<args>")
 
+" run tmux in a terminal window
+command T :te tmux new-session \; set status off
+
 " use ag with the Ack plugin
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
