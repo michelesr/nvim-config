@@ -144,9 +144,9 @@ function TermRunCmd(cmd)
   silent exe "sp term://" . a:cmd
 endfunction
 
-function Tmux()
+function Tmux(cmd)
   " create a terminal buffer with tmux
-  te tmux new-session \; set status off
+  exe "te" "tmux new-session " . a:cmd . "\\; set status off"
 
   " rename it to simply tmux
   exe "f" substitute(bufname(), "tmux.*", "tmux", "")
@@ -157,7 +157,7 @@ command -nargs=1 Run :call RunCmd("<args>")
 command -nargs=1 TRun :call TermRunCmd("<args>")
 
 " run tmux in a terminal window
-command -nargs=0 T :call Tmux()
+command -nargs=? T :call Tmux("<args>")
 
 " use ag with the Ack plugin
 if executable('ag')
