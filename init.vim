@@ -122,6 +122,9 @@ augroup end
 " close doc window (eg python jedi) when pressing ESC
 autocmd InsertLeave * pclose
 
+" do not show line number on terminal windows
+autocmd TermOpen * setlocal nonumber norelativenumber
+
 let g:deoplete#enable_at_startup = 1
 let g:deoplete#sources#jedi#show_docstring = 1
 
