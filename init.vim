@@ -1,8 +1,5 @@
 " install plugins in bundle folder
 call plug#begin('~/.config/nvim/bundle')
-  " Vundle plugin manager
-  Plug 'VundleVim/Vundle.vim'
-
   " Git commands wrapper
   Plug 'tpope/vim-fugitive'
 
