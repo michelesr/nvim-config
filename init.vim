@@ -1,41 +1,36 @@
-filetype off
-
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.config/nvim/bundle/Vundle.vim
-
 " install plugins in bundle folder
-call vundle#begin('~/.config/nvim/bundle')
+call plug#begin('~/.config/nvim/bundle')
   " Vundle plugin manager
-  Plugin 'VundleVim/Vundle.vim'
+  Plug 'VundleVim/Vundle.vim'
 
   " Git commands wrapper
-  Plugin 'tpope/vim-fugitive'
+  Plug 'tpope/vim-fugitive'
 
   " Ranger integration
-  Plugin 'francoiscabrol/ranger.vim'
+  Plug 'francoiscabrol/ranger.vim'
   " Close buffer without closing window (required by Ranger)
-  Plugin 'rbgrouleff/bclose.vim'
+  Plug 'rbgrouleff/bclose.vim'
 
   " Autocompletion backend
-  Plugin 'Shougo/deoplete.nvim'
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
   " Python Jedi
-  Plugin 'deoplete-plugins/deoplete-jedi'
+  Plug 'deoplete-plugins/deoplete-jedi'
   " Collects keyword from ctags
-  Plugin 'deoplete-plugins/deoplete-tag'
+  Plug 'deoplete-plugins/deoplete-tag'
 
   " FZF
-  Plugin 'junegunn/fzf'
-  Plugin 'junegunn/fzf.vim'
+  Plug 'junegunn/fzf'
+  Plug 'junegunn/fzf.vim'
 
   " Colorscheme
-  Plugin 'joshdick/onedark.vim'
+  Plug 'joshdick/onedark.vim'
 
   " Like :grep but better
-  Plugin 'mileszs/ack.vim'
+  Plug 'mileszs/ack.vim'
 
-  Plugin 'vim-airline/vim-airline'
-  Plugin 'vim-airline/vim-airline-themes'
-call vundle#end()
+  Plug 'vim-airline/vim-airline'
+  Plug 'vim-airline/vim-airline-themes'
+call plug#end()
 call deoplete#enable()
 
 " syntax and indentation
