@@ -158,8 +158,10 @@ endif
 
 let g:onedark_color_overrides = {
 \ "black": {"gui": "#1d1d2d", "cterm": "0", "cterm16": "0" },
+\ "background": {"gui": "#1d1d2d", "cterm": "0", "cterm16": "0" },
 \ "comment_grey": {"gui": "#6d7d7d", "cterm": "0", "cterm16": "0" },
 \ "white": {"gui": "#bdcdcd", "cterm": "0", "cterm16": "0" },
+\ "foreground": {"gui": "#bdcdcd", "cterm": "0", "cterm16": "0" },
 \ "vertsplit": { "gui": "#8ffc67", "cterm": "0", "cterm16": "0" }
 \}
 
