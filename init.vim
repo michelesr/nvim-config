@@ -1,7 +1,9 @@
 " install plugins in bundle folder
 call plug#begin('~/.config/nvim/bundle')
-  " Git commands wrapper
+  " Git plugin
   Plug 'tpope/vim-fugitive'
+  " GitHub support (e.g. GBrowse)
+  Plug 'tpope/vim-rhubarb'
 
   " Ranger integration
   Plug 'francoiscabrol/ranger.vim'
