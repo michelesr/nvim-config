@@ -31,6 +31,9 @@ call plug#end()
 syntax on
 filetype plugin indent on
 
+" load coc.nvim recommended config
+source ~/.config/nvim/coc.vim
+
 " general options
 set number autoindent cindent ruler showcmd history=10000
 set showmode mouse=a laststatus=2 incsearch inccommand=split
