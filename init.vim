@@ -10,12 +10,8 @@ call plug#begin('~/.config/nvim/bundle')
   " Close buffer without closing window (required by Ranger)
   Plug 'rbgrouleff/bclose.vim'
 
-  " Autocompletion backend
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-  " Python Jedi
-  Plug 'deoplete-plugins/deoplete-jedi'
-  " Collects keyword from ctags
-  Plug 'deoplete-plugins/deoplete-tag'
+  " Host for language servers (LSP)
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   " FZF
   Plug 'junegunn/fzf'
@@ -30,7 +26,6 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'vim-airline/vim-airline'
   Plug 'vim-airline/vim-airline-themes'
 call plug#end()
-call deoplete#enable()
 
 " syntax and indentation
 syntax on
@@ -113,14 +108,8 @@ augroup UserFileType
   autocmd FileType markdown setlocal spell
 augroup end
 
-" close doc window (eg python jedi) when pressing ESC
-autocmd InsertLeave * pclose
-
 " do not show line number on terminal windows
 autocmd TermOpen * setlocal nonumber norelativenumber
-
-let g:deoplete#enable_at_startup = 1
-let g:deoplete#sources#jedi#show_docstring = 1
 
 let g:ranger_map_keys = 0
 
