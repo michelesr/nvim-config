@@ -27,4 +27,9 @@ RUN nvim --headless --cmd ':silent' \
     -c "/if fm.username == 'root'" -c 'norm 4dd' -c 'wq' \
     /usr/lib/python3.*/site-packages/ranger/core/main.py
 
+RUN echo 'source /usr/share/fzf/completion.bash' >> ~/.bashrc && \
+    echo 'source /usr/share/fzf/key-bindings.bash' >> ~/.bashrc && \
+    echo 'set editing-mode vi' > ~/.inputrc && \
+    echo 'set keymap vi-command' >> ~/.inputrc
+
 WORKDIR /root
