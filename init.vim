@@ -92,8 +92,10 @@ nnoremap <leader>w :Windows<CR>
 
 " telescope
 nnoremap <leader>s :Telescope<CR>
+nnoremap <space>f :Telescope find_files<CR>
 nnoremap <space>s :Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <space>o :Telescope lsp_document_symbols<CR>
+nnoremap <space>r :Telescope lsp_references<CR>
 
 " open ranger file manager
 nnoremap <leader>r :Ranger<CR>
