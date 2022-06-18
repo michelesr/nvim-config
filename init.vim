@@ -25,6 +25,10 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'
 
+  " Show a lightbulb when a codeaction is available
+  Plug 'kosayoda/nvim-lightbulb'
+  Plug 'antoinemadec/FixCursorHold.nvim'
+
   " Required by telescope
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
@@ -182,6 +186,9 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
+
+" make cursor hold update quicker
+let g:cursorhold_updatetime = 100
 
 " source lua config
 luafile ~/.config/nvim/config.lua

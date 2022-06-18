@@ -137,3 +137,6 @@ lspconfig['yamlls'].setup{
     }
   }
 }
+
+-- lightbulb
+require('nvim-lightbulb').setup({autocmd = {enabled = true}})
