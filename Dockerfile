@@ -9,16 +9,11 @@ RUN pacman -Syu --noconfirm && \
     ln -s /bin/nvim /usr/local/bin/vim && \
     ln -s /bin/nvim /usr/local/bin/vi
 
-RUN git clone https://github.com/michelesr/nvim-config ~/.config/nvim && \
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' && \
-    nvim --headless --cmd ':silent' -c ':PlugUpgrade|:PlugUpdate|qa'
-
 ENV RANGER_LOAD_DEFAULT_RC=FALSE \
     EDITOR=vim \
     VISUAL=vim
 
-RUN mkdir ~/.config/ranger && \
+RUN mkdir -p ~/.config/ranger && \
     TERM=xterm ranger --copy-config scope && \
     TERM=xterm ranger --copy-config rc
 
@@ -36,5 +31,11 @@ RUN echo 'source /usr/share/fzf/completion.bash' >> ~/.bashrc && \
 # add tmux.conf but without powerline
 RUN curl https://raw.githubusercontent.com/michelesr/zsh-config/master/tmux.conf | \
     sed '/powerline/d' > ~/.tmux.conf
+
+COPY init.vim config.lua /root/.config/nvim
+
+RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' && \
+    nvim --headless --cmd ':silent' -c ':PlugUpgrade|:PlugUpdate|qa'
 
 WORKDIR /root
