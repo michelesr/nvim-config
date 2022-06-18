@@ -55,7 +55,7 @@ filetype plugin indent on
 " general options
 set number autoindent cindent ruler showcmd history=10000
 set showmode mouse=a laststatus=2 incsearch inccommand=split
-set wildmenu hlsearch listchars=eol:$
+set wildmenu hlsearch listchars=eol:$ signcolumn=number
 
 " avoid unnecessary redraws
 set nocursorline norelativenumber lazyredraw
