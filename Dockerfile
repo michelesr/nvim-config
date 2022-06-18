@@ -29,7 +29,12 @@ RUN nvim --headless --cmd ':silent' \
 
 RUN echo 'source /usr/share/fzf/completion.bash' >> ~/.bashrc && \
     echo 'source /usr/share/fzf/key-bindings.bash' >> ~/.bashrc && \
+    echo 'source ~/.bashrc' >> ~/.bash_profile && \
     echo 'set editing-mode vi' > ~/.inputrc && \
     echo 'set keymap vi-command' >> ~/.inputrc
+
+# add tmux.conf but without powerline
+RUN curl https://raw.githubusercontent.com/michelesr/zsh-config/master/tmux.conf | \
+    sed '/powerline/d' > ~/.tmux.conf
 
 WORKDIR /root
