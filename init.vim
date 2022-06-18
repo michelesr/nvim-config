@@ -69,8 +69,8 @@ set shiftwidth=2 tabstop=8 softtabstop=0 expandtab
 " folding is a feature to reduce and expand code blocks
 set foldmethod=indent foldlevelstart=10 foldnestmax=10
 
-" open/close code blocks with space
-nnoremap <space> za
+" open/close code blocks with tab
+nnoremap <tab> za
 
 " stop highlighting old search results
 nnoremap <leader><space> :nohlsearch<CR>
@@ -93,6 +93,8 @@ nnoremap <leader>w :Windows<CR>
 
 " telescope
 nnoremap <leader>s :Telescope<CR>
+nnoremap <space>s :Telescope lsp_dynamic_workspace_symbols<CR>
+nnoremap <space>o :Telescope lsp_document_symbols<CR>
 
 " open ranger file manager
 nnoremap <leader>r :Ranger<CR>
