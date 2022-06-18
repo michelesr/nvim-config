@@ -32,10 +32,6 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>f', vim.lsp.buf.formatting, bufopts)
 end
 
-require("nvim-lsp-installer").setup({
-    automatic_installation = true
-})
-
 -- Setup nvim-cmp.
 local cmp = require'cmp'
 
@@ -109,19 +105,30 @@ vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
-require('lspconfig')['pyright'].setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
+local lsp_installer = require("nvim-lsp-installer")
+local lspconfig = require("lspconfig")
+
+-- 1. Set up nvim-lsp-installer first!
+lsp_installer.setup {
+    automatic_installation = true
 }
 
-require('lspconfig')['jsonls'].setup{
-    on_attach = on_attach,
-    capabilities = capabilities,
-}
+-- 2. (optional) Override the default configuration to be applied to all servers.
+lspconfig.util.default_config = vim.tbl_extend(
+    "force",
+    lspconfig.util.default_config,
+    {
+        on_attach = on_attach,
+        capabilities = capabilities
+    }
+)
 
-require('lspconfig')['yamlls'].setup{
-  on_attach = on_attach,
-  capabilities = capabilities,
+-- 3. Loop through all of the installed servers and set it up via lspconfig
+for _, server in ipairs(lsp_installer.get_installed_servers()) do
+  lspconfig[server.name].setup {}
+end
+
+lspconfig['yamlls'].setup{
   settings = {
     yaml = {
       schemas = {
