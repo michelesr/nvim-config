@@ -25,6 +25,8 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'hrsh7th/cmp-vsnip'
   Plug 'hrsh7th/vim-vsnip'
 
+  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+
   " Show a lightbulb when a codeaction is available
   Plug 'kosayoda/nvim-lightbulb'
   Plug 'antoinemadec/FixCursorHold.nvim'
