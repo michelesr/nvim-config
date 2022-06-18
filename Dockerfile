@@ -32,7 +32,8 @@ RUN echo 'source /usr/share/fzf/completion.bash' >> ~/.bashrc && \
 RUN curl https://raw.githubusercontent.com/michelesr/zsh-config/master/tmux.conf | \
     sed '/powerline/d' > ~/.tmux.conf
 
-COPY init.vim config.lua /root/.config/nvim
+COPY init.vim /root/.config/nvim/
+COPY lua /root/.config/nvim/lua
 
 RUN pacman -S gcc make --noconfirm && \
     sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \

@@ -194,4 +194,4 @@ let g:airline#extensions#tabline#buffer_min_count = 2
 let g:cursorhold_updatetime = 100
 
 " source lua config
-luafile ~/.config/nvim/config.lua
+luafile ~/.config/nvim/lua/init.lua
