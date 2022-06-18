@@ -10,8 +10,24 @@ call plug#begin('~/.config/nvim/bundle')
   " Close buffer without closing window (required by Ranger)
   Plug 'rbgrouleff/bclose.vim'
 
-  " Host for language servers (LSP)
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " LSP base config
+  Plug 'neovim/nvim-lspconfig'
+
+  " To install LSP servers easily with :LspInstall
+  Plug 'williamboman/nvim-lsp-installer'
+
+  " Completion engine and extensions
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'hrsh7th/cmp-vsnip'
+  Plug 'hrsh7th/vim-vsnip'
+
+  " Required by telescope
+  Plug 'nvim-lua/plenary.nvim'
+  Plug 'nvim-telescope/telescope.nvim'
 
   " FZF
   Plug 'junegunn/fzf'
@@ -30,9 +46,6 @@ call plug#end()
 " syntax and indentation
 syntax on
 filetype plugin indent on
-
-" load coc.nvim recommended config
-source ~/.config/nvim/coc.vim
 
 " general options
 set number autoindent cindent ruler showcmd history=10000
@@ -71,6 +84,9 @@ nnoremap <leader>t :Tags<CR>
 nnoremap <leader>T :BTags<CR>
 nnoremap <leader>m :Marks<CR>
 nnoremap <leader>w :Windows<CR>
+
+" telescope
+nnoremap <leader>s :Telescope<CR>
 
 " open ranger file manager
 nnoremap <leader>r :Ranger<CR>
@@ -166,3 +182,6 @@ let g:airline#extensions#tabline#show_splits = 0
 let g:airline#extensions#tabline#show_tab_nr = 0
 let g:airline#extensions#tabline#show_close_button = 0
 let g:airline#extensions#tabline#buffer_min_count = 2
+
+" source lua config
+luafile ~/.config/nvim/config.lua
