@@ -1,3 +1,10 @@
+-- LSP server settings
+--
+-- you should bookmark this file, e.g. mS
+-- and then jump to it with `S or 'S
+--
+-- use :LspConfigReload or :LR to reload config after making changes
+
 local lspconfig = require('lspconfig')
 
 lspconfig['jsonls'].setup{
