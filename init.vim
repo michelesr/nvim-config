@@ -163,6 +163,10 @@ command -nargs=1 TRun :call TermRunCmd("<args>")
 " run tmux in a terminal window
 command -nargs=? T :call Tmux("<args>")
 
+" command to autoreload LSP server settings
+command -nargs=0 LspConfigReload :luafile ~/.config/nvim/lua/lsp-servers-config.lua
+command -nargs=0 LR :LspConfigReload
+
 " use ag with the Ack plugin
 if executable('ag')
   let g:ackprg = 'ag --vimgrep'
