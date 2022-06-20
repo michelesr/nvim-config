@@ -20,6 +20,14 @@ lspconfig['jsonls'].setup{
           },
           url = 'https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json'
         },
+        {
+          fileMatch = {'cdk.json'},
+          url = 'https://json.schemastore.org/cdk.json'
+        },
+        {
+          fileMatch = {'package.json'},
+          url = 'https://json.schemastore.org/package.json',
+        },
       }
     }
   }
