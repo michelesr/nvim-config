@@ -34,6 +34,9 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
+  " Tresitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+
   " FZF
   Plug 'junegunn/fzf'
   Plug 'junegunn/fzf.vim'
