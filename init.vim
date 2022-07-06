@@ -36,6 +36,7 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Tresitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'SmiteshP/nvim-gps'
 
   " FZF
   Plug 'junegunn/fzf'
@@ -47,8 +48,8 @@ call plug#begin('~/.config/nvim/bundle')
   " Like :grep but better
   Plug 'mileszs/ack.vim'
 
-  Plug 'vim-airline/vim-airline'
-  Plug 'vim-airline/vim-airline-themes'
+  " Status line
+  Plug 'nvim-lualine/lualine.nvim'
 call plug#end()
 
 " syntax and indentation
@@ -172,18 +173,6 @@ if executable('ag')
 endif
 
 set termguicolors
-
-" airline options
-let g:airline_theme = 'onedark'
-let g:airline_powerline_fonts = 1
-
-" tabline options
-let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#tabline#show_buffers = 0
-let g:airline#extensions#tabline#show_splits = 0
-let g:airline#extensions#tabline#show_tab_nr = 0
-let g:airline#extensions#tabline#show_close_button = 0
-let g:airline#extensions#tabline#buffer_min_count = 2
 
 " make cursor hold update quicker
 let g:cursorhold_updatetime = 100
