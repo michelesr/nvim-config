@@ -4,7 +4,7 @@ RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm \
         neovim nodejs npm ranger fzf \
         the_silver_searcher ctags git \
-        tmux highlight && \
+        tmux highlight gcc make && \
     rm /var/cache/pacman -rf && \
     ln -s /bin/nvim /usr/local/bin/vim && \
     ln -s /bin/nvim /usr/local/bin/vi
@@ -35,11 +35,8 @@ RUN curl https://raw.githubusercontent.com/michelesr/zsh-config/master/tmux.conf
 COPY init.vim /root/.config/nvim/
 COPY lua /root/.config/nvim/lua
 
-RUN pacman -S gcc make --noconfirm && \
-    sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' && \
-    nvim --headless --cmd ':silent' -c ':PlugUpgrade|:PlugUpdate|qa' && \
-    pacman -Rs gcc make --noconfirm && \
-    rm -rf /var/cache/pacman
+    nvim --headless --cmd ':silent' -c ':PlugUpgrade|:PlugUpdate|qa'
 
 WORKDIR /root
