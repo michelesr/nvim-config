@@ -42,7 +42,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'junegunn/fzf.vim'
 
   " Colorscheme
-  Plug 'joshdick/onedark.vim'
+  Plug 'navarasu/onedark.nvim'
 
   " Like :grep but better
   Plug 'mileszs/ack.vim'
@@ -171,17 +171,7 @@ if executable('ag')
   let g:ackprg = 'ag --vimgrep'
 endif
 
-let g:onedark_color_overrides = {
-\ "black": {"gui": "#1d1d2d", "cterm": "0", "cterm16": "0" },
-\ "background": {"gui": "#1d1d2d", "cterm": "0", "cterm16": "0" },
-\ "comment_grey": {"gui": "#6d7d7d", "cterm": "0", "cterm16": "0" },
-\ "white": {"gui": "#bdcdcd", "cterm": "0", "cterm16": "0" },
-\ "foreground": {"gui": "#bdcdcd", "cterm": "0", "cterm16": "0" },
-\ "vertsplit": { "gui": "#8ffc67", "cterm": "0", "cterm16": "0" }
-\}
-
 set termguicolors
-colorscheme onedark
 
 " airline options
 let g:airline_theme = 'onedark'
