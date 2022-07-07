@@ -34,12 +34,14 @@ require('lualine').setup {
     lualine_z = {}
   },
   tabline = {
-    lualine_a = {'buffers'},
+    lualine_a = {
+      {'tabs', mode = 1}
+    },
     lualine_b = {},
     lualine_c = {},
     lualine_x = {},
     lualine_y = {},
-    lualine_z = {'tabs'}
+    lualine_z = {}
   },
   extensions = {}
 }
