@@ -35,13 +35,9 @@ require('lualine').setup {
   },
   tabline = {
     lualine_a = {
-      {'tabs', mode = 1}
-    },
-    lualine_b = {},
-    lualine_c = {},
-    lualine_x = {},
-    lualine_y = {},
-    lualine_z = {}
+      -- take all the space
+      {'tabs', mode = 1, max_length = vim.o.columns}
+    }
   },
   extensions = {}
 }
