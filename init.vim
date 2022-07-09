@@ -109,15 +109,26 @@ tnoremap <C-j>j <C-\><C-n>
 tnoremap <C-j><C-j> <C-\><C-n>
 
 " remove trailing spaces and tabs on saving
-autocmd BufWritePre * :%s/\s\+$//ec
+augroup UserWritePre
+  autocmd!
+  autocmd BufWritePre * :%s/\s\+$//ec
+augroup END
+
+augroup HelmTemplates
+  autocmd!
+  " disables tresitter highlight and lsp if it's an helm template
+  autocmd FileType yaml :lua require('helm-template-quirks').run()
+augroup END
 
 " specific file extension options
 augroup UserExtension
+  autocmd!
   autocmd BufNewFile,BufRead Thorfile\|*.thor setlocal filetype=ruby
-augroup end
+augroup END
 
 " specific file type options
 augroup UserFileType
+  autocmd!
   autocmd FileType python setlocal sw=4 kp=:Run\ pydoc
   " https://github.com/rubocop-hq/ruby-style-guide#indentation
   autocmd FileType ruby setlocal kp=:TRun\ ri\ --no-pager
@@ -128,7 +139,7 @@ augroup UserFileType
   " make requires hard tabs
   autocmd FileType make setlocal sw=8 noet
   autocmd FileType markdown setlocal spell
-augroup end
+augroup END
 
 " do not show line number on terminal windows
 autocmd TermOpen * setlocal nonumber norelativenumber
