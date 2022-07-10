@@ -43,6 +43,11 @@ lspconfig['yamlls'].setup{
           '*cf.yaml',
           '*cloudformation.yaml',
         }
+      },
+      customTags = {
+        '!Ref scalar',
+        '!Split sequence',
+        '!GetAtt',
       }
     }
   }
