@@ -120,18 +120,9 @@ augroup HelmTemplates
   autocmd FileType yaml :lua require('helm-template-quirks').run()
 augroup END
 
-" specific file extension options
-augroup UserExtension
-  autocmd!
-  autocmd BufNewFile,BufRead Thorfile\|*.thor setlocal filetype=ruby
-augroup END
-
 " specific file type options
 augroup UserFileType
   autocmd!
-  autocmd FileType python setlocal sw=4 kp=:Run\ pydoc
-  " https://github.com/rubocop-hq/ruby-style-guide#indentation
-  autocmd FileType ruby setlocal kp=:TRun\ ri\ --no-pager
   " golang convention (e.g gofmt) want hard tabs
   autocmd FileType go setlocal sw=8 noet
   " linux kernel development convention
@@ -141,8 +132,11 @@ augroup UserFileType
   autocmd FileType markdown setlocal spell
 augroup END
 
-" do not show line number on terminal windows
-autocmd TermOpen * setlocal nonumber norelativenumber
+augroup Term
+  autocmd!
+  " do not show line number on terminal windows
+  autocmd TermOpen * setlocal nonumber norelativenumber
+augroup END
 
 let g:ranger_map_keys = 0
 
