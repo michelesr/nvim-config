@@ -11,9 +11,9 @@ local function is_helm_template()
   return false
 end
 
--- disable LSP and Treesitter syntax highlighting
+-- disable LSP diagnostic and Treesitter syntax highlighting
 local function disable_lsp_and_ts_higlight()
-  vim.cmd('LspStop')
+  vim.diagnostic.disable(0)
   vim.cmd('TSBufDisable highlight')
 end
 

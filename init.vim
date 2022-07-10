@@ -36,6 +36,7 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Tresitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/playground'
   Plug 'SmiteshP/nvim-gps'
 
   " FZF
@@ -116,7 +117,7 @@ augroup END
 
 augroup HelmTemplates
   autocmd!
-  " disables tresitter highlight and lsp if it's an helm template
+  " disables treesitter highlight and diagnostics if it's an helm template
   autocmd FileType yaml :lua require('helm-template-quirks').run()
 augroup END
 
