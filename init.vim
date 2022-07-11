@@ -80,21 +80,18 @@ nnoremap <leader><space> :nohlsearch<CR>
 noremap tt :tab split<CR>
 
 " fzf
-nnoremap <leader>f :FZF<CR>
-nnoremap <leader>h :History<CR>
-nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>c :Commits<CR>
-nnoremap <leader>C :BCommits<CR>
-nnoremap <leader>l :Lines<CR>
-nnoremap <leader>L :BLines<CR>
-nnoremap <leader>t :Tags<CR>
-nnoremap <leader>T :BTags<CR>
-nnoremap <leader>m :Marks<CR>
-nnoremap <leader>w :Windows<CR>
 
 " telescope
+nnoremap <leader>h :Telescope oldfiles include_current_session=true<CR>
 nnoremap <leader>s :Telescope<CR>
-nnoremap <space>f :Telescope find_files<CR>
+nnoremap <leader>f :Telescope find_files<CR>
+nnoremap <leader>b :Telescope buffers<CR>
+nnoremap <leader>m :Telescope marks<CR>
+nnoremap <leader>t :Telescope tags<CR>
+nnoremap <leader>T :Telescope current_buffer_tags<CR>
+
+" telescope lsp
 nnoremap <space>s :Telescope lsp_dynamic_workspace_symbols<CR>
 nnoremap <space>o :Telescope lsp_document_symbols<CR>
 nnoremap <space>r :Telescope lsp_references<CR>
