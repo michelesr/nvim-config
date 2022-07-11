@@ -1,56 +1,56 @@
 " install plugins in bundle folder
 call plug#begin('~/.config/nvim/bundle')
   " Git plugin
-  Plug 'tpope/vim-fugitive'
+  Plug 'https://github.com/tpope/vim-fugitive'
   " GitHub support (e.g. GBrowse)
-  Plug 'tpope/vim-rhubarb'
+  Plug 'https://github.com/tpope/vim-rhubarb'
 
   " Ranger integration
-  Plug 'francoiscabrol/ranger.vim'
+  Plug 'https://github.com/francoiscabrol/ranger.vim'
   " Close buffer without closing window (required by Ranger)
-  Plug 'rbgrouleff/bclose.vim'
+  Plug 'https://github.com/rbgrouleff/bclose.vim'
 
   " LSP base config
-  Plug 'neovim/nvim-lspconfig'
+  Plug 'https://github.com/neovim/nvim-lspconfig'
 
   " To install LSP servers easily with :LspInstall
-  Plug 'williamboman/nvim-lsp-installer'
+  Plug 'https://github.com/williamboman/nvim-lsp-installer'
 
   " Completion engine and extensions
-  Plug 'hrsh7th/cmp-nvim-lsp'
-  Plug 'hrsh7th/cmp-buffer'
-  Plug 'hrsh7th/cmp-path'
-  Plug 'hrsh7th/cmp-cmdline'
-  Plug 'hrsh7th/nvim-cmp'
-  Plug 'hrsh7th/cmp-vsnip'
-  Plug 'hrsh7th/vim-vsnip'
+  Plug 'https://github.com/hrsh7th/cmp-nvim-lsp'
+  Plug 'https://github.com/hrsh7th/cmp-buffer'
+  Plug 'https://github.com/hrsh7th/cmp-path'
+  Plug 'https://github.com/hrsh7th/cmp-cmdline'
+  Plug 'https://github.com/hrsh7th/nvim-cmp'
+  Plug 'https://github.com/hrsh7th/cmp-vsnip'
+  Plug 'https://github.com/hrsh7th/vim-vsnip'
 
   " Show a lightbulb when a codeaction is available
-  Plug 'kosayoda/nvim-lightbulb'
-  Plug 'antoinemadec/FixCursorHold.nvim'
+  Plug 'https://github.com/kosayoda/nvim-lightbulb'
+  Plug 'https://github.com/antoinemadec/FixCursorHold.nvim'
 
   " Required by telescope
-  Plug 'nvim-lua/plenary.nvim'
-  Plug 'nvim-telescope/telescope.nvim'
-  Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'https://github.com/nvim-lua/plenary.nvim'
+  Plug 'https://github.com/nvim-telescope/telescope.nvim'
+  Plug 'https://github.com/nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 
   " Tresitter
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'nvim-treesitter/playground'
-  Plug 'SmiteshP/nvim-gps'
+  Plug 'https://github.com/nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'https://github.com/nvim-treesitter/playground'
+  Plug 'https://github.com/SmiteshP/nvim-gps'
 
   " FZF
-  Plug 'junegunn/fzf'
-  Plug 'junegunn/fzf.vim'
+  Plug 'https://github.com/junegunn/fzf'
+  Plug 'https://github.com/junegunn/fzf.vim'
 
   " Colorscheme
-  Plug 'navarasu/onedark.nvim'
+  Plug 'https://github.com/navarasu/onedark.nvim'
 
   " Like :grep but better
-  Plug 'mileszs/ack.vim'
+  Plug 'https://github.com/mileszs/ack.vim'
 
   " Status line
-  Plug 'nvim-lualine/lualine.nvim'
+  Plug 'https://github.com/nvim-lualine/lualine.nvim'
 call plug#end()
 
 " syntax and indentation
