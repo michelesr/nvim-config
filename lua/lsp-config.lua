@@ -1,11 +1,3 @@
--- Mappings.
--- See `:help vim.diagnostic.*` for documentation on any of the below functions
-local opts = { noremap=true, silent=true }
-vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
-vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
-
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
@@ -14,22 +6,60 @@ local on_attach = function(client, bufnr)
 
   -- Mappings.
   -- See `:help vim.lsp.*` for documentation on any of the below functions
-  local bufopts = { noremap=true, silent=true, buffer=bufnr }
-  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, bufopts)
-  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, bufopts)
-  vim.keymap.set('n', 'K', vim.lsp.buf.hover, bufopts)
-  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, bufopts)
-  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, bufopts)
-  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, bufopts)
-  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, bufopts)
+  local opts = { noremap=true, silent=true, buffer=bufnr }
+
+  opts.desc = 'Show diagnostic message'
+  vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
+
+  opts.desc = 'Go to previous diagnostic'
+  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+
+  opts.desc = 'Go to next diagnostic'
+  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+
+  opts.desc = 'Open diagnostic list'
+  vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
+
+  opts.desc = 'Go to declaration'
+  vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+
+  opts.desc = 'Go to definition'
+  vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+
+  opts.desc = 'Go to implementation'
+  vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+
+  opts.desc = 'Go to type definition'
+  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+
+  opts.desc = 'Describe item'
+  vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
+
+  opts.desc = 'Show signature help'
+  vim.keymap.set('n', '<C-k>', vim.lsp.buf.signature_help, opts)
+
+  opts.desc = 'Add workspace folder'
+  vim.keymap.set('n', '<space>wa', vim.lsp.buf.add_workspace_folder, opts)
+
+  opts.desc = 'Remove workspace folder'
+  vim.keymap.set('n', '<space>wr', vim.lsp.buf.remove_workspace_folder, opts)
+
+  opts.desc = 'List workspace folders'
   vim.keymap.set('n', '<space>wl', function()
     print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-  end, bufopts)
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, bufopts)
-  vim.keymap.set('n', '<space>R', vim.lsp.buf.rename, bufopts)
-  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, bufopts)
-  vim.keymap.set('n', 'gr', vim.lsp.buf.references, bufopts)
-  vim.keymap.set('n', '<space>F', vim.lsp.buf.formatting, bufopts)
+  end, opts)
+
+  opts.desc = 'Rename item'
+  vim.keymap.set('n', '<space>R', vim.lsp.buf.rename, opts)
+
+  opts.desc = 'Code actions'
+  vim.keymap.set('n', '<space>ca', vim.lsp.buf.code_action, opts)
+
+  opts.desc = 'Show references'
+  vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+
+  opts.desc = 'Format code'
+  vim.keymap.set('n', '<space>F', vim.lsp.buf.formatting, opts)
 end
 
 -- Setup lspconfig.
