@@ -143,6 +143,7 @@ augroup Term
 augroup END
 
 let g:ranger_map_keys = 0
+let g:bclose_no_plugin_maps = 1
 
 " run commands and display output in the preview window
 function RunCmd(cmd)
