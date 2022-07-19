@@ -1,5 +1,3 @@
-local exports = {}
-
 -- returns true if buffer contains a yaml template
 local function is_helm_template()
   local lines = vim.api.nvim_buf_get_lines(0, 0, -1, false)
@@ -17,11 +15,12 @@ local function disable_lsp_and_ts_higlight()
   vim.cmd('TSBufDisable highlight')
 end
 
-exports.run = function()
+local M = {}
+function M.run()
   if is_helm_template() then
     -- defer so that LSP and TS can be initialized properly
     vim.defer_fn(disable_lsp_and_ts_higlight, 1)
   end
 end
 
-return exports
+return M
