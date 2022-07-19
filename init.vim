@@ -51,6 +51,9 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Status line
   Plug 'https://github.com/nvim-lualine/lualine.nvim'
+
+  " Display keybindings suggestions when typing commands
+  Plug 'https://github.com/folke/which-key.nvim'
 call plug#end()
 
 " syntax and indentation
