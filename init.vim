@@ -73,6 +73,9 @@ set shiftwidth=2 tabstop=8 softtabstop=0 expandtab
 " folding is a feature to reduce and expand code blocks
 set foldmethod=indent foldlevelstart=10 foldnestmax=10
 
+" enables 24-bit RGB color in the TUI
+set termguicolors
+
 " stop highlighting old search results
 nnoremap <leader><space> :nohlsearch<CR>
 
@@ -139,9 +142,6 @@ augroup Term
   autocmd TermOpen * setlocal nonumber norelativenumber
 augroup END
 
-let g:ranger_map_keys = 0
-let g:bclose_no_plugin_maps = 1
-
 " run commands and display output in the preview window
 function RunCmd(cmd)
   silent exe "pedit " . a:cmd
@@ -174,15 +174,17 @@ command -nargs=? T :call Tmux("<args>")
 " command to autoreload LSP server settings
 command -nargs=0 LspConfigReload :luafile ~/.config/nvim/lua/lsp-servers-config.lua
 
-" use ag with the Ack plugin
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
-
-set termguicolors
-
 " make cursor hold update quicker
 let g:cursorhold_updatetime = 100
+
+" disable ranger mappings
+let g:ranger_map_keys = 0
+
+" disable bclose mappings
+let g:bclose_no_plugin_maps = 1
+
+" use https://github.com/ggreer/the_silver_searcher for :Ack
+let g:ackprg = 'ag --vimgrep'
 
 " source lua config
 luafile ~/.config/nvim/lua/init.lua
