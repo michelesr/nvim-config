@@ -1,6 +1,6 @@
 -- Lua
 require('onedark').setup {
-  toggle_style_key = '<Plug>OneDarkToggleKey',
+  toggle_style_key = '<Plug>(OneDarkToggleKey)',
   -- bundle/onedark.nvim/lua/onedark/palette.lua
   style = 'dark',
   colors = {
