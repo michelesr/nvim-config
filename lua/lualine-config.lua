@@ -1,12 +1,12 @@
 local gps = require("nvim-gps")
 
 gps.setup {
-  disable_icons = true,
+  disable_icons = false,
 }
 
 require('lualine').setup {
   options = {
-    icons_enabled = false,
+    icons_enabled = true,
     theme = 'auto',
     component_separators = { left = '', right = ''},
     section_separators = { left = '', right = ''},
