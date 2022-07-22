@@ -41,6 +41,7 @@ cmp.setup.filetype('gitcommit', {
     { name = 'cmp_git' }, -- You can specify the `cmp_git` source if you were installed it.
   }, {
     { name = 'buffer' },
+    { name = 'path' },
   })
 })
 

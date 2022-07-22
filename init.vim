@@ -82,7 +82,7 @@ nnoremap <leader><space> :nohlsearch<CR>
 noremap tt :tab split<CR>
 
 " fzf
-nnoremap <leader>f :FZF<CR>
+nnoremap <leader>f :Files<CR>
 nnoremap <leader>h :History<CR>
 nnoremap <leader>b :Buffers<CR>
 nnoremap <leader>c :Commits<CR>
