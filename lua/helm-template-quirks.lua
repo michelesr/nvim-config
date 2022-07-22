@@ -19,7 +19,7 @@ local M = {}
 function M.run()
   if is_helm_template() then
     -- defer so that LSP and TS can be initialized properly
-    vim.defer_fn(disable_lsp_and_ts_higlight, 1)
+    vim.defer_fn(disable_lsp_and_ts_higlight, 0)
   end
 end
 
