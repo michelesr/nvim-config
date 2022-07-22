@@ -40,6 +40,7 @@ call plug#begin('~/.config/nvim/bundle')
   Plug 'https://github.com/SmiteshP/nvim-gps'
 
   " FZF
+  Plug 'https://github.com/junegunn/fzf'
   Plug 'https://github.com/junegunn/fzf.vim'
 
   " Colorscheme
