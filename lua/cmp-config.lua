@@ -1,7 +1,7 @@
 -- Setup nvim-cmp.
 local cmp = require('cmp')
 
-cmp.setup({
+cmp.setup {
   snippet = {
     -- REQUIRED - you must specify a snippet engine
     expand = function(args)
@@ -33,7 +33,7 @@ cmp.setup({
     { name = 'buffer' },
     { name = 'path' },
   })
-})
+}
 
 -- Set configuration for specific filetype.
 cmp.setup.filetype('gitcommit', {

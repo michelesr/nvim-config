@@ -7,7 +7,7 @@
 
 local lspconfig = require('lspconfig')
 
-lspconfig['jsonls'].setup{
+lspconfig['jsonls'].setup {
   settings = {
     json = {
       -- type gf to open the url and look at the scheme catalog:
@@ -34,7 +34,7 @@ lspconfig['jsonls'].setup{
   }
 }
 
-lspconfig['yamlls'].setup{
+lspconfig['yamlls'].setup {
   settings = {
     yaml = {
       schemas = {
