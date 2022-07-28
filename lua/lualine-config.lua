@@ -7,7 +7,7 @@ gps.setup {
 -- prints an icon in the statusline when LSP are busy
 local function lsp_activity()
   if require('lsp-activity-check').busy then
-    return '羽'
+    return 'B'
   end
   return ''
 end
