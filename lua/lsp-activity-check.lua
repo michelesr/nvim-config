@@ -1,4 +1,4 @@
-M = {}
+local M = {}
 M.busy = false
 
 local function activity_probe()
