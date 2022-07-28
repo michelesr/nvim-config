@@ -14,6 +14,6 @@ local function activity_probe()
 end
 
 local timer = vim.loop.new_timer()
-timer:start(0, 1000, vim.schedule_wrap(activity_probe))
+timer:start(0, 250, vim.schedule_wrap(activity_probe))
 
 return M
