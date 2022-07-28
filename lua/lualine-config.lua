@@ -4,6 +4,14 @@ gps.setup {
   disable_icons = false,
 }
 
+-- prints an icon in the statusline when LSP are busy
+local function lsp_activity()
+  if require('lsp-activity-check').busy then
+    return '羽'
+  end
+  return ''
+end
+
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -23,7 +31,7 @@ require('lualine').setup {
     },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
-    lualine_z = {'location'}
+    lualine_z = {'location', lsp_activity}
   },
   inactive_sections = {
     lualine_a = {},
