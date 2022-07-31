@@ -1,3 +1,4 @@
+require('mason-config')
 require('lsp-config')
 require('lsp-servers-config')
 require('cmp-config')

@@ -13,8 +13,9 @@ call plug#begin('~/.config/nvim/bundle')
   " LSP base config
   Plug 'https://github.com/neovim/nvim-lspconfig'
 
-  " To install LSP servers easily with :LspInstall
-  Plug 'https://github.com/williamboman/nvim-lsp-installer'
+  " To install extensions such as language servers
+  Plug 'https://github.com/williamboman/mason.nvim'
+  Plug 'https://github.com/williamboman/mason-lspconfig.nvim'
 
   " Completion engine and extensions
   Plug 'https://github.com/hrsh7th/cmp-nvim-lsp'

@@ -64,14 +64,7 @@ end
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
-
-local lsp_installer = require('nvim-lsp-installer')
 local lspconfig = require('lspconfig')
-
--- 1. Set up nvim-lsp-installer first!
-lsp_installer.setup {
-    automatic_installation = true
-}
 
 -- 2. (optional) Override the default configuration to be applied to all servers.
 lspconfig.util.default_config = vim.tbl_extend(
@@ -84,6 +77,6 @@ lspconfig.util.default_config = vim.tbl_extend(
 )
 
 -- 3. Loop through all of the installed servers and set it up via lspconfig
-for _, server in ipairs(lsp_installer.get_installed_servers()) do
-  lspconfig[server.name].setup {}
+for _, server in ipairs(require('mason-lspconfig').get_installed_servers()) do
+  lspconfig[server].setup {}
 end
