@@ -21,6 +21,10 @@ require('lualine').setup {
     disabled_filetypes = {},
     always_divide_middle = true,
     globalstatus = false,
+    refresh = {
+      statusline = 250,
+      tabline = 1000,
+    }
   },
   sections = {
     lualine_a = {'mode'},
