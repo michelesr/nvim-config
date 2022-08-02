@@ -80,3 +80,10 @@ lspconfig.util.default_config = vim.tbl_extend(
 for _, server in ipairs(require('mason-lspconfig').get_installed_servers()) do
   lspconfig[server].setup {}
 end
+
+-- add command to detach LSP clients from active buffer
+vim.api.nvim_create_user_command('LspBufDetach', function()
+  for i, _ in ipairs(vim.lsp.buf_get_clients()) do
+    vim.lsp.buf_detach_client(0, i)
+  end
+end, {})
