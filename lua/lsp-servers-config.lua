@@ -52,25 +52,3 @@ lspconfig['yamlls'].setup {
     }
   }
 }
-
--- This strips out &nbsp; and some ending escaped backslashes out of hover
--- strings because the pyright LSP is... odd with how it creates hover strings.
-local function hover(_, result, ctx, config)
-  if not result then -- noop
-  elseif type(result.contents) == 'string' then
-    local s = string.gsub(result.contents, '&nbsp;', ' ')
-    s = string.gsub(s, '\\\n', '\n')
-    result.contents = s
-  elseif type(result.contents) == 'table' then
-    local s = string.gsub(result.contents.value or '', '&nbsp;', ' ')
-    s = string.gsub(s, '\\\n', '\n')
-    result.contents.value = s
-  end
-  return vim.lsp.handlers.hover(_, result, ctx, config)
-end
-
-lspconfig['pyright'].setup {
-  handlers = {
-    ['textDocument/hover'] = vim.lsp.with(hover, {}),
-  },
-}
