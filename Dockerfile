@@ -35,8 +35,8 @@ RUN curl https://raw.githubusercontent.com/michelesr/zsh-config/master/tmux.conf
 COPY init.vim /root/.config/nvim/
 COPY lua /root/.config/nvim/lua
 
-RUN sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim' && \
-    nvim --headless --cmd ':silent' -c ':PlugUpgrade|:PlugUpdate|qa'
+RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+    ~/.local/share/nvim/site/pack/packer/start/packer.nvim && \
+    nvim --headless --cmd ':silent' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
 
 WORKDIR /root
