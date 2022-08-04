@@ -66,7 +66,7 @@ augroup END
 augroup HelmTemplates
   autocmd!
   " disables treesitter highlight and diagnostics if it's an helm template
-  autocmd FileType yaml :lua require('helm-template-quirks').run()
+  autocmd FileType yaml :lua require('scripts.helm-template-quirks').run()
 augroup END
 
 " specific file type options
@@ -117,7 +117,7 @@ command -nargs=1 TRun :call TermRunCmd("<args>")
 command -nargs=? T :call Tmux("<args>")
 
 " command to autoreload LSP server settings
-command -nargs=0 LspConfigReload :luafile ~/.config/nvim/lua/lsp-servers-config.lua
+command -nargs=0 LspConfigReload :luafile ~/.config/nvim/lua/config/lsp-servers.lua
 
 " make cursor hold update quicker
 let g:cursorhold_updatetime = 100
