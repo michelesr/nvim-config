@@ -28,10 +28,6 @@ return require('packer').startup(function(use)
   use 'https://github.com/hrsh7th/cmp-vsnip'
   use 'https://github.com/hrsh7th/vim-vsnip'
 
-  -- Show a lightbulb when a codeaction is available
-  use 'https://github.com/kosayoda/nvim-lightbulb'
-  use 'https://github.com/antoinemadec/FixCursorHold.nvim'
-
   -- Required by telescope
   use 'https://github.com/nvim-lua/plenary.nvim'
   use 'https://github.com/nvim-telescope/telescope.nvim'
@@ -39,8 +35,6 @@ return require('packer').startup(function(use)
 
   -- Tresitter
   use {'https://github.com/nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use 'https://github.com/nvim-treesitter/playground'
-  use 'https://github.com/SmiteshP/nvim-gps'
 
   -- FZF
   use 'https://github.com/junegunn/fzf'

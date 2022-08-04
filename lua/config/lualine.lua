@@ -1,9 +1,3 @@
-local gps = require("nvim-gps")
-
-gps.setup {
-  disable_icons = false,
-}
-
 -- prints an icon in the statusline when LSP are busy
 local function lsp_activity()
   if require('scripts.lsp-activity-check').busy then
@@ -31,7 +25,6 @@ require('lualine').setup {
     lualine_b = {'branch', 'diff', 'diagnostics', lsp_activity},
     lualine_c = {
       {'filename', path = 1},
-      { gps.get_location, cond = gps.is_available },
     },
     lualine_x = {'encoding', 'fileformat', 'filetype'},
     lualine_y = {'progress'},
