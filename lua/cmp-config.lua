@@ -62,3 +62,7 @@ cmp.setup.cmdline(':', {
     { name = 'cmdline' }
   })
 })
+
+cmp.setup.filetype('neorepl', {
+  enabled = false
+})

@@ -52,6 +52,9 @@ call plug#begin('~/.config/nvim/bundle')
 
   " Status line
   Plug 'https://github.com/nvim-lualine/lualine.nvim'
+
+  " REPL for lua and vimscript
+  Plug 'https://github.com/ii14/neorepl.nvim'
 call plug#end()
 
 " syntax and indentation
