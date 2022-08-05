@@ -87,3 +87,8 @@ vim.api.nvim_create_user_command('LspBufDetach', function()
     vim.lsp.buf_detach_client(0, id)
   end
 end, {})
+
+-- add command to reload the LSP server settings
+vim.api.nvim_create_user_command('LspConfigReload', function()
+  dofile('lsp-server-settings.lua')
+end, {})
