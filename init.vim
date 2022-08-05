@@ -36,7 +36,7 @@ augroup END
 
 augroup UserHelmTemplates
   autocmd!
-  " disables treesitter highlight and diagnostics if it's an helm template
+  " disables treesitter highlight and diagnostics for helm templates
   autocmd FileType yaml :lua require('scripts.helm-template-quirks').run()
 augroup END
 
@@ -60,9 +60,9 @@ augroup END
 
 " run tmux in a terminal window
 function Tmux(cmd)
-  exe "te" "tmux new-session " . a:cmd . "\\; set status off"
-  exe "f" substitute(bufname(), "tmux.*", "tmux", "")
+  exe 'te' 'tmux new-session ' . a:cmd . '\; set status off'
+  exe 'f' substitute(bufname(), 'tmux.*', 'tmux', '')
 endfunction
-command -nargs=? T :call Tmux("<args>")
+command -nargs=? T :call Tmux('<args>')
 
 luafile ~/.config/nvim/lua/init.lua
