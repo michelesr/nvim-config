@@ -11,10 +11,7 @@ let g:bclose_no_plugin_maps = 1
 let g:ackprg = 'ag --vimgrep'
 
 " stop highlighting old search results
-nnoremap <leader><space> :nohlsearch<CR>
-
-" open current buffer in new tab
-noremap tt :tab split<CR>
+nnoremap <leader><leader> :nohlsearch<CR>
 
 " fzf
 nnoremap <leader>f :Files<CR>
