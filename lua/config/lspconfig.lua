@@ -90,5 +90,7 @@ end, {})
 
 -- add command to reload the LSP server settings
 vim.api.nvim_create_user_command('LspConfigReload', function()
-  dofile('lsp-server-settings.lua')
+  local module = 'config.lsp-server-settings'
+  package.loaded[module] = nil
+  require(module)
 end, {})
