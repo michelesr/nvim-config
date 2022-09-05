@@ -1,11 +1,3 @@
--- prints an icon in the statusline when LSP are busy
-local function lsp_activity()
-  if require('scripts.lsp-activity-check').busy then
-    return 'ﮫ'
-  end
-  return ''
-end
-
 require('lualine').setup {
   options = {
     icons_enabled = true,
@@ -22,7 +14,7 @@ require('lualine').setup {
   },
   sections = {
     lualine_a = {'mode'},
-    lualine_b = {'branch', 'diff', 'diagnostics', lsp_activity},
+    lualine_b = {'branch', 'diff', 'diagnostics'},
     lualine_c = {
       {'filename', path = 1},
     },
