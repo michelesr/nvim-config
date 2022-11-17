@@ -39,7 +39,6 @@ lspconfig['yamlls'].setup {
     yaml = {
       schemas = {
         ['kubernetes'] = 'foo.yaml',
-        ['https://gist.githubusercontent.com/michelesr/0cf8d1624c47a972d45437f323fbea8a/raw/ed29b02662c11244393534f7d384eaac159415cc/ca_config.schema.json'] = 'ca_config.yaml',
         ['https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json'] = {
           '*cf.yaml',
           '*cloudformation.yaml',
