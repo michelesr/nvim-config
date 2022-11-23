@@ -49,7 +49,6 @@ augroup UserFileType
   autocmd FileType c setlocal sw=8 noet
   " make requires hard tabs
   autocmd FileType make setlocal sw=8 noet
-  autocmd FileType markdown setlocal spell
 augroup END
 
 augroup UserTerm
