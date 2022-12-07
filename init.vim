@@ -28,12 +28,6 @@ nnoremap <leader>r :Ranger<CR>
 " this will bring terminal buffer in normal mode
 tnoremap <A-j><A-j> <C-\><C-n>
 
-" remove trailing spaces and tabs on saving
-augroup UserWritePre
-  autocmd!
-  autocmd BufWritePre * :%s/\s\+$//ec
-augroup END
-
 augroup UserHelmTemplates
   autocmd!
   " disables treesitter highlight and diagnostics for helm templates
