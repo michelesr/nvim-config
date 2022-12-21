@@ -36,6 +36,7 @@ return require('packer').startup(function(use)
   -- Tresitter
   use {'https://github.com/nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
   use 'https://github.com/nvim-treesitter/playground'
+  use 'nvim-treesitter/nvim-treesitter-textobjects'
 
   -- FZF
   use 'https://github.com/junegunn/fzf'
