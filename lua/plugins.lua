@@ -38,6 +38,9 @@ return require('packer').startup(function(use)
   use 'https://github.com/nvim-treesitter/playground'
   use 'nvim-treesitter/nvim-treesitter-textobjects'
 
+  -- Adds indentation text objects
+  use 'https://github.com/michaeljsmith/vim-indent-object'
+
   -- FZF
   use 'https://github.com/junegunn/fzf'
   use 'https://github.com/junegunn/fzf.vim'
