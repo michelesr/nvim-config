@@ -1,5 +1,5 @@
 return require('packer').startup(function(use)
-    -- Packer can manage itself
+  -- Packer can manage itself
   use 'https://github.com/wbthomason/packer.nvim'
 
   -- Git plugin
