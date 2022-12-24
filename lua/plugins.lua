@@ -11,8 +11,6 @@ return require('packer').startup(function(use)
   use 'https://github.com/tpope/vim-commentary'
   -- Wrap text (e.g. t -> "t") or change surroundings (e.g. "t" -> 't')
   use 'https://github.com/tpope/vim-surround'
-  -- Allow to use . to repeat actions from supported plugins
-  use 'https://github.com/tpope/vim-repeat'
 
   -- Ranger integration
   use 'https://github.com/francoiscabrol/ranger.vim'
