@@ -7,6 +7,13 @@ return require('packer').startup(function(use)
   -- GitHub support (e.g. GBrowse)
   use 'https://github.com/tpope/vim-rhubarb'
 
+  -- Comment lines with gc<motion> or a line with gcc
+  use 'https://github.com/tpope/vim-commentary'
+  -- Wrap text (e.g. t -> "t") or change surroundings (e.g. "t" -> 't')
+  use 'https://github.com/tpope/vim-surround'
+  -- Allow to use . to repeat actions from supported plugins
+  use 'https://github.com/tpope/vim-repeat'
+
   -- Ranger integration
   use 'https://github.com/francoiscabrol/ranger.vim'
   -- Close buffer without closing window (required by Ranger)
