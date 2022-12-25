@@ -9,8 +9,6 @@ return require('packer').startup(function(use)
 
   -- Comment lines with gc<motion> or a line with gcc
   use 'https://github.com/tpope/vim-commentary'
-  -- Wrap text (e.g. t -> "t") or change surroundings (e.g. "t" -> 't')
-  use 'https://github.com/tpope/vim-surround'
 
   -- Ranger integration
   use 'https://github.com/francoiscabrol/ranger.vim'
