@@ -8,7 +8,7 @@ set shiftwidth=2 tabstop=8 softtabstop=0 expandtab
 
 let g:ranger_map_keys = 0
 let g:bclose_no_plugin_maps = 1
-let g:ackprg = 'ag --vimgrep'
+let g:ackprg = 'rg --vimgrep'
 
 " stop highlighting old search results
 nnoremap <leader><leader> :nohlsearch<CR>

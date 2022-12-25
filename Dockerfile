@@ -2,9 +2,8 @@ FROM docker.io/library/archlinux:latest
 
 RUN pacman -Syu --noconfirm && \
     pacman -S --noconfirm \
-        neovim nodejs npm ranger fzf \
-        the_silver_searcher ctags git \
-        tmux highlight gcc make && \
+        neovim nodejs npm ranger fzf ripgrep \
+        ctags git tmux highlight gcc make && \
     rm /var/cache/pacman -rf && \
     ln -s /bin/nvim /usr/local/bin/vim && \
     ln -s /bin/nvim /usr/local/bin/vi
