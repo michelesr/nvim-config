@@ -51,9 +51,6 @@ return require('packer').startup(function(use)
   -- Colorscheme
   use 'https://github.com/navarasu/onedark.nvim'
 
-  -- Like :grep but better
-  use 'https://github.com/mileszs/ack.vim'
-
   -- Status line
   use 'https://github.com/nvim-lualine/lualine.nvim'
 

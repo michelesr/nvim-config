@@ -8,7 +8,6 @@ set shiftwidth=2 tabstop=8 softtabstop=0 expandtab
 
 let g:ranger_map_keys = 0
 let g:bclose_no_plugin_maps = 1
-let g:ackprg = 'rg --vimgrep'
 
 " stop highlighting old search results
 nnoremap <leader><leader> :nohlsearch<CR>
@@ -57,5 +56,8 @@ function Tmux(cmd)
   exe 'f' substitute(bufname(), 'tmux.*', 'tmux', '')
 endfunction
 command -nargs=? T :call Tmux('<args>')
+
+set grepprg=rg\ --vimgrep
+command -nargs=+ Grep exe 'silent grep <args>' | copen
 
 luafile ~/.config/nvim/lua/init.lua
