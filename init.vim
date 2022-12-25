@@ -52,6 +52,6 @@ endfunction
 command -nargs=? T :call Tmux('<args>')
 
 set grepprg=rg\ --vimgrep
-command -nargs=+ Grep exe 'silent grep! <args>' | copen
+command -nargs=+ Grep silent grep! <args> | copen
 
 luafile ~/.config/nvim/lua/init.lua
