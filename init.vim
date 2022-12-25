@@ -27,12 +27,6 @@ nnoremap <leader>r :Ranger<CR>
 " this will bring terminal buffer in normal mode
 tnoremap <A-j><A-j> <C-\><C-n>
 
-augroup UserHelmTemplates
-  autocmd!
-  " disables treesitter highlight and diagnostics for helm templates
-  autocmd FileType yaml :lua require('scripts.helm-template-quirks').run()
-augroup END
-
 " specific file type options
 augroup UserFileType
   autocmd!
