@@ -1,11 +1,11 @@
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
 local on_attach = function(client, bufnr)
-  -- Enable completion triggered by <c-x><c-o>
-  -- vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
+  -- disable LSP on Helm templates until supported
+  if vim.bo[bufnr].filetype == 'helm' then
+    print('Helm template not supported: detaching LSP client')
+    vim.lsp.buf_detach_client(bufnr, client.id)
+    return
+  end
 
-  -- Mappings.
-  -- See `:help vim.lsp.*` for documentation on any of the below functions
   local opts = { noremap=true, silent=true, buffer=bufnr }
 
   opts.desc = 'Show diagnostic message'
@@ -88,25 +88,9 @@ vim.api.nvim_create_user_command('LspConfigReload', function()
   require(module)
 end, {})
 
-local function lsp_buf_detach()
+-- add command to detach LSP clients from active buffer
+vim.api.nvim_create_user_command('LspBufDetach', function()
   for id, _ in pairs(vim.lsp.buf_get_clients()) do
     vim.lsp.buf_detach_client(0, id)
   end
-end
-
-local function defer_lsp_buf_detach()
-  for _, delay in ipairs({0, 1000, 2500, 5000}) do
-    vim.defer_fn(lsp_buf_detach, delay)
-  end
-end
-
--- add command to detach LSP clients from active buffer
-vim.api.nvim_create_user_command('LspBufDetach', lsp_buf_detach, {})
-
--- https://github.com/redhat-developer/yaml-language-server/issues/220
-vim.api.nvim_create_augroup("HelmLspBufDetach", { clear = true })
-vim.api.nvim_create_autocmd("FileType", {
-    pattern = {"helm"},
-    callback = defer_lsp_buf_detach,
-    group = "HelmLspBufDetach"
-})
+end, {})
