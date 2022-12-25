@@ -54,4 +54,7 @@ command -nargs=? T :call Tmux('<args>')
 set grepprg=rg\ --vimgrep
 command -nargs=+ Grep silent grep! <args> | copen
 
+cnoreabbrev Ag Rg
+cnoreabbrev Ack Grep
+
 luafile ~/.config/nvim/lua/init.lua
