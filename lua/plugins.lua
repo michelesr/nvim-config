@@ -56,4 +56,7 @@ return require('packer').startup(function(use)
 
   -- REPL for lua and vimscript
   use 'https://github.com/ii14/neorepl.nvim'
+
+  -- Helm templates filetype plugin
+  use 'https://github.com/towolf/vim-helm'
 end)
