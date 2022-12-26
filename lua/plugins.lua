@@ -8,7 +8,10 @@ return require('packer').startup(function(use)
   use 'https://github.com/tpope/vim-rhubarb'
 
   -- Comment lines with gc<motion> or a line with gcc
-  use 'https://github.com/tpope/vim-commentary'
+  use {
+    'https://github.com/numToStr/Comment.nvim',
+    config = function() require('Comment').setup() end
+  }
 
   -- Ranger integration
   use 'https://github.com/francoiscabrol/ranger.vim'
