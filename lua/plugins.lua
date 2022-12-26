@@ -13,6 +13,11 @@ return require('packer').startup(function(use)
     config = function() require('Comment').setup() end
   }
 
+  use {
+    'https://github.com/kylechui/nvim-surround',
+    config = function() require('nvim-surround').setup() end
+  }
+
   -- Ranger integration
   use 'https://github.com/francoiscabrol/ranger.vim'
   -- Close buffer without closing window (required by Ranger)
