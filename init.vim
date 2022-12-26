@@ -4,7 +4,7 @@ set number mouse=a inccommand=split signcolumn=number
 " tab should always be visualized as 8 spaces to avoid problems when a mix of
 " tab and spaces are used for vertical alignment in languages that prefer
 " tabs; as a general rule expand tab with 2 spaces
-set shiftwidth=2 tabstop=8 softtabstop=0 expandtab
+set shiftwidth=2 tabstop=8 softtabstop=0 expandtab smarttab
 
 let g:ranger_map_keys = 0
 let g:bclose_no_plugin_maps = 1
