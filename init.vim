@@ -45,14 +45,14 @@ augroup UserTerm
 augroup END
 
 " run tmux in a terminal window
-function Tmux(cmd)
+function! Tmux(cmd)
   exe 'te' 'tmux new-session ' . a:cmd . '\; set status off'
   exe 'f' substitute(bufname(), 'tmux.*', 'tmux', '')
 endfunction
-command -nargs=? T :call Tmux('<args>')
+command! -nargs=? T :call Tmux('<args>')
 
 set grepprg=rg\ --vimgrep
-command -nargs=+ Grep silent grep! <args> | copen
+command! -nargs=+ Grep silent grep! <args> | copen
 
 cnoreabbrev Ag Rg
 cnoreabbrev Ack Grep
