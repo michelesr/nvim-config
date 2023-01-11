@@ -38,6 +38,11 @@ augroup UserFileType
   autocmd FileType make setlocal sw=8 noet
 augroup END
 
+augroup HelmFiletypeDetect
+  autocmd!
+  autocmd BufRead,BufNewFile */templates/*.yml set ft=helm
+augroup END
+
 augroup UserTerm
   autocmd!
   " do not show line number on terminal windows
