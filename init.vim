@@ -40,7 +40,7 @@ augroup END
 
 augroup HelmFiletypeDetect
   autocmd!
-  autocmd BufRead,BufNewFile */templates/*.yml set ft=helm
+  autocmd BufRead,BufNewFile */templates/*.yaml,*/templates/*.yml set ft=helm
 augroup END
 
 augroup UserTerm
