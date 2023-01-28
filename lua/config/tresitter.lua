@@ -1,8 +1,10 @@
 require'nvim-treesitter.configs'.setup {
   -- A list of parser names, or "all"
   ensure_installed = {
-    "python", "yaml", "json",
-    "c", "lua", "ruby",
+    -- https://github.com/nvim-treesitter/nvim-treesitter/issues/3092
+    -- TL;DR better to have c, lua, vim and help in the list
+    "c", "lua", "vim", "help",
+    "python", "ruby", "yaml", "json",
     "go", "rust", "bash",
     "markdown", "markdown_inline",
     "html", "query"
