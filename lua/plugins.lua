@@ -34,7 +34,7 @@ return require('packer').startup(function(use)
   use 'https://github.com/hrsh7th/cmp-nvim-lsp'
   use 'https://github.com/hrsh7th/cmp-buffer'
   use 'https://github.com/hrsh7th/cmp-path'
-  -- use 'https://github.com/hrsh7th/cmp-cmdline'
+  use 'https://github.com/hrsh7th/cmp-cmdline'
   use 'https://github.com/hrsh7th/nvim-cmp'
   use 'https://github.com/hrsh7th/cmp-vsnip'
   use 'https://github.com/hrsh7th/vim-vsnip'
