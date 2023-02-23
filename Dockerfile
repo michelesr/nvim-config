@@ -34,8 +34,4 @@ RUN curl https://raw.githubusercontent.com/michelesr/zsh-config/master/tmux.conf
 COPY init.vim /root/.config/nvim/
 COPY lua /root/.config/nvim/lua
 
-RUN git clone --depth 1 https://github.com/wbthomason/packer.nvim \
-    ~/.local/share/nvim/site/pack/packer/start/packer.nvim && \
-    nvim --headless --cmd ':silent' -c 'autocmd User PackerComplete quitall' -c 'PackerSync'
-
 WORKDIR /root

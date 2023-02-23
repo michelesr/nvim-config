@@ -1,70 +1,80 @@
-return require('packer').startup(function(use)
-  -- Packer can manage itself
-  use 'https://github.com/wbthomason/packer.nvim'
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+  vim.fn.system({
+    "git",
+    "clone",
+    "--filter=blob:none",
+    "https://github.com/folke/lazy.nvim.git",
+    "--branch=stable", -- latest stable release
+    lazypath,
+  })
+end
+vim.opt.rtp:prepend(lazypath)
 
+require('lazy').setup({
   -- Git plugin
-  use 'https://github.com/tpope/vim-fugitive'
+  'https://github.com/tpope/vim-fugitive',
   -- GitHub support (e.g. GBrowse)
-  use 'https://github.com/tpope/vim-rhubarb'
+  'https://github.com/tpope/vim-rhubarb',
 
   -- Comment lines with gc<motion> or a line with gcc
-  use {
+  {
     'https://github.com/numToStr/Comment.nvim',
     config = function() require('Comment').setup() end
-  }
+  },
 
-  use {
+  {
     'https://github.com/kylechui/nvim-surround',
     config = function() require('nvim-surround').setup() end
-  }
+  },
 
   -- Ranger integration
-  use 'https://github.com/francoiscabrol/ranger.vim'
+  'https://github.com/francoiscabrol/ranger.vim',
   -- Close buffer without closing window (required by Ranger)
-  use 'https://github.com/rbgrouleff/bclose.vim'
+  'https://github.com/rbgrouleff/bclose.vim',
 
   -- LSP base config
-  use 'https://github.com/neovim/nvim-lspconfig'
+  'https://github.com/neovim/nvim-lspconfig',
 
   -- To install extensions such as language servers
-  use 'https://github.com/williamboman/mason.nvim'
-  use 'https://github.com/williamboman/mason-lspconfig.nvim'
+  'https://github.com/williamboman/mason.nvim',
+  'https://github.com/williamboman/mason-lspconfig.nvim',
 
   -- Completion engine and extensions
-  use 'https://github.com/hrsh7th/cmp-nvim-lsp'
-  use 'https://github.com/hrsh7th/cmp-buffer'
-  use 'https://github.com/hrsh7th/cmp-path'
-  use 'https://github.com/hrsh7th/cmp-cmdline'
-  use 'https://github.com/hrsh7th/nvim-cmp'
-  use 'https://github.com/hrsh7th/cmp-vsnip'
-  use 'https://github.com/hrsh7th/vim-vsnip'
+  'https://github.com/hrsh7th/cmp-nvim-lsp',
+  'https://github.com/hrsh7th/cmp-buffer',
+  'https://github.com/hrsh7th/cmp-path',
+  'https://github.com/hrsh7th/cmp-cmdline',
+  'https://github.com/hrsh7th/nvim-cmp',
+  'https://github.com/hrsh7th/cmp-vsnip',
+  'https://github.com/hrsh7th/vim-vsnip',
 
   -- Required by telescope
-  use 'https://github.com/nvim-lua/plenary.nvim'
-  use 'https://github.com/nvim-telescope/telescope.nvim'
-  use {'https://github.com/nvim-telescope/telescope-fzf-native.nvim', run = 'make' }
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
+  {'https://github.com/nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
 
   -- Tresitter
-  use {'https://github.com/nvim-treesitter/nvim-treesitter', run = ':TSUpdate'}
-  use 'https://github.com/nvim-treesitter/playground'
-  use 'nvim-treesitter/nvim-treesitter-textobjects'
+  {'https://github.com/nvim-treesitter/nvim-treesitter', build = ':TSUpdate'},
+  'https://github.com/nvim-treesitter/playground',
+  'nvim-treesitter/nvim-treesitter-textobjects',
 
   -- Adds indentation text objects
-  use 'https://github.com/michaeljsmith/vim-indent-object'
+  'https://github.com/michaeljsmith/vim-indent-object',
 
   -- FZF
-  use 'https://github.com/junegunn/fzf'
-  use 'https://github.com/junegunn/fzf.vim'
+  'https://github.com/junegunn/fzf',
+  'https://github.com/junegunn/fzf.vim',
 
   -- Colorscheme
-  use 'https://github.com/navarasu/onedark.nvim'
+  'https://github.com/navarasu/onedark.nvim',
 
   -- Status line
-  use 'https://github.com/nvim-lualine/lualine.nvim'
+  'https://github.com/nvim-lualine/lualine.nvim',
 
   -- REPL for lua and vimscript
-  use 'https://github.com/ii14/neorepl.nvim'
+  'https://github.com/ii14/neorepl.nvim',
 
   -- Helm templates filetype plugin
-  use 'https://github.com/towolf/vim-helm'
-end)
+  'https://github.com/towolf/vim-helm',
+})
