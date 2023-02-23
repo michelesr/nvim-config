@@ -55,14 +55,25 @@ cmp.setup.cmdline('/', {
 
 -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline(':', {
-  mapping = cmp.mapping.preset.cmdline(),
+  -- https://github.com/hrsh7th/nvim-cmp/pull/1445#issuecomment-1442071031
+  mapping = cmp.mapping.preset.cmdline({
+    ['<Tab>'] = {
+      c = function(_)
+        if cmp.visible() then
+          cmp.select_next_item()
+        else
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-z>', true, true, true), 'ni', true)
+        end
+      end
+    }
+  }),
   sources = cmp.config.sources({
     { name = 'path' }
   }, {
     {
       name = 'cmdline',
       option = {
-        ignore_cmds = {}
+        ignore_cmds = {'!', 'Man'}
       }
     }
   })
