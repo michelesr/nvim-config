@@ -18,15 +18,10 @@ require('lazy').setup({
   'https://github.com/tpope/vim-rhubarb',
 
   -- Comment lines with gc<motion> or a line with gcc
-  {
-    'https://github.com/numToStr/Comment.nvim',
-    config = function() require('Comment').setup() end
-  },
+  -- NOTE: `opts = {}` is the same as calling `require('Comment').setup({})`
+  {'https://github.com/numToStr/Comment.nvim', opts = {}},
 
-  {
-    'https://github.com/kylechui/nvim-surround',
-    config = function() require('nvim-surround').setup() end
-  },
+  {'https://github.com/kylechui/nvim-surround', opts = {}},
 
   -- Ranger integration
   'https://github.com/francoiscabrol/ranger.vim',
