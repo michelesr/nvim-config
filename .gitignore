@@ -1,6 +1,3 @@
-autoload
 spell
-bundle
-plugin
 .luarc.json
 .netrwhist
