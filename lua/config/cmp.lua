@@ -62,7 +62,7 @@ cmp.setup.cmdline(':', {
         if cmp.visible() then
           cmp.select_next_item()
         else
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-z>', true, true, true), 'ni', true)
+          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-z>', true, true, true), 'ni', false)
         end
       end
     }
