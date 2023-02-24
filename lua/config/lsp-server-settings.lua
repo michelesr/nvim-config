@@ -17,13 +17,13 @@ for _, v in ipairs(installed_list) do
 end
 
 -- call setup() only for installed servers
-local function condSetup(name, config)
+local function cond_setup(name, config)
   if installed[lspconfig_to_package[name]] then
     lspconfig[name].setup(config)
   end
 end
 
-condSetup('jsonls', {
+cond_setup('jsonls', {
   settings = {
     json = {
       -- type gf to open the url and look at the scheme catalog:
@@ -50,7 +50,7 @@ condSetup('jsonls', {
   }
 })
 
-condSetup('yamlls', {
+cond_setup('yamlls', {
   settings = {
     yaml = {
       schemas = {
@@ -69,7 +69,7 @@ condSetup('yamlls', {
   }
 })
 
-condSetup('rust_analyzer', {
+cond_setup('rust_analyzer', {
   settings = {
     ['rust-analyzer'] = {
       checkOnSave = {
