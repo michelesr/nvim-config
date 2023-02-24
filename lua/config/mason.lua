@@ -11,5 +11,5 @@ require("mason-lspconfig").setup {
     --   - true: All servers set up via lspconfig are automatically installed.
     --   - { exclude: string[] }: All servers set up via lspconfig, except the ones provided in the list, are automatically installed.
     --       Example: automatic_installation = { exclude = { "rust_analyzer", "solargraph" } }
-    automatic_installation = true,
+    automatic_installation = false
 }

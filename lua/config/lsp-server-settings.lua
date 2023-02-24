@@ -6,8 +6,24 @@
 -- use :LspConfigReload to reload config after making changes
 
 local lspconfig = require('lspconfig')
+-- get a list of installed servers from Mason
+local installed_list = require('mason-registry').get_installed_package_names()
+-- to translate package name into lspconfig names
+local lspconfig_to_package = require('mason-lspconfig.mappings.server').lspconfig_to_package
+-- create a lookup table for the installed servers
+local installed = {}
+for _, v in ipairs(installed_list) do
+  installed[v] = true
+end
 
-lspconfig['jsonls'].setup {
+-- call setup() only for installed servers
+local function condSetup(name, config)
+  if installed[lspconfig_to_package[name]] then
+    lspconfig[name].setup(config)
+  end
+end
+
+condSetup('jsonls', {
   settings = {
     json = {
       -- type gf to open the url and look at the scheme catalog:
@@ -32,9 +48,9 @@ lspconfig['jsonls'].setup {
       }
     }
   }
-}
+})
 
-lspconfig['yamlls'].setup {
+condSetup('yamlls', {
   settings = {
     yaml = {
       schemas = {
@@ -51,18 +67,18 @@ lspconfig['yamlls'].setup {
       }
     }
   }
-}
+})
 
-lspconfig['rust_analyzer'].setup {
-    settings = {
-        ['rust-analyzer'] = {
-            checkOnSave = {
-                allFeatures = true,
-                overrideCommand = {
-                    'cargo', 'clippy', '--workspace', '--message-format=json',
-                    '--all-targets', '--all-features'
-                }
-            }
+condSetup('rust_analyzer', {
+  settings = {
+    ['rust-analyzer'] = {
+      checkOnSave = {
+        allFeatures = true,
+        overrideCommand = {
+          'cargo', 'clippy', '--workspace', '--message-format=json',
+          '--all-targets', '--all-features'
         }
+      }
     }
-}
+  }
+})
