@@ -1,5 +1,8 @@
 -- Setup nvim-cmp.
 local cmp = require('cmp')
+local types = require('cmp.types')
+local feedkeys = require('cmp.utils.feedkeys')
+local keymap = require('cmp.utils.keymap')
 
 cmp.setup {
   snippet = {
@@ -16,9 +19,18 @@ cmp.setup {
     -- documentation = cmp.config.window.bordered(),
   },
   mapping = cmp.mapping.preset.insert({
+    -- revert the behavior of https://github.com/hrsh7th/nvim-cmp/commit/53f49c5145d05a53b997d3f647f97e5ac8e9bd5c
+    -- so that you can actually trigger the native vim <C-p> and <C-n> complete menu (:h complete)
+    -- when the cmp menu is not visible
+    ['<C-n>'] = cmp.mapping.select_next_item({ behavior = types.cmp.SelectBehavior.Insert }),
+    ['<C-p>'] = cmp.mapping.select_prev_item({ behavior = types.cmp.SelectBehavior.Insert }),
+    -- scroll documentation
     ['<C-b>'] = cmp.mapping.scroll_docs(-4),
     ['<C-f>'] = cmp.mapping.scroll_docs(4),
+    -- open the cmp menu manually
     ['<C-Space>'] = cmp.mapping.complete(),
+    -- close the cmp menu and abort completion: useful to trigger native menu with <C-p> and <C-n>
+    -- or when you don't want to complete (as <CR> will select the completion item automatically)
     ['<C-e>'] = cmp.mapping.abort(),
     -- Accept currently selected item. Set `select` to `false` to only confirm explicitly selected items.
     ['<CR>'] = cmp.mapping.confirm({ select = true }),
@@ -62,10 +74,19 @@ cmp.setup.cmdline(':', {
         if cmp.visible() then
           cmp.select_next_item()
         else
-          vim.api.nvim_feedkeys(vim.api.nvim_replace_termcodes('<C-z>', true, true, true), 'ni', false)
+          feedkeys.call(keymap.t('<C-z>'), 'n')
         end
       end
-    }
+    },
+    ['<S-Tab>'] = {
+      c = function()
+        if cmp.visible() then
+          cmp.select_prev_item()
+        else
+          feedkeys.call(keymap.t('<C-z>'), 'n')
+        end
+      end,
+    },
   }),
   sources = cmp.config.sources({
     { name = 'path' }
