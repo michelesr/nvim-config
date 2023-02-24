@@ -62,6 +62,61 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', '<space>F', vim.lsp.buf.formatting, opts)
 end
 
+-- server settings
+local settings = {
+  ['jsonls'] = {
+    json = {
+      -- type gf to open the url and look at the scheme catalog:
+      --   https://www.schemastore.org/api/json/catalog.json
+      schemas = {
+        {
+          fileMatch = {
+            '*cf.json',
+            '*cloudformation.json',
+            'cdk.out/*.template.json',
+          },
+          url = 'https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json'
+        },
+        {
+          fileMatch = {'cdk.json'},
+          url = 'https://json.schemastore.org/cdk.json'
+        },
+        {
+          fileMatch = {'package.json'},
+          url = 'https://json.schemastore.org/package.json',
+        },
+      }
+    }
+  },
+  ['yamlls'] = {
+    yaml = {
+      schemas = {
+        ['kubernetes'] = 'foo.yaml',
+        ['https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json'] = {
+          '*cf.yaml',
+          '*cloudformation.yaml',
+        }
+      },
+      customTags = {
+        '!Ref scalar',
+        '!Split sequence',
+        '!GetAtt',
+      }
+    }
+  },
+  'rust_analyzer', {
+    ['rust-analyzer'] = {
+      checkOnSave = {
+        allFeatures = true,
+        overrideCommand = {
+          'cargo', 'clippy', '--workspace', '--message-format=json',
+          '--all-targets', '--all-features'
+        }
+      }
+    }
+  }
+}
+
 -- Setup lspconfig.
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
@@ -71,13 +126,14 @@ require('mason-lspconfig').setup_handlers {
     require('lspconfig')[server_name].setup {
       capabilities = capabilities,
       on_attach = on_attach,
+      settings = settings[server_name]
     }
   end,
 }
 
 -- add command to reload the LSP server settings
 vim.api.nvim_create_user_command('LspConfigReload', function()
-  local module = 'config.lsp-server-settings'
+  local module = 'config.lspconfig'
   package.loaded[module] = nil
   require(module)
 end, {})
