@@ -104,7 +104,8 @@ local settings = {
       }
     }
   },
-  'rust_analyzer', {
+  ['rust_analyzer'] = {
+    -- weird structure but that's what the server expects
     ['rust-analyzer'] = {
       checkOnSave = {
         allFeatures = true,
