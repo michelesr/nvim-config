@@ -6,10 +6,7 @@
 -- use :LspConfigReload to reload config after making changes
 
 local lspconfig = require('lspconfig')
--- get a list of installed servers from Mason
-local installed_list = require('mason-registry').get_installed_package_names()
--- to translate package name into lspconfig names
-local lspconfig_to_package = require('mason-lspconfig.mappings.server').lspconfig_to_package
+local installed_list = require('mason-lspconfig').get_installed_servers()
 -- create a lookup table for the installed servers
 local installed = {}
 for _, v in ipairs(installed_list) do
@@ -18,7 +15,7 @@ end
 
 -- call setup() only for installed servers
 local function cond_setup(name, config)
-  if installed[lspconfig_to_package[name]] then
+  if installed[name] then
     lspconfig[name].setup(config)
   end
 end
