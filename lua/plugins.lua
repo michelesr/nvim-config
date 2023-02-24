@@ -85,6 +85,10 @@ require('lazy').setup({
   -- Status line
   'https://github.com/nvim-lualine/lualine.nvim',
 
+  -- Neovim setup for init.lua and plugin development with full signature help,
+  -- docs and completion for the nvim lua API.
+  {'https://github.com/folke/neodev.nvim', opts={}},
+
   -- REPL for lua and vimscript
   'https://github.com/ii14/neorepl.nvim',
 })
