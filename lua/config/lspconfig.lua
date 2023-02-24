@@ -63,23 +63,17 @@ local on_attach = function(client, bufnr)
 end
 
 -- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lspconfig = require('lspconfig')
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
--- 2. (optional) Override the default configuration to be applied to all servers.
-lspconfig.util.default_config = vim.tbl_extend(
-    'force',
-    lspconfig.util.default_config,
-    {
-        on_attach = on_attach,
-        capabilities = capabilities
+require('mason-lspconfig').setup_handlers {
+  function(server_name)
+    require('lspconfig')[server_name].setup {
+      capabilities = capabilities,
+      on_attach = on_attach,
     }
-)
-
--- 3. Loop through all of the installed servers and set it up via lspconfig
-for _, server in ipairs(require('mason-lspconfig').get_installed_servers()) do
-  lspconfig[server].setup {}
-end
+  end,
+}
 
 -- add command to reload the LSP server settings
 vim.api.nvim_create_user_command('LspConfigReload', function()
