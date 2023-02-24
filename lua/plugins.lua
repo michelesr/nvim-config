@@ -35,6 +35,9 @@ require('lazy').setup({
   'https://github.com/williamboman/mason.nvim',
   'https://github.com/williamboman/mason-lspconfig.nvim',
 
+  -- Standalone UI for nvim-lsp progress
+  {'https://github.com/j-hui/fidget.nvim', opts = {}},
+
   -- Completion engine and extensions
   'https://github.com/hrsh7th/cmp-nvim-lsp',
   'https://github.com/hrsh7th/cmp-buffer',
