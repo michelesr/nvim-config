@@ -52,3 +52,17 @@ lspconfig['yamlls'].setup {
     }
   }
 }
+
+lspconfig['rust_analyzer'].setup {
+    settings = {
+        ['rust-analyzer'] = {
+            checkOnSave = {
+                allFeatures = true,
+                overrideCommand = {
+                    'cargo', 'clippy', '--workspace', '--message-format=json',
+                    '--all-targets', '--all-features'
+                }
+            }
+        }
+    }
+}
