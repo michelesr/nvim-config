@@ -28,7 +28,7 @@ cmp.setup({
         ['<C-b>'] = cmp.mapping.scroll_docs(-4),
         ['<C-f>'] = cmp.mapping.scroll_docs(4),
         -- open the cmp menu manually
-        ['<C-Space>'] = cmp.mapping.complete(),
+        ['<C-Space>'] = cmp.mapping.complete({}),
         -- close the cmp menu and abort completion: useful to trigger native menu with <C-p> and <C-n>
         -- or when you don't want to complete (as <CR> will select the completion item automatically)
         ['<C-e>'] = cmp.mapping.abort(),
