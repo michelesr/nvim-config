@@ -1,19 +1,19 @@
 -- Lua
-require('onedark').setup {
-  toggle_style_key = '<Plug>(OneDarkToggleKey)',
-  -- bundle/onedark.nvim/lua/onedark/palette.lua
-  style = 'dark',
-  colors = {
-    bg0 = '#1d1d2d',
-    fg = '#bdcdcd',
-    grey = '#6d7d7d',
-  },
+require('onedark').setup({
+    toggle_style_key = '<Plug>(OneDarkToggleKey)',
+    -- bundle/onedark.nvim/lua/onedark/palette.lua
+    style = 'dark',
+    colors = {
+        bg0 = '#1d1d2d',
+        fg = '#bdcdcd',
+        grey = '#6d7d7d',
+    },
 
-  -- bundle/onedark.nvim/lua/onedark/highlights.lua
-  highlights = {
-    VertSplit = { fg = '#8ffc67' },
-    StatusLine = { bg = '#222222' },
-    StatusLineNC = { bg = '#222222' },
-  }
-}
+    -- bundle/onedark.nvim/lua/onedark/highlights.lua
+    highlights = {
+        VertSplit = { fg = '#8ffc67' },
+        StatusLine = { bg = '#222222' },
+        StatusLineNC = { bg = '#222222' },
+    },
+})
 require('onedark').load()
