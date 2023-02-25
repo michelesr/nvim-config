@@ -17,8 +17,11 @@ local on_attach = function(client, bufnr)
   opts.desc = 'Go to next diagnostic'
   vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
 
-  opts.desc = 'Open diagnostic list'
+  opts.desc = 'Open buffer diagnostic in location list'
   vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
+
+  opts.desc = 'Open workspace diagnostic in quickfix list'
+  vim.keymap.set('n', '<space>D', vim.diagnostic.setqflist, opts)
 
   opts.desc = 'Go to declaration'
   vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
@@ -30,7 +33,7 @@ local on_attach = function(client, bufnr)
   vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
 
   opts.desc = 'Go to type definition'
-  vim.keymap.set('n', '<space>D', vim.lsp.buf.type_definition, opts)
+  vim.keymap.set('n', '<space>t', vim.lsp.buf.type_definition, opts)
 
   opts.desc = 'Describe item'
   vim.keymap.set('n', 'K', vim.lsp.buf.hover, opts)
