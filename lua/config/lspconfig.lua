@@ -1,11 +1,4 @@
 local on_attach = function(client, bufnr)
-  -- disable LSP on Helm templates until supported
-  if vim.bo[bufnr].filetype == 'helm' then
-    print('Helm template not supported: detaching LSP client')
-    vim.lsp.buf_detach_client(bufnr, client.id)
-    return
-  end
-
   local opts = { noremap = true, silent = true, buffer = bufnr }
 
   opts.desc = 'Show diagnostic message'
