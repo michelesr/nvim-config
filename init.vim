@@ -25,7 +25,6 @@ nnoremap <leader>s :Telescope<CR>
 nnoremap <leader>r :Ranger<CR>
 
 " this will bring terminal buffer in normal mode
-tnoremap <A-j><A-j> <C-\><C-n>
 tnoremap <A-b><A-b> <C-\><C-n>
 
 " specific file type options
