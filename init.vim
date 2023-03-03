@@ -24,9 +24,6 @@ nnoremap <leader>s :Telescope<CR>
 " open ranger file manager
 nnoremap <leader>r :Ranger<CR>
 
-" this will bring terminal buffer in normal mode
-tnoremap <Esc><Esc> <C-\><C-n>
-
 " specific file type options
 augroup UserFileType
   autocmd!
