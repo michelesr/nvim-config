@@ -94,6 +94,7 @@ require('lazy').setup({
 }, {
   performance = {
     rtp = {
+      -- keep original entries of runtimepath, for vim files installed by the system package manager
       reset = false,
     },
   },
