@@ -91,4 +91,10 @@ require('lazy').setup({
 
   -- REPL for lua and vimscript
   'ii14/neorepl.nvim',
+}, {
+  performance = {
+    rtp = {
+      paths = { '/usr/share/vim/vimfiles/' },
+    },
+  },
 })
