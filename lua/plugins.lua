@@ -94,7 +94,7 @@ require('lazy').setup({
 }, {
   performance = {
     rtp = {
-      paths = { '/usr/share/vim/vimfiles/' },
+      reset = false,
     },
   },
 })
