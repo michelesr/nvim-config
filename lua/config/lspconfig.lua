@@ -143,4 +143,4 @@ vim.api.nvim_create_user_command('LspBufDetach', function()
   for id, _ in pairs(vim.lsp.get_active_clients()) do
     vim.lsp.buf_detach_client(0, id)
   end
-end, {})
+end, { bar = true })
