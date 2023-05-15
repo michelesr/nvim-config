@@ -53,9 +53,6 @@ local on_attach = function(client, bufnr)
 
   opts.desc = 'Show references'
   vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
-
-  opts.desc = 'Format code'
-  vim.keymap.set('n', '<space>F', vim.lsp.buf.formatting, opts)
 end
 
 -- server settings
