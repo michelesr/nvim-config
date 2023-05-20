@@ -115,6 +115,9 @@ require('lazy').setup({
 
   -- REPL for lua and vimscript
   { 'ii14/neorepl.nvim', lazy = true, cmd = 'Repl' },
+
+  -- File tree
+  { 'nvim-tree/nvim-tree.lua', opts = {}, cmd = 'NvimTreeToggle' },
 }, {
   performance = {
     rtp = {
