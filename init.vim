@@ -17,6 +17,7 @@ nnoremap <leader>f :Telescope find_files<CR>
 nnoremap <leader>h :Telescope oldfiles<CR>
 nnoremap <leader>c :Telescope git_commits<CR>
 nnoremap <leader>t :Telescope tags<CR>
+nnoremap <leader>g :Telescope live_grep<CR>
 
 " telescope
 nnoremap <leader>s :Telescope<CR>
