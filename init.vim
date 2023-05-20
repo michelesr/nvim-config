@@ -13,10 +13,10 @@ let g:bclose_no_plugin_maps = 1
 nnoremap <leader><leader> :nohlsearch<CR>
 
 " fzf
-nnoremap <leader>f :Files<CR>
-nnoremap <leader>h :History<CR>
-nnoremap <leader>c :Commits<CR>
-nnoremap <leader>t :Tags<CR>
+nnoremap <leader>f :Telescope find_files<CR>
+nnoremap <leader>h :Telescope oldfiles<CR>
+nnoremap <leader>c :Telescope git_commits<CR>
+nnoremap <leader>t :Telescope tags<CR>
 
 " telescope
 nnoremap <leader>s :Telescope<CR>
