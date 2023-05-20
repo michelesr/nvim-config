@@ -1,6 +1,3 @@
--- telescope-fzf-native.nvim
--- You dont need to set any of these options. These are the default ones. Only
--- the loading is important
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
@@ -52,6 +49,5 @@ require('telescope').setup({
     },
   },
 })
--- To get fzf loaded and working with telescope, you need to call
--- load_extension, somewhere after setup function:
+
 require('telescope').load_extension('fzf')
