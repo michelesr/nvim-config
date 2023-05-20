@@ -1,7 +1,7 @@
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
-actions.fugitive_open = function(buffer)
+local function fugitive_open(buffer)
   -- close the telescope window
   actions.close(buffer)
 
@@ -11,6 +11,12 @@ actions.fugitive_open = function(buffer)
   -- open the commit in fugitive
   vim.cmd(string.format("execute 'e' FugitiveFind('%s')", sha))
 end
+
+local git_mappings = {
+  ['<CR>'] = fugitive_open,
+  ['<C-c>'] = actions.git_checkout,
+}
+git_mappings = { i = git_mappings, n = git_mappings }
 
 require('telescope').setup({
   extensions = {
@@ -32,20 +38,10 @@ require('telescope').setup({
   },
   pickers = {
     git_commits = {
-      mappings = {
-        i = {
-          ['<CR>'] = actions.fugitive_open,
-          ['<C-c>'] = actions.git_checkout,
-        },
-      },
+      mappings = git_mappings,
     },
     git_bcommits = {
-      mappings = {
-        i = {
-          ['<CR>'] = actions.fugitive_open,
-          ['<C-c>'] = actions.git_checkout,
-        },
-      },
+      mappings = git_mappings,
     },
   },
 })
