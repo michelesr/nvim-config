@@ -1,9 +1,9 @@
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
 
-local function fugitive_open(buffer)
+local function fugitive_open(prompt_bufnr)
   -- close the telescope window
-  actions.close(buffer)
+  actions.close(prompt_bufnr)
 
   -- get the hash of the commit
   local sha = action_state.get_selected_entry().value
