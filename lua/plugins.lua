@@ -41,7 +41,12 @@ require('lazy').setup({
   'michaeljsmith/vim-indent-object',
 
   -- FZF
-  { 'junegunn/fzf.vim', lazy = true, cmd = 'Files', dependencies = { 'junegunn/fzf' } },
+  {
+    'junegunn/fzf.vim',
+    lazy = true,
+    cmd = { 'Files', 'History', 'Commits', 'BCommits' },
+    dependencies = { 'junegunn/fzf' },
+  },
 
   -- --------------------------------------------------------------------------------------
   -- lua section: plugins installed here needs setup() to be called, you can use opts={} --
