@@ -12,12 +12,12 @@ let g:bclose_no_plugin_maps = 1
 " stop highlighting old search results
 nnoremap <leader><leader> :nohlsearch<CR>
 
-" fzf
+" fuzzy finding
 nnoremap <leader>f :Telescope find_files<CR>
 nnoremap <leader>h :Telescope oldfiles<CR>
-nnoremap <leader>c :Telescope git_commits<CR>
-nnoremap <leader>C :Telescope git_bcommits<CR>
 nnoremap <leader>g :Telescope live_grep<CR>
+nnoremap <leader>c :Commits<CR>
+nnoremap <leader>C :BCommits<CR>
 
 " telescope
 nnoremap <leader>s :Telescope<CR>
