@@ -81,6 +81,8 @@ require('lazy').setup({
     },
   },
 
+  { 'ray-x/lsp_signature.nvim', opts={} },
+
   -- Required by telescope
   {
     'nvim-telescope/telescope.nvim',
