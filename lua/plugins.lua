@@ -81,7 +81,7 @@ require('lazy').setup({
     },
   },
 
-  { 'ray-x/lsp_signature.nvim', opts={} },
+  { 'ray-x/lsp_signature.nvim', opts = {} },
 
   -- Required by telescope
   {
@@ -118,7 +118,7 @@ require('lazy').setup({
 
   -- Neovim setup for init.lua and plugin development with full signature help,
   -- docs and completion for the nvim lua API.
-  { 'folke/neodev.nvim', lazy = true, ft = 'lua', opts = {} },
+  { 'folke/neodev.nvim', opts = {} },
 
   -- REPL for lua and vimscript
   { 'ii14/neorepl.nvim', lazy = true, cmd = 'Repl' },
