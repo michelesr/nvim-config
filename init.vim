@@ -16,6 +16,8 @@ nnoremap <leader><leader> :nohlsearch<CR>
 nnoremap <leader>f :Telescope find_files<CR>
 nnoremap <leader>h :Telescope oldfiles<CR>
 nnoremap <leader>g :Telescope live_grep<CR>
+nnoremap <leader>/ :Telescope search_history<CR>
+nnoremap <leader>: :Telescope commands<CR>
 nnoremap <leader>c :Commits<CR>
 nnoremap <leader>C :BCommits<CR>
 
