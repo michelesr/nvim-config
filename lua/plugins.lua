@@ -63,7 +63,10 @@ require('lazy').setup({
   'neovim/nvim-lspconfig',
 
   -- To install extensions such as language servers
-  { 'williamboman/mason.nvim', dependencies = { 'williamboman/mason-lspconfig.nvim' } },
+  {
+    'williamboman/mason.nvim',
+    dependencies = { 'williamboman/mason-lspconfig.nvim' },
+  },
 
   -- Standalone UI for nvim-lsp progress
   { 'j-hui/fidget.nvim', opts = {} },
@@ -76,9 +79,16 @@ require('lazy').setup({
       'hrsh7th/cmp-path',
       'hrsh7th/cmp-cmdline',
       'hrsh7th/cmp-nvim-lsp',
-      'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-      'rafamadriz/friendly-snippets',
+      {
+        'L3MON4D3/LuaSnip',
+        -- add snippet definition plugins here
+        dependencies = { 'rafamadriz/friendly-snippets' },
+        config = function()
+          -- lazy load vscode style plugins, e.g. friendly-snippets
+          require('luasnip.loaders.from_vscode').lazy_load()
+        end,
+      },
     },
   },
 

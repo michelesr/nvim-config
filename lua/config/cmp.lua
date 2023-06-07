@@ -3,10 +3,7 @@ local cmp = require('cmp')
 local types = require('cmp.types')
 local feedkeys = require('cmp.utils.feedkeys')
 local keymap = require('cmp.utils.keymap')
-
 local luasnip = require('luasnip')
-require('luasnip.loaders.from_vscode').lazy_load()
-luasnip.config.setup({})
 
 cmp.setup({
   snippet = {
