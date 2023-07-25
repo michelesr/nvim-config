@@ -136,6 +136,14 @@ require('lazy').setup({
 
   -- File tree
   { 'nvim-tree/nvim-tree.lua', opts = {}, cmd = 'NvimTreeToggle' },
+
+  -- YAML schema selector for Telescope
+  {
+    'someone-stole-my-name/yaml-companion.nvim',
+    config = function()
+      require('telescope').load_extension('yaml_schema')
+    end,
+  },
 }, {
   performance = {
     rtp = {

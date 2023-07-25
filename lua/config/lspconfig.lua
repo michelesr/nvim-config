@@ -126,6 +126,24 @@ require('mason-lspconfig').setup_handlers({
       settings = settings[server_name],
     })
   end,
+  ['yamlls'] = function()
+    local yamlconfig = require('yaml-companion').setup({})
+    local cb = yamlconfig.on_attach
+
+    -- wrap callback so that it calls our on_attach()
+    yamlconfig.on_attach = function(client, bufnr)
+      on_attach(client, bufnr)
+      cb(client, bufnr)
+    end
+
+    -- set our capabilities
+    yamlconfig.capabilities = capabilities
+
+    -- merge our settings
+    yamlconfig.settings = vim.tbl_deep_extend('force', yamlconfig.settings, settings['yamlls'])
+
+    require('lspconfig')['yamlls'].setup(yamlconfig)
+  end,
 })
 
 -- add command to reload the LSP server settings
