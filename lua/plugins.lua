@@ -140,6 +140,7 @@ require('lazy').setup({
   -- YAML schema selector for Telescope
   {
     'someone-stole-my-name/yaml-companion.nvim',
+    lazy = true,
     config = function()
       require('telescope').load_extension('yaml_schema')
     end,
