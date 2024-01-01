@@ -63,6 +63,9 @@ command! -nargs=? T :call Tmux('<args>')
 set grepprg=rg\ --vimgrep
 command! -nargs=+ Grep silent grep! <args> | copen
 
+" to prevent escaping issues in the EDITOR envvar
+command! -nargs=0 Sbhd silent set bufhidden=delete
+
 cnoreabbrev Ag Rg
 cnoreabbrev Ack Grep
 
