@@ -69,7 +69,7 @@ require('lazy').setup({
   },
 
   -- Standalone UI for nvim-lsp progress
-  { 'j-hui/fidget.nvim', tag = 'legacy', opts = {} },
+  { 'j-hui/fidget.nvim', opts = {} },
 
   -- Completion engine and extensions
   {
