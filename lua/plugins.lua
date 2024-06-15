@@ -125,9 +125,8 @@ require('lazy').setup({
   -- Icons
   { 'nvim-tree/nvim-web-devicons', lazy = true, opts = {} },
 
-  -- Neovim setup for init.lua and plugin development with full signature help,
-  -- docs and completion for the nvim lua API.
-  { 'folke/neodev.nvim', opts = {} },
+  -- Faster LuaLS setup for Neovim
+  { 'folke/lazydev.nvim', ft = 'lua', opts = {} },
 
   -- REPL for lua and vimscript
   { 'ii14/neorepl.nvim', lazy = true, cmd = 'Repl' },
