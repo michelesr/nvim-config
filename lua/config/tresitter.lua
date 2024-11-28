@@ -1,4 +1,11 @@
 require('nvim-treesitter.configs').setup({
+
+  -- Additional modules to load
+  modules = {},
+
+  -- Automatically install missing parsers when entering buffer
+  auto_install = false,
+
   -- A list of parser names, or "all"
   ensure_installed = {
     -- https://github.com/nvim-treesitter/nvim-treesitter/issues/3092
@@ -27,8 +34,6 @@ require('nvim-treesitter.configs').setup({
 
   -- List of parsers to ignore installing (for "all")
   ignore_install = {},
-
-  indent = { enable = true },
   highlight = {
     -- `false` will disable the whole extension
     enable = true,
