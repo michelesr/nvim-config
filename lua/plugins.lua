@@ -131,6 +131,9 @@ require('lazy').setup({
   -- REPL for lua and vimscript
   { 'ii14/neorepl.nvim', lazy = true, cmd = 'Repl' },
 
+  -- Disable some features on big files for perfomance (e.g. LSP, Treesitter)
+  { 'ouuan/nvim-bigfile', opts = {} },
+
   -- YAML schema selector for Telescope
   {
     'someone-stole-my-name/yaml-companion.nvim',
