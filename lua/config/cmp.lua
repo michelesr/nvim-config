@@ -5,6 +5,25 @@ local feedkeys = require('cmp.utils.feedkeys')
 local keymap = require('cmp.utils.keymap')
 local luasnip = require('luasnip')
 
+-- patch the feedkeys function to prevent unwanted changes to the bs option
+local fk_mt = getmetatable(feedkeys.call)
+local orig_f = fk_mt.__call
+local function patched_feedkeys(self, keys, mode, callback)
+  local bs = vim.go.backspace
+  local ok, err = pcall(function()
+    orig_f(self, keys, mode, callback)
+  end)
+  if vim.go.backspace ~= bs then
+    vim.notify('Detected undesired value of backspace: ' .. vim.go.backspace)
+    vim.notify('Restoring backspace option to ' .. bs)
+    vim.go.backspace = bs
+  end
+  if not ok then
+    error(err)
+  end
+end
+fk_mt.__call = patched_feedkeys
+
 cmp.setup({
   snippet = {
     -- REQUIRED - you must specify a snippet engine
