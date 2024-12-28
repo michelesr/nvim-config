@@ -1,5 +1,5 @@
 local on_attach = function(client, bufnr)
-  local opts = { noremap = true, silent = true, buffer = bufnr }
+  local opts = { remap = false, silent = true, buffer = bufnr }
 
   opts.desc = 'Show diagnostic message'
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
