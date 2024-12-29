@@ -8,6 +8,8 @@ local luasnip = require('luasnip')
 -- patch the feedkeys function to prevent unwanted changes to the options
 local fk_mt = getmetatable(feedkeys.call)
 local orig_f = fk_mt.__call
+local restore_lock = false
+
 local function patched_feedkeys(self, keys, mode, callback)
   -- key is option name, value is {table, current_value}
   local opts = {
@@ -20,8 +22,6 @@ local function patched_feedkeys(self, keys, mode, callback)
     orig_f(self, keys, mode, callback)
   end)
 
-  local ag_name = 'NvimCmpFeedKeysHacks'
-
   -- run this after all the input has been processed
   local function restore()
     for k, v in pairs(opts) do
@@ -32,17 +32,13 @@ local function patched_feedkeys(self, keys, mode, callback)
         table[k] = value
       end
     end
-
-    vim.api.nvim_del_augroup_by_name(ag_name)
+    restore_lock = false
   end
 
-  -- if there isn't already, register an autocmd that will attempt restore after
-  local _, ag_err = pcall(function()
-    vim.api.nvim_get_autocmds({ group = ag_name })
-  end)
-  if ag_err and string.match(ag_err, string.format("Invalid 'group': '%s'", ag_name)) then
-    vim.api.nvim_create_augroup(ag_name, { clear = true })
-    vim.api.nvim_create_autocmd({ 'SafeState' }, { group = ag_name, callback = restore })
+  -- register the hook unless another is pending
+  if not restore_lock then
+    restore_lock = true
+    vim.api.nvim_create_autocmd({ 'SafeState' }, { once = true, callback = restore })
   end
 
   if not ok then
