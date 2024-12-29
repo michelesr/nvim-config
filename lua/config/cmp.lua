@@ -20,13 +20,29 @@ local function patched_feedkeys(self, keys, mode, callback)
     orig_f(self, keys, mode, callback)
   end)
 
-  for k, v in pairs(opts) do
-    local table, value = v[1], v[2]
+  local ag_name = 'NvimCmpFeedKeysHacks'
 
-    if table[k] ~= value then
-      vim.notify(string.format('Restoring option %s: %s -> %s', k, table[k], value))
-      table[k] = value
+  -- run this after all the input has been processed
+  local function restore()
+    for k, v in pairs(opts) do
+      local table, value = v[1], v[2]
+
+      if table[k] ~= value then
+        vim.notify(string.format('Restoring option %s: %s -> %s', k, table[k], value))
+        table[k] = value
+      end
     end
+
+    vim.api.nvim_del_augroup_by_name(ag_name)
+  end
+
+  -- if there isn't already, register an autocmd that will attempt restore after
+  local _, ag_err = pcall(function()
+    vim.api.nvim_get_autocmds({ group = ag_name })
+  end)
+  if ag_err and string.match(ag_err, string.format("Invalid 'group': '%s'", ag_name)) then
+    vim.api.nvim_create_augroup(ag_name, { clear = true })
+    vim.api.nvim_create_autocmd({ 'SafeState' }, { group = ag_name, callback = restore })
   end
 
   if not ok then
