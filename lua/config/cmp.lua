@@ -5,19 +5,30 @@ local feedkeys = require('cmp.utils.feedkeys')
 local keymap = require('cmp.utils.keymap')
 local luasnip = require('luasnip')
 
--- patch the feedkeys function to prevent unwanted changes to the bs option
+-- patch the feedkeys function to prevent unwanted changes to the options
 local fk_mt = getmetatable(feedkeys.call)
 local orig_f = fk_mt.__call
 local function patched_feedkeys(self, keys, mode, callback)
-  local bs = vim.go.backspace
+  -- key is option name, value is {table, current_value}
+  local opts = {
+    backspace = { vim.go, vim.go.backspace },
+    lazyredraw = { vim.go, vim.go.lazyredraw },
+    textwidth = { vim.bo, vim.bo.textwidth },
+  }
+
   local ok, err = pcall(function()
     orig_f(self, keys, mode, callback)
   end)
-  if vim.go.backspace ~= bs then
-    vim.notify('Detected undesired value of backspace: ' .. vim.go.backspace)
-    vim.notify('Restoring backspace option to ' .. bs)
-    vim.go.backspace = bs
+
+  for k, v in pairs(opts) do
+    local table, value = v[1], v[2]
+
+    if table[k] ~= value then
+      vim.notify(string.format('Restoring option %s: %s -> %s', k, table[k], value))
+      table[k] = value
+    end
   end
+
   if not ok then
     error(err)
   end
