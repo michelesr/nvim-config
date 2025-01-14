@@ -104,6 +104,10 @@ cmp.setup({
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).
 cmp.setup.cmdline('/', {
+  enabled = function()
+    -- it blocks for too long when searching in bigfiles
+    return not string.find(vim.bo.filetype, 'bigfile')
+  end,
   mapping = cmp.mapping.preset.cmdline(),
   sources = {
     { name = 'buffer' },
