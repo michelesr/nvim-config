@@ -1,15 +1,18 @@
+-- map wincmd keys to tmux-select pane directions
+local map = { h = 'L', k = 'D', j = 'U', l = 'R' }
+
 local function tmux_wincmd_wrapper(key)
   local win = vim.api.nvim_get_current_win()
   vim.cmd('wincmd ' .. key)
+  -- if vim window hasn't changed
   if vim.api.nvim_get_current_win() == win then
-    local map = { h = 'L', k = 'D', j = 'U', l = 'R' }
+    -- ask tmux to change pane instead
     os.execute('tmux select-pane -' .. map[key])
   end
 end
 
-local opts = { remap = false, silent = true }
-for _, key in ipairs({ 'h', 'k', 'j', 'l' }) do
+for key, _ in pairs(map) do
   vim.keymap.set('n', '<C-w>' .. key, function()
     tmux_wincmd_wrapper(key)
-  end, opts)
+  end)
 end
