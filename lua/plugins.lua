@@ -132,7 +132,11 @@ require('lazy').setup({
   { 'ii14/neorepl.nvim', lazy = true, cmd = 'Repl' },
 
   -- Disable some features on big files for perfomance (e.g. LSP, Treesitter)
-  { 'ouuan/nvim-bigfile', opts = {} },
+  { 'ouuan/nvim-bigfile', opts = {
+    hook = function()
+      vim.cmd(':NoMatchParen')
+    end,
+  } },
 
   -- YAML schema selector for Telescope
   {
