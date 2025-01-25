@@ -25,9 +25,6 @@ nnoremap <leader>C :BCommits<CR>
 " telescope
 nnoremap <leader>s :Telescope<CR>
 
-" nvim-tree
-nnoremap <leader>t :NvimTreeToggle<CR>
-
 " open ranger file manager
 nnoremap <leader>r :Ranger<CR>
 
