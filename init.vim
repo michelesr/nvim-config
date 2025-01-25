@@ -28,6 +28,9 @@ nnoremap <leader>s :Telescope<CR>
 " open ranger file manager
 nnoremap <leader>r :Ranger<CR>
 
+" open file explorer on current file directory
+nnoremap <leader>o :edit %:h<CR>
+
 " specific file type options
 augroup UserFileType
   autocmd!
