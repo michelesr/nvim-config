@@ -17,7 +17,6 @@ nnoremap <leader>f :Telescope find_files<CR>
 nnoremap <leader>F :Telescope file_browser<CR>
 nnoremap <leader>b :Telescope buffers<CR>
 nnoremap <leader>h :Telescope oldfiles<CR>
-nnoremap <leader>hh :Telescope oldfiles<CR>
 nnoremap <leader>g :Telescope live_grep<CR>
 nnoremap <leader>/ :Telescope search_history<CR>
 nnoremap <leader>: :Telescope commands<CR>
