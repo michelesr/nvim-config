@@ -1,14 +1,18 @@
 local on_attach = function(_, bufnr)
   local opts = { remap = false, silent = true, buffer = bufnr }
 
+  -- wrap diagnostic prev and next so that they can be repeated with ; and ,
+  local ts_repeat = require('nvim-treesitter.textobjects.repeatable_move').make_repeatable_move_pair
+  local d_goto_next, d_goto_prev = ts_repeat(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+
   opts.desc = 'Show diagnostic message'
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
 
   opts.desc = 'Go to previous diagnostic'
-  vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, opts)
+  vim.keymap.set('n', '[d', d_goto_prev, opts)
 
   opts.desc = 'Go to next diagnostic'
-  vim.keymap.set('n', ']d', vim.diagnostic.goto_next, opts)
+  vim.keymap.set('n', ']d', d_goto_next, opts)
 
   opts.desc = 'Open buffer diagnostic in location list'
   vim.keymap.set('n', '<space>d', vim.diagnostic.setloclist, opts)
