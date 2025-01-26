@@ -105,6 +105,7 @@ require('lazy').setup({
     end,
     dependencies = {
       'nvim-lua/plenary.nvim',
+      'someone-stole-my-name/yaml-companion.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
   },
@@ -140,15 +141,6 @@ require('lazy').setup({
       vim.cmd(':NoMatchParen')
     end,
   } },
-
-  -- YAML schema selector for Telescope
-  {
-    'someone-stole-my-name/yaml-companion.nvim',
-    lazy = true,
-    config = function()
-      require('telescope').load_extension('yaml_schema')
-    end,
-  },
 }, {
   performance = {
     rtp = {
