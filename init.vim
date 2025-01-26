@@ -66,5 +66,11 @@ command! -nargs=+ Grep silent grep! <args> | copen
 
 cnoreabbrev Ag Rg
 cnoreabbrev Ack Grep
+cnoreabbrev gs Gitsigns
+cnoreabbrev ghs Gitsigns stage_hunk
+cnoreabbrev ghu Gitsigns undo_stage_hunk
+cnoreabbrev gd Gdiffsplit
+cnoreabbrev gvd Gvdiffsplit
+cnoreabbrev ghd Ghdiffsplit
 
 luafile ~/.config/nvim/lua/init.lua
