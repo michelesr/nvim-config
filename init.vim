@@ -30,6 +30,7 @@ nnoremap <leader>r :Ranger<CR>
 
 " open file explorer on current file directory
 nnoremap <leader>o :edit %:h<CR>
+nnoremap <leader>O :edit .<CR>
 
 " specific file type options
 augroup UserFileType
