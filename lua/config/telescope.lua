@@ -1,5 +1,6 @@
 local actions = require('telescope.actions')
 local action_state = require('telescope.actions.state')
+local telescope = require('telescope')
 
 local function fugitive_open(prompt_bufnr)
   -- close the telescope window
@@ -18,7 +19,7 @@ local git_mappings = {
 }
 git_mappings = { i = git_mappings, n = git_mappings }
 
-require('telescope').setup({
+telescope.setup({
   extensions = {
     fzf = {
       fuzzy = true, -- false will only do exact matching
@@ -46,5 +47,6 @@ require('telescope').setup({
   },
 })
 
-require('telescope').load_extension('fzf')
-require('telescope').load_extension('yaml_schema')
+telescope.load_extension('fzf')
+telescope.load_extension('yaml_schema')
+telescope.load_extension('file_browser')
