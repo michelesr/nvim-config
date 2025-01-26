@@ -1,4 +1,4 @@
-local on_attach = function(client, bufnr)
+local on_attach = function(_, bufnr)
   local opts = { remap = false, silent = true, buffer = bufnr }
 
   opts.desc = 'Show diagnostic message'
@@ -179,7 +179,7 @@ end, {})
 
 -- add command to detach LSP clients from active buffer
 vim.api.nvim_create_user_command('LspBufDetach', function()
-  for id, _ in pairs(vim.lsp.get_active_clients()) do
+  for id, _ in pairs(vim.lsp.get_clients()) do
     vim.lsp.buf_detach_client(0, id)
   end
 end, { bar = true })
