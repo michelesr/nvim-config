@@ -72,5 +72,7 @@ cnoreabbrev ghu Gitsigns undo_stage_hunk
 cnoreabbrev gd Gdiffsplit
 cnoreabbrev gvd Gvdiffsplit
 cnoreabbrev ghd Ghdiffsplit
+cnoreabbrev vr vertical resize
+cnoreabbrev hr horizontal resize
 
 luafile ~/.config/nvim/lua/init.lua
