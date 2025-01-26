@@ -8,12 +8,20 @@ require('gitsigns').setup({
       vim.keymap.set(mode, l, r, opts)
     end
 
+    -- wrap next and prev hunk functions to be repeatable with , and ; just like native vim f command
+    local ts_repeat = require('nvim-treesitter.textobjects.repeatable_move').make_repeatable_move_pair
+    local next_hunk, prev_hunk = ts_repeat(function()
+      gitsigns.nav_hunk('next')
+    end, function()
+      gitsigns.nav_hunk('prev')
+    end)
+
     -- Navigation
     map('n', ']h', function()
       if vim.wo.diff then
         vim.cmd.normal({ ']c', bang = true })
       else
-        gitsigns.nav_hunk('next')
+        next_hunk()
       end
     end, { desc = 'Next hunk' })
 
@@ -21,7 +29,7 @@ require('gitsigns').setup({
       if vim.wo.diff then
         vim.cmd.normal({ '[c', bang = true })
       else
-        gitsigns.nav_hunk('prev')
+        prev_hunk()
       end
     end, { desc = 'Prev hunk' })
 
