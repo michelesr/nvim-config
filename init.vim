@@ -1,5 +1,5 @@
 " general options
-set number mouse=a inccommand=split signcolumn=number
+set number mouse=a inccommand=split signcolumn=auto
 
 " tab should always be visualized as 8 spaces to avoid problems when a mix of
 " tab and spaces are used for vertical alignment in languages that prefer

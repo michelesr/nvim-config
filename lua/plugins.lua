@@ -142,6 +142,14 @@ require('lazy').setup({
       vim.cmd(':NoMatchParen')
     end,
   } },
+
+  -- Git integration for buffers
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+      require('config.gitsigns')
+    end,
+  },
 }, {
   performance = {
     rtp = {
