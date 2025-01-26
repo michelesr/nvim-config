@@ -30,7 +30,7 @@ require('lazy').setup({
   {
     'francoiscabrol/ranger.vim',
     lazy = true,
-    cmd = 'Ranger',
+    cmd = { 'Ranger', 'RangerWorkingDirectory' },
     dependencies = {
       -- Close buffer without closing window
       'rbgrouleff/bclose.vim',

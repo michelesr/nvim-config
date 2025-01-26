@@ -27,8 +27,9 @@ nnoremap <leader>s :Telescope<CR>
 
 " open ranger file manager
 nnoremap <leader>r :Ranger<CR>
+nnoremap <leader>R :RangerWorkingDirectory<CR>
 
-" open file explorer on current file directory
+" open file explorer
 nnoremap <leader>o :edit %:h<CR>
 nnoremap <leader>O :edit .<CR>
 
