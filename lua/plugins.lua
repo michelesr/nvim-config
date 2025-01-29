@@ -53,9 +53,6 @@ require('lazy').setup({
   -- shortcut to pass the config table, equivalent to require('plugin-name').setup()     --
   -- --------------------------------------------------------------------------------------
 
-  -- file explorer: edit your filesystem like a buffer
-  { 'stevearc/oil.nvim', opts = {} },
-
   -- Comment lines with gc<motion> or a line with gcc
   { 'numToStr/Comment.nvim', opts = {} },
 
