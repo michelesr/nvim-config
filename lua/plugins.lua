@@ -146,6 +146,8 @@ require('lazy').setup({
       require('config.gitsigns')
     end,
   },
+
+  { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
 }, {
   performance = {
     rtp = {

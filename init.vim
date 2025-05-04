@@ -34,11 +34,6 @@ nnoremap <leader>R :RangerWorkingDirectory<CR>
 nnoremap <leader>o :edit %:h<CR>
 nnoremap <leader>O :edit .<CR>
 
-" auto close parenthesis
-inoremap (<CR> (<CR>)<ESC>O
-inoremap [<CR> [<CR>]<ESC>O
-inoremap {<CR> {<CR>}<ESC>O
-
 " specific file type options
 augroup UserFileType
   autocmd!
