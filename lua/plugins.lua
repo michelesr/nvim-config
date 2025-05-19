@@ -148,6 +148,13 @@ require('lazy').setup({
   },
 
   { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
+
+  {
+    'm4xshen/hardtime.nvim',
+    lazy = false,
+    dependencies = { 'MunifTanjim/nui.nvim' },
+    opts = {},
+  },
 }, {
   performance = {
     rtp = {
