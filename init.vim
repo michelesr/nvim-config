@@ -34,6 +34,9 @@ nnoremap <leader>R :RangerWorkingDirectory<CR>
 nnoremap <leader>o :edit %:h<CR>
 nnoremap <leader>O :edit .<CR>
 
+" toggle relative number
+nnoremap <leader>n :set relativenumber!<CR>
+
 " specific file type options
 augroup UserFileType
   autocmd!
