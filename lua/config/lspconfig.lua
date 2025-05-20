@@ -11,6 +11,7 @@ local function get_installed_lsp_servers()
   return lsp
 end
 
+-- default on_attach callback
 local on_attach = function(_, bufnr)
   local opts = { remap = false, silent = true, buffer = bufnr }
 
@@ -156,6 +157,19 @@ local settings = {
   },
 }
 
+-- custom on_attach callbacks
+--- @type { string: function }
+local callbacks = {
+  ['yamlls'] = require('yaml-companion').setup().on_attach,
+}
+
+for name, cb in pairs(callbacks) do
+  callbacks[name] = function(client, bufnr)
+    on_attach(client, bufnr)
+    cb(client, bufnr)
+  end
+end
+
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
@@ -164,28 +178,9 @@ local installed_servers = get_installed_lsp_servers()
 for name, _ in pairs(installed_servers) do
   lspconfig[name].setup({
     capabilities = capabilities,
-    on_attach = on_attach,
+    on_attach = callbacks[name] or on_attach,
     settings = settings[name] or {},
   })
-end
-
-if installed_servers.yamlls then
-  local yamlconfig = require('yaml-companion').setup({})
-  local cb = yamlconfig.on_attach
-
-  -- wrap callback so that it calls our on_attach()
-  yamlconfig.on_attach = function(client, bufnr)
-    on_attach(client, bufnr)
-    cb(client, bufnr)
-  end
-
-  -- set our capabilities
-  yamlconfig.capabilities = capabilities
-
-  -- merge our settings
-  yamlconfig.settings = vim.tbl_deep_extend('force', yamlconfig.settings, settings['yamlls'])
-
-  lspconfig.yamlls.setup(yamlconfig)
 end
 
 require('mason').setup()
