@@ -183,9 +183,6 @@ for name, _ in pairs(installed_servers) do
   })
 end
 
-require('mason').setup()
-require('mason-lspconfig').setup()
-
 -- add command to reload the LSP server settings
 vim.api.nvim_create_user_command('LspConfigReload', function()
   local module = 'config.lspconfig'

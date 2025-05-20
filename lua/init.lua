@@ -1,5 +1,4 @@
 require('plugins')
-require('config.mason')
 require('config.lspconfig')
 require('config.cmp')
 require('config.tresitter')

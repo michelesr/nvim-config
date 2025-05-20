@@ -59,13 +59,14 @@ require('lazy').setup({
   -- Similar to tpope/vim-surround
   { 'kylechui/nvim-surround', opts = {} },
 
-  -- LSP base config
-  'neovim/nvim-lspconfig',
-
   -- To install extensions such as language servers
   {
     'williamboman/mason.nvim',
-    dependencies = { 'williamboman/mason-lspconfig.nvim' },
+    dependencies = {
+      -- Quickstart configs for Nvim LSP
+      'neovim/nvim-lspconfig',
+    },
+    opts = {},
   },
 
   -- Standalone UI for nvim-lsp progress
