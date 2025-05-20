@@ -17,7 +17,11 @@ local on_attach = function(_, bufnr)
 
   -- wrap diagnostic prev and next so that they can be repeated with ; and ,
   local ts_repeat = require('nvim-treesitter.textobjects.repeatable_move').make_repeatable_move_pair
-  local d_goto_next, d_goto_prev = ts_repeat(vim.diagnostic.goto_next, vim.diagnostic.goto_prev)
+  local d_goto_next, d_goto_prev = ts_repeat(function()
+    vim.diagnostic.jump({ count = 1, float = true })
+  end, function()
+    vim.diagnostic.jump({ count = -1, float = true })
+  end)
 
   opts.desc = 'Show diagnostic message'
   vim.keymap.set('n', '<space>e', vim.diagnostic.open_float, opts)
