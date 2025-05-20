@@ -1,7 +1,7 @@
 require('plugins')
 require('config.lspconfig')
 require('config.cmp')
-require('config.tresitter')
+require('config.treesitter')
 require('config.onedark')
 require('config.lualine')
 require('scripts.tmux')
