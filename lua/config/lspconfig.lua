@@ -1,3 +1,16 @@
+local function get_installed_lsp_servers()
+  local registry = require('mason-registry')
+  local lsp = {}
+  for _, pkg_info in ipairs(registry.get_installed_packages()) do
+    for _, type in ipairs(pkg_info.spec.categories) do
+      if type == 'LSP' then
+        lsp[pkg_info.spec.neovim.lspconfig] = true
+      end
+    end
+  end
+  return lsp
+end
+
 local on_attach = function(_, bufnr)
   local opts = { remap = false, silent = true, buffer = bufnr }
 
@@ -145,34 +158,38 @@ local settings = {
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+local lspconfig = require('lspconfig')
 
-require('mason-lspconfig').setup_handlers({
-  function(server_name)
-    require('lspconfig')[server_name].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = settings[server_name],
-    })
-  end,
-  ['yamlls'] = function()
-    local yamlconfig = require('yaml-companion').setup({})
-    local cb = yamlconfig.on_attach
+local installed_servers = get_installed_lsp_servers()
+for name, _ in pairs(installed_servers) do
+  lspconfig[name].setup({
+    capabilities = capabilities,
+    on_attach = on_attach,
+    settings = settings[name] or {},
+  })
+end
 
-    -- wrap callback so that it calls our on_attach()
-    yamlconfig.on_attach = function(client, bufnr)
-      on_attach(client, bufnr)
-      cb(client, bufnr)
-    end
+if installed_servers.yamlls then
+  local yamlconfig = require('yaml-companion').setup({})
+  local cb = yamlconfig.on_attach
 
-    -- set our capabilities
-    yamlconfig.capabilities = capabilities
+  -- wrap callback so that it calls our on_attach()
+  yamlconfig.on_attach = function(client, bufnr)
+    on_attach(client, bufnr)
+    cb(client, bufnr)
+  end
 
-    -- merge our settings
-    yamlconfig.settings = vim.tbl_deep_extend('force', yamlconfig.settings, settings['yamlls'])
+  -- set our capabilities
+  yamlconfig.capabilities = capabilities
 
-    require('lspconfig')['yamlls'].setup(yamlconfig)
-  end,
-})
+  -- merge our settings
+  yamlconfig.settings = vim.tbl_deep_extend('force', yamlconfig.settings, settings['yamlls'])
+
+  lspconfig.yamlls.setup(yamlconfig)
+end
+
+require('mason').setup()
+require('mason-lspconfig').setup()
 
 -- add command to reload the LSP server settings
 vim.api.nvim_create_user_command('LspConfigReload', function()
