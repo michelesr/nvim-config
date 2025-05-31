@@ -128,35 +128,19 @@ end)
 
 local repeatable_move = require('nvim-treesitter-textobjects.repeatable_move')
 
--- wrap the internal repeat_last_move so that you don't need to map it with { expr = true }
--- see https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/775
-local function repeat_last_move(opts)
-  local last_move = repeatable_move.last_move
-  if last_move.func == 'f' or last_move.func == 't' then
-    if opts.forward then
-      vim.cmd([[normal! ]] .. vim.v.count1 .. ';')
-    else
-      vim.cmd([[normal! ]] .. vim.v.count1 .. ',')
+-- workaround for https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/775
+-- thanks @seandewar
+local function make_repeat_rhs(dir)
+  return function()
+    local keys = repeatable_move['repeat_last_move_' .. dir]()
+    if keys then
+      vim.cmd(('normal! %d%s'):format(vim.v.count1, vim.keycode(keys)))
     end
-  elseif last_move.func == 'F' or last_move.func == 'T' then
-    if opts.forward then
-      vim.cmd([[normal! ]] .. vim.v.count1 .. ',')
-    else
-      vim.cmd([[normal! ]] .. vim.v.count1 .. ';')
-    end
-  else
-    repeatable_move.repeat_last_move({ forward = opts.forward })
   end
 end
 
--- Repeat movement with ; and ,
--- ensure ; goes forward and , goes backward regardless of the last direction
-vim.keymap.set({ 'n', 'x', 'o' }, ';', function()
-  repeat_last_move({ forward = true })
-end)
-vim.keymap.set({ 'n', 'x', 'o' }, ',', function()
-  repeat_last_move({ forward = false })
-end)
+vim.keymap.set({ 'n', 'x', 'o' }, ';', make_repeat_rhs('next'))
+vim.keymap.set({ 'n', 'x', 'o' }, ',', make_repeat_rhs('previous'))
 
 -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
 vim.keymap.set({ 'n', 'x', 'o' }, 'f', repeatable_move.builtin_f_expr, { expr = true })
