@@ -166,30 +166,62 @@ local settings = {
   },
 }
 
+local yaml_companion = require('yaml-companion').setup()
+local yaml_on_attach = function(client, bufnr)
+  yaml_companion.on_attach(client, bufnr)
+
+  -- this is normally added by lspconfig and yaml companion relies on that
+  -- (probably to reconfigure the server after changing the yaml schema)
+  function client.workspace_did_change_configuration(configuration)
+    if not configuration then
+      return
+    end
+    if vim.tbl_isempty(configuration) then
+      configuration = { [vim.type_idx] = vim.types.dictionary }
+    end
+    return client.notify('workspace/didChangeConfiguration', {
+      settings = configuration,
+    })
+  end
+end
+
 -- custom on_attach callbacks
 --- @type { string: function }
 local callbacks = {
-  ['yamlls'] = require('yaml-companion').setup().on_attach,
+  ['yamlls'] = yaml_on_attach,
 }
 
-for name, cb in pairs(callbacks) do
-  callbacks[name] = function(client, bufnr)
+-- merge all the on_attach functions:
+--  - the original on_attach defined in nvim-lspconfig (if defined)
+--  - the generic on_attach defined at the top of this file
+--  - the specific language server on_attach callback (if defined)
+local function merge_on_attach(server_name)
+  local orig_on_attach = vim.lsp.config[server_name].on_attach
+
+  return function(client, bufnr)
+    if orig_on_attach then
+      orig_on_attach(client, bufnr)
+    end
     on_attach(client, bufnr)
-    cb(client, bufnr)
+    if callbacks[server_name] then
+      callbacks[server_name](client, bufnr)
+    end
   end
 end
 
 -- Setup lspconfig.
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lspconfig = require('lspconfig')
 
 local installed_servers = get_installed_lsp_servers()
+
 for name, _ in pairs(installed_servers) do
-  lspconfig[name].setup({
+  vim.lsp.config(name, {
     capabilities = capabilities,
-    on_attach = callbacks[name] or on_attach,
+    on_attach = merge_on_attach(name),
     settings = settings[name] or {},
   })
+
+  vim.lsp.enable(name)
 end
 
 -- add command to reload the LSP server settings
