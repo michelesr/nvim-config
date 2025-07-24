@@ -111,10 +111,24 @@ local settings = {
   ['yamlls'] = {
     yaml = {
       schemas = {
-        ['kubernetes'] = 'foo.yaml',
+        ['kubernetes'] = {
+          'k8s/*.y{a,}ml',
+          '*k8s*.y{a,}ml',
+          'pod{s,}.y{a,}ml',
+          'deploy{s,}.y{a,}ml',
+          'deployment{s,}.y{a,}ml',
+          'statefulset{s,}.y{a,}ml',
+          'ds{s,}.y{a,}ml',
+          'daemonset{s,}.y{a,}ml',
+          'job{s,}.y{a,}ml',
+          'cronjob{s,}.y{a,}ml',
+          'pv{s,}.y{a,}ml',
+          'pvc{s,}.y{a,}ml',
+          'manifest.y{a,}ml',
+        },
         ['https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json'] = {
-          '*cf.yaml',
-          '*cloudformation.yaml',
+          '*cf.y{a,}ml',
+          '*cloudformation.y{a,}ml',
         },
       },
       customTags = {
