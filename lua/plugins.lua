@@ -114,16 +114,24 @@ require('lazy').setup({
     dependencies = {
       { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
     },
+    config = function()
+      require('config.treesitter')
+    end,
   },
 
   -- Tresitter playground
   { 'nvim-treesitter/playground', lazy = true, cmd = 'TSPlaygroundToggle' },
 
   -- Colorscheme
-  'navarasu/onedark.nvim',
+  {
+    'navarasu/onedark.nvim',
+    config = function()
+      require('config.onedark')
+    end,
+  },
 
   -- Status line
-  'nvim-lualine/lualine.nvim',
+  { 'nvim-lualine/lualine.nvim', opts = require('config.lualine') },
 
   -- Icons
   { 'nvim-tree/nvim-web-devicons', lazy = true, opts = {} },
