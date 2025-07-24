@@ -181,7 +181,7 @@ local settings = {
 }
 
 local yaml_companion = require('yaml-companion').setup()
-local yaml_on_attach = function(client, bufnr)
+local function yaml_on_attach(client, bufnr)
   yaml_companion.on_attach(client, bufnr)
 
   -- this is normally added by lspconfig and yaml companion relies on that
