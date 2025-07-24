@@ -243,7 +243,7 @@ end, {})
 
 -- add command to detach LSP clients from active buffer
 vim.api.nvim_create_user_command('LspBufDetach', function()
-  for id, _ in pairs(vim.lsp.get_clients()) do
-    vim.lsp.buf_detach_client(0, id)
+  for _, client in pairs(vim.lsp.get_clients({ bufnr = 0 })) do
+    vim.lsp.buf_detach_client(0, client.id)
   end
 end, { bar = true })
