@@ -209,14 +209,10 @@ local function merge_on_attach(server_name)
   end
 end
 
--- Setup lspconfig.
-local capabilities = require('cmp_nvim_lsp').default_capabilities()
-
 local installed_servers = get_installed_lsp_servers()
 
 for name, _ in pairs(installed_servers) do
   vim.lsp.config(name, {
-    capabilities = capabilities,
     on_attach = merge_on_attach(name),
     settings = settings[name] or {},
   })

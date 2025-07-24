@@ -1,6 +1,5 @@
 require('plugins')
 require('config.lspconfig')
-require('config.cmp')
 require('config.treesitter')
 require('config.onedark')
 require('config.lualine')

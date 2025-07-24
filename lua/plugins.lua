@@ -74,23 +74,21 @@ require('lazy').setup({
 
   -- Completion engine and extensions
   {
-    'hrsh7th/nvim-cmp',
-    dependencies = {
-      'hrsh7th/cmp-buffer',
-      'hrsh7th/cmp-path',
-      'hrsh7th/cmp-cmdline',
-      'hrsh7th/cmp-nvim-lsp',
-      'saadparwaiz1/cmp_luasnip',
-      {
-        'L3MON4D3/LuaSnip',
-        -- add snippet definition plugins here
-        dependencies = { 'rafamadriz/friendly-snippets' },
-        config = function()
-          -- lazy load vscode style plugins, e.g. friendly-snippets
-          require('luasnip.loaders.from_vscode').lazy_load()
-        end,
-      },
-    },
+    'saghen/blink.cmp',
+    -- optional: provides snippets for the snippet source
+    dependencies = { 'rafamadriz/friendly-snippets' },
+
+    -- use a release tag to download pre-built binaries
+    version = '1.*',
+    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+    -- build = 'cargo build --release',
+    -- If you use nix, you can build from source using latest nightly rust with:
+    -- build = 'nix run .#build-plugin',
+
+    ---@module 'blink.cmp'
+    ---@type blink.cmp.Config
+    opts = require('config.blink'),
+    opts_extend = { 'sources.default' },
   },
 
   -- Required by telescope
