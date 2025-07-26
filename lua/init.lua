@@ -1,3 +1,3 @@
 require('plugins')
-require('config.lspconfig')
+require('config.lsp')
 require('scripts.tmux')
