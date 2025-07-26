@@ -93,7 +93,7 @@ local settings = {
           fileMatch = {
             '*cf.json',
             '*cloudformation.json',
-            'cdk.out/*.template.json',
+            'cdk.out/**/*.template.json',
           },
           url = 'https://raw.githubusercontent.com/awslabs/goformation/master/schema/cloudformation.schema.json',
         },
