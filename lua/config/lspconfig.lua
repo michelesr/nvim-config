@@ -180,29 +180,10 @@ local settings = {
   },
 }
 
-local yaml_companion = require('yaml-companion').setup()
-local function yaml_on_attach(client, bufnr)
-  yaml_companion.on_attach(client, bufnr)
-
-  -- this is normally added by lspconfig and yaml companion relies on that
-  -- (probably to reconfigure the server after changing the yaml schema)
-  function client.workspace_did_change_configuration(configuration)
-    if not configuration then
-      return
-    end
-    if vim.tbl_isempty(configuration) then
-      configuration = { [vim.type_idx] = vim.types.dictionary }
-    end
-    return client.notify('workspace/didChangeConfiguration', {
-      settings = configuration,
-    })
-  end
-end
-
 -- custom on_attach callbacks
 --- @type { string: function }
 local callbacks = {
-  ['yamlls'] = yaml_on_attach,
+  ['yamlls'] = require('utils.yaml').yaml_on_attach,
 }
 
 -- merge all the on_attach functions:

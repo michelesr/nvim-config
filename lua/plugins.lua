@@ -101,7 +101,6 @@ require('lazy').setup({
     end,
     dependencies = {
       'nvim-lua/plenary.nvim',
-      'Funk66/yaml-companion.nvim',
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
     },
   },
