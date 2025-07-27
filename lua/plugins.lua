@@ -119,9 +119,6 @@ require('lazy').setup({
     end,
   },
 
-  -- Tresitter playground
-  { 'nvim-treesitter/playground', lazy = true, cmd = 'TSPlaygroundToggle' },
-
   -- Colorscheme
   {
     'navarasu/onedark.nvim',
@@ -133,14 +130,8 @@ require('lazy').setup({
   -- Status line
   { 'nvim-lualine/lualine.nvim', opts = require('config.lualine') },
 
-  -- Icons
-  { 'nvim-tree/nvim-web-devicons', lazy = true, opts = {} },
-
   -- Faster LuaLS setup for Neovim
   { 'folke/lazydev.nvim', ft = 'lua', opts = {} },
-
-  -- REPL for lua and vimscript
-  { 'ii14/neorepl.nvim', lazy = true, cmd = 'Repl' },
 
   -- Disable some features on big files for perfomance (e.g. LSP, Treesitter)
   { 'ouuan/nvim-bigfile', opts = {
