@@ -15,6 +15,8 @@ return {
     preset = 'enter',
     ['<Tab>'] = { 'select_next', 'fallback' },
     ['<S-Tab>'] = { 'select_prev', 'fallback' },
+    ['<C-k>'] = { 'show_documentation' },
+    ['<C-j>'] = { 'hide_documentation' },
   },
 
   appearance = {
@@ -25,7 +27,7 @@ return {
 
   -- (Default) Only show the documentation popup when manually triggered
   completion = {
-    documentation = { auto_show = true },
+    documentation = { auto_show = false },
   },
 
   -- Default list of enabled providers defined so that you can extend it
