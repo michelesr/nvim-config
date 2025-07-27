@@ -2,6 +2,9 @@
 -- boostrap section: automatically install lazy.nvim package manager if not installed already --
 -- ---------------------------------------------------------------------------------------------
 local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+
+--- fs_stat is indeed a defined field of vim.uv
+---@diagnostic disable-next-line: undefined-field
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
   vim.fn.system({
     'git',

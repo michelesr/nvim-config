@@ -18,8 +18,14 @@ require('gitsigns').setup({
     -- wrap next and prev hunk functions to be repeatable with , and ; just like native vim f command
     local hunk_move = require('nvim-treesitter-textobjects.repeatable_move').make_repeatable_move(function(opts)
       if opts.forward then
+        --- the type annotation set upstream is either wrong or incompatible
+        --- with lua_ls: return type should be T instead of T...
+        --- e.g. instead of @return fun(...:T...): Gitsigns.async.Task
+        --- it should be @return fun(...:T): Gitsigns.async.Task
+        ---@diagnostic disable-next-line: param-type-mismatch
         gitsigns.nav_hunk('next')
       else
+        ---@diagnostic disable-next-line: param-type-mismatch
         gitsigns.nav_hunk('prev')
       end
     end)
