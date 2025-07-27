@@ -181,7 +181,7 @@ local settings = {
 }
 
 -- custom on_attach callbacks
---- @type { string: function }
+--- @type table<string, fun(client: vim.lsp.Client, bufnr: integer)>
 local callbacks = {
   ['yamlls'] = require('utils.yaml').yaml_on_attach,
 }
