@@ -85,8 +85,6 @@ require('lazy').setup({
     -- If you use nix, you can build from source using latest nightly rust with:
     -- build = 'nix run .#build-plugin',
 
-    ---@module 'blink.cmp'
-    ---@type blink.cmp.Config
     opts = require('config.blink'),
     opts_extend = { 'sources.default' },
   },
