@@ -1,8 +1,14 @@
 M = {}
+
+---@param bufnr integer
+---@param new_schema string
 function M.set_yaml_schema(bufnr, new_schema)
   local bufuri = vim.uri_from_bufnr(bufnr)
   local client = vim.lsp.get_clients({ bufnr = bufnr })[1]
   local settings = client.settings
+
+  -- make lua_ls happy and ensure schemas is initialized
+  settings.yaml['schemas'] = settings.yaml['schemas'] or {}
 
   -- we don't want more than 1 schema per file
   for key, schema in pairs(settings.yaml.schemas) do
@@ -24,7 +30,7 @@ function M.set_yaml_schema(bufnr, new_schema)
     settings.yaml.schemas[new_schema] = bufuri
   end
 
-  client.notify('workspace/didChangeConfiguration', {
+  client:notify('workspace/didChangeConfiguration', {
     settings = client.settings,
   })
 end
