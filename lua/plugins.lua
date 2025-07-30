@@ -79,7 +79,9 @@ require('lazy').setup({
   {
     'saghen/blink.cmp',
     -- optional: provides snippets for the snippet source
-    dependencies = { 'rafamadriz/friendly-snippets' },
+    dependencies = {
+      'rafamadriz/friendly-snippets',
+    },
 
     -- use a release tag to download pre-built binaries
     version = '1.*',
@@ -149,6 +151,34 @@ require('lazy').setup({
   },
 
   { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
+
+  {
+    'yetone/avante.nvim',
+    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
+    -- ⚠️ must add this setting! ! !
+    build = 'make',
+    cmd = 'AvanteAsk',
+    version = false, -- Never set this value to "*"! Never!
+    ---@module 'avante'
+    ---@type avante.Config
+    opts = {
+      provider = 'copilot',
+      selector = {
+        provider = 'telescope',
+      },
+    },
+    dependencies = {
+      'nvim-lua/plenary.nvim',
+      'MunifTanjim/nui.nvim',
+      'Kaiser-Yang/blink-cmp-avante',
+      {
+        'zbirenbaum/copilot.lua',
+        cmd = 'Copilot',
+        opts = {},
+        dependencies = { 'giuxtaposition/blink-cmp-copilot' },
+      },
+    },
+  },
 }, {
   performance = {
     rtp = {
