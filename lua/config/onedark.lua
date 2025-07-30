@@ -13,6 +13,9 @@ require('onedark').setup({
     VertSplit = { fg = '#8ffc67' },
     StatusLine = { bg = '#222222' },
     StatusLineNC = { bg = '#222222' },
+    NormalFloat = { bg = '#222738' },
+    PMenu = { bg = '#222738' },
+    RenderMarkdownCode = { bg = '#222738' },
   },
 })
 require('onedark').load()
