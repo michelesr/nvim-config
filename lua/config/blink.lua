@@ -35,7 +35,7 @@ return {
   -- Default list of enabled providers defined so that you can extend it
   -- elsewhere in your config, without redefining it, due to `opts_extend`
   sources = {
-    default = { 'avante', 'lsp', 'copilot', 'path', 'snippets', 'buffer' },
+    default = { 'avante', 'lsp', 'path', 'snippets', 'buffer' },
     providers = {
       avante = {
         module = 'blink-cmp-avante',
@@ -44,21 +44,21 @@ return {
           -- options for blink-cmp-avante
         },
       },
-      copilot = {
-        name = 'copilot',
-        module = 'blink-cmp-copilot',
-        score_offset = 100,
-        async = true,
-        -- add the github cat icon to the completion items
-        -- from https://github.com/giuxtaposition/blink-cmp-copilot/issues/15#issuecomment-2816895026
-        transform_items = function(_, items)
-          for _, item in ipairs(items) do
-            item.kind_icon = ''
-            item.kind_name = 'Copilot'
-          end
-          return items
-        end,
-      },
+      -- copilot = {
+      --   name = 'copilot',
+      --   module = 'blink-cmp-copilot',
+      --   score_offset = 100,
+      --   async = true,
+      --   -- add the github cat icon to the completion items
+      --   -- from https://github.com/giuxtaposition/blink-cmp-copilot/issues/15#issuecomment-2816895026
+      --   transform_items = function(_, items)
+      --     for _, item in ipairs(items) do
+      --       item.kind_icon = ''
+      --       item.kind_name = 'Copilot'
+      --     end
+      --     return items
+      --   end,
+      -- },
     },
   },
 

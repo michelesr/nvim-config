@@ -159,18 +159,9 @@ require('lazy').setup({
     build = 'make',
     cmd = 'AvanteAsk',
     version = false, -- Never set this value to "*"! Never!
-    ---@module 'avante'
-    ---@type avante.Config
-    opts = {
-      provider = 'copilot',
-      -- WARNING: Since auto-suggestions are a high-frequency operation and therefore expensive,
-      -- currently designating it as `copilot` provider is dangerous because: https://github.com/yetone/avante.nvim/issues/1048
-      -- Of course, you can reduce the request frequency by increasing `suggestion.debounce`.
-      auto_suggestions_provider = nil,
-      selector = {
-        provider = 'telescope',
-      },
-    },
+    config = function()
+      require('config.avante')
+    end,
     dependencies = {
       'nvim-lua/plenary.nvim',
       'MunifTanjim/nui.nvim',
@@ -183,12 +174,12 @@ require('lazy').setup({
         },
         ft = { 'Avante' },
       },
-      {
-        'zbirenbaum/copilot.lua',
-        cmd = 'Copilot',
-        opts = {},
-        dependencies = { 'giuxtaposition/blink-cmp-copilot' },
-      },
+      -- {
+      --   'zbirenbaum/copilot.lua',
+      --   cmd = 'Copilot',
+      --   opts = {},
+      --   dependencies = { 'giuxtaposition/blink-cmp-copilot' },
+      -- },
     },
   },
 }, {

@@ -1,3 +1,20 @@
+local M = {}
+
+--- enables treesitter parsers for the given file types
+---@param file_types string[]
+function M.enable_parsers(file_types)
+  vim.api.nvim_create_autocmd({ 'FileType' }, {
+    pattern = file_types,
+    callback = function(event)
+      -- this enables highlight too
+      vim.treesitter.start(event.buf)
+
+      -- enable indentation
+      vim.bo.indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
+    end,
+  })
+end
+
 -- parsers to install automatically
 local ensure_installed = {
   'c',
@@ -24,16 +41,7 @@ if #ensure_installed > 0 then
   -- all the installed parsers
   local parsers = nts.get_installed()
 
-  vim.api.nvim_create_autocmd({ 'FileType' }, {
-    pattern = parsers,
-    callback = function(event)
-      -- this enables highlight too
-      vim.treesitter.start(event.buf)
-
-      -- enable indentation
-      vim.bo.indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
-    end,
-  })
+  M.enable_parsers(parsers)
 end
 
 require('nvim-treesitter-textobjects').setup({
@@ -147,3 +155,5 @@ vim.keymap.set({ 'n', 'x', 'o' }, 'f', repeatable_move.builtin_f_expr, { expr = 
 vim.keymap.set({ 'n', 'x', 'o' }, 'F', repeatable_move.builtin_F_expr, { expr = true })
 vim.keymap.set({ 'n', 'x', 'o' }, 't', repeatable_move.builtin_t_expr, { expr = true })
 vim.keymap.set({ 'n', 'x', 'o' }, 'T', repeatable_move.builtin_T_expr, { expr = true })
+
+return M
