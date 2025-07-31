@@ -10,6 +10,18 @@ require('avante').setup({
     gemini = {
       model = 'gemini-2.5-pro',
     },
+    gemini_flash = {
+      model = 'gemini-2.5-flash',
+      __inherited_from = 'gemini',
+    },
+    gemini_2_0_flash = {
+      model = 'gemini-2.0-flash',
+      __inherited_from = 'gemini',
+    },
+    gemini_2_0_flash_lite = {
+      model = 'gemini-2.0-flash-lite',
+      __inherited_from = 'gemini',
+    },
     -- ollama = {
     --   endpoint = 'http://localhost:11434',
     --   model = 'codellama:7b',

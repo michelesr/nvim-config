@@ -157,8 +157,8 @@ require('lazy').setup({
     -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
     -- ⚠️ must add this setting! ! !
     build = 'make',
-    cmd = 'AvanteAsk',
-    version = false, -- Never set this value to "*"! Never!
+    cmd = { 'AvanteAsk', 'AvanteChat', 'AvanteToggle' },
+    version = false, -- Never set this value to "*"! Never!:
     config = function()
       require('config.avante')
     end,
