@@ -174,12 +174,6 @@ require('lazy').setup({
         },
         ft = { 'Avante' },
       },
-      -- {
-      --   'zbirenbaum/copilot.lua',
-      --   cmd = 'Copilot',
-      --   opts = {},
-      --   dependencies = { 'giuxtaposition/blink-cmp-copilot' },
-      -- },
     },
   },
 }, {
