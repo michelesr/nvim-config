@@ -34,6 +34,12 @@ require('avante').setup({
   selector = {
     provider = 'telescope',
   },
+  windows = {
+    ask = {
+      -- do not auto enter insert mode in prompt input window
+      start_insert = false,
+    },
+  },
 })
 
 require('config.treesitter').enable_parsers({ 'Avante' })
