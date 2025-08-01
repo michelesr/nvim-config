@@ -14,6 +14,10 @@ require('avante').setup({
       model = 'gemini-2.5-flash',
       __inherited_from = 'gemini',
     },
+    gemini_flash_lite = {
+      model = 'gemini-2.5-flash-lite',
+      __inherited_from = 'gemini',
+    },
     gemini_2_0_flash = {
       model = 'gemini-2.0-flash',
       __inherited_from = 'gemini',
