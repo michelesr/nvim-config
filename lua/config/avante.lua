@@ -31,9 +31,6 @@ require('avante').setup({
     --   model = 'codellama:7b',
     -- },
   },
-  selector = {
-    provider = 'telescope',
-  },
   windows = {
     ask = {
       -- do not auto enter insert mode in prompt input window
