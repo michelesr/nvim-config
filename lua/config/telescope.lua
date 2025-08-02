@@ -28,6 +28,9 @@ telescope.setup({
       case_mode = 'smart_case', -- or 'ignore_case' or 'respect_case'
       -- the default case_mode is 'smart_case'
     },
+    ['ui-select'] = {
+      require('telescope.themes').get_dropdown(),
+    },
   },
   defaults = {
     mappings = {
@@ -48,3 +51,4 @@ telescope.setup({
 })
 
 telescope.load_extension('fzf')
+telescope.load_extension('ui-select')
