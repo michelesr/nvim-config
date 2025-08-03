@@ -178,12 +178,23 @@ local settings = {
       },
     },
   },
+  basedpyright = {
+    basedpyright = {
+      analysis = {
+        typeCheckingMode = 'standard',
+      },
+    },
+  },
 }
 
 -- custom on_attach callbacks
 --- @type table<string, fun(client: vim.lsp.Client, bufnr: integer)>
 local callbacks = {
-  ['yamlls'] = require('utils.yaml').yaml_on_attach,
+  yamlls = require('utils.yaml').yaml_on_attach,
+  basedpyright = function(client, _)
+    -- disable LSP syntax highlighting
+    client.server_capabilities.semanticTokensProvider = nil
+  end,
 }
 
 -- merge all the on_attach functions:
