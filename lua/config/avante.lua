@@ -36,6 +36,9 @@ require('avante').setup({
       -- do not auto enter insert mode in prompt input window
       start_insert = false,
     },
+    input = {
+      height = 16,
+    },
   },
 })
 
