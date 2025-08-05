@@ -1,10 +1,10 @@
 local M = {}
 
 --- enables treesitter parsers for the given file types
----@param file_types string[]
-function M.enable_parsers(file_types)
+---@param filetypes string[]
+function M.enable_parsers(filetypes)
   vim.api.nvim_create_autocmd({ 'FileType' }, {
-    pattern = file_types,
+    pattern = filetypes,
     callback = function(event)
       -- this enables highlight too
       vim.treesitter.start(event.buf)
@@ -34,9 +34,6 @@ local ensure_installed = {
   'javascript',
 }
 
--- additional filetypes: useful when the parser name is different from ft
-local additional_filetypes = { 'sh' }
-
 if #ensure_installed > 0 then
   local nts = require('nvim-treesitter')
   nts.install(ensure_installed)
@@ -44,7 +41,12 @@ if #ensure_installed > 0 then
   -- all the installed parsers
   local parsers = nts.get_installed()
 
-  M.enable_parsers(vim.tbl_extend('force', parsers, additional_filetypes))
+  local filetypes = {}
+  for _, language in pairs(parsers) do
+    vim.list_extend(filetypes, vim.treesitter.language.get_filetypes(language))
+  end
+
+  M.enable_parsers(filetypes)
 end
 
 require('nvim-treesitter-textobjects').setup({
