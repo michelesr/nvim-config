@@ -34,6 +34,9 @@ local ensure_installed = {
   'javascript',
 }
 
+-- additional filetypes: useful when the parser name is different from ft
+local additional_filetypes = { 'sh' }
+
 if #ensure_installed > 0 then
   local nts = require('nvim-treesitter')
   nts.install(ensure_installed)
@@ -41,7 +44,7 @@ if #ensure_installed > 0 then
   -- all the installed parsers
   local parsers = nts.get_installed()
 
-  M.enable_parsers(parsers)
+  M.enable_parsers(vim.tbl_extend('force', parsers, additional_filetypes))
 end
 
 require('nvim-treesitter-textobjects').setup({
