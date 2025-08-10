@@ -60,11 +60,12 @@ augroup UserTerm
 augroup END
 
 " run tmux in a terminal window
-function! Tmux(cmd)
-  exe 'te' 'tmux new-session ' . a:cmd . '\; set status off'
+function! Tmux(cmd, modifier)
+  let l:term_cmd = a:modifier . ' te'
+  exe l:term_cmd 'tmux new-session ' . a:cmd . '\; set status off'
   exe 'f' substitute(bufname(), 'tmux.*', 'tmux', '')
 endfunction
-command! -nargs=? T :call Tmux('<args>')
+command! -nargs=? -complete=shellcmd T :call Tmux(<q-args>, expand("<mods>"))
 
 set grepprg=rg\ --vimgrep
 command! -nargs=+ Grep silent grep! <args> | copen
