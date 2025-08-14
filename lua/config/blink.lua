@@ -1,3 +1,12 @@
+vim.keymap.set({ 'n', 'v' }, '<leader>q', function()
+  if vim.b.completion == nil then
+    vim.b.completion = false
+  else
+    vim.b.completion = not vim.b.completion
+  end
+  vim.notify(string.format('vim.b.completion set to %s', vim.b.completion))
+end, { desc = 'Toggle blink.cmp autocomplete' })
+
 ---@module 'blink.cmp'
 ---@type blink.cmp.Config
 return {
