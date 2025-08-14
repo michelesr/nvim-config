@@ -17,8 +17,7 @@ return {
     preset = 'enter',
     ['<Tab>'] = { 'select_next', 'fallback' },
     ['<S-Tab>'] = { 'select_prev', 'fallback' },
-    ['<C-k>'] = { 'show_documentation' },
-    ['<C-j>'] = { 'hide_documentation' },
+    ['<C-k>'] = { 'show_documentation', 'hide_documentation' },
   },
 
   appearance = {
