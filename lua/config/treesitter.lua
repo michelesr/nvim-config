@@ -1,5 +1,87 @@
 local M = {}
 
+function M.install_keymaps()
+  local select_keymaps = {
+    -- You can use the capture groups defined in textobjects.scm
+    ['aa'] = '@parameter.outer',
+    ['ia'] = '@parameter.inner',
+    ['af'] = '@function.outer',
+    ['if'] = '@function.inner',
+    ['am'] = '@function.outer',
+    ['im'] = '@function.inner',
+    ['ac'] = '@class.outer',
+    ['ic'] = '@class.inner',
+    ['ab'] = '@block.outer',
+    ['ib'] = '@block.inner',
+  }
+
+  for k, v in pairs(select_keymaps) do
+    vim.keymap.set({ 'x', 'o' }, k, function()
+      require('nvim-treesitter-textobjects.select').select_textobject(v, 'textobjects')
+    end, { buffer = true, desc = 'ts-textobjects: select ' .. v })
+  end
+
+  local move_keymaps = {
+    goto_next_start = {
+      [']m'] = '@function.outer',
+      [']b'] = '@block.outer',
+      [']]'] = '@class.outer',
+    },
+    goto_next_end = {
+      [']M'] = '@function.outer',
+      [']B'] = '@block.outer',
+      [']['] = '@class.outer',
+    },
+    goto_previous_start = {
+      ['[m'] = '@function.outer',
+      ['[b'] = '@block.outer',
+      ['[['] = '@class.outer',
+    },
+    goto_previous_end = {
+      ['[M'] = '@function.outer',
+      ['[B'] = '@block.outer',
+      ['[]'] = '@class.outer',
+    },
+  }
+
+  for fn, maps in pairs(move_keymaps) do
+    for k, v in pairs(maps) do
+      vim.keymap.set({ 'n', 'x', 'o' }, k, function()
+        require('nvim-treesitter-textobjects.move')[fn](v, 'textobjects')
+      end, { buffer = true, desc = 'ts-textobjects: ' .. fn .. ' ' .. v })
+    end
+  end
+
+  vim.keymap.set('n', '<leader>a', function()
+    require('nvim-treesitter-textobjects.swap').swap_next('@parameter.inner')
+  end, { buffer = true })
+  vim.keymap.set('n', '<leader>A', function()
+    require('nvim-treesitter-textobjects.swap').swap_previous('@parameter.outer')
+  end, { buffer = true })
+
+  local repeatable_move = require('nvim-treesitter-textobjects.repeatable_move')
+
+  -- workaround for https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/775
+  -- thanks @seandewar
+  local function make_repeat_rhs(dir)
+    return function()
+      local keys = repeatable_move['repeat_last_move_' .. dir]()
+      if keys then
+        vim.cmd(('normal! %d%s'):format(vim.v.count1, vim.keycode(keys)))
+      end
+    end
+  end
+
+  vim.keymap.set({ 'n', 'x', 'o' }, ';', make_repeat_rhs('next'), { buffer = true })
+  vim.keymap.set({ 'n', 'x', 'o' }, ',', make_repeat_rhs('previous'), { buffer = true })
+
+  -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
+  vim.keymap.set({ 'n', 'x', 'o' }, 'f', repeatable_move.builtin_f_expr, { expr = true, buffer = true })
+  vim.keymap.set({ 'n', 'x', 'o' }, 'F', repeatable_move.builtin_F_expr, { expr = true, buffer = true })
+  vim.keymap.set({ 'n', 'x', 'o' }, 't', repeatable_move.builtin_t_expr, { expr = true, buffer = true })
+  vim.keymap.set({ 'n', 'x', 'o' }, 'T', repeatable_move.builtin_T_expr, { expr = true, buffer = true })
+end
+
 --- enables treesitter parsers for the given file types
 ---@param filetypes string[]
 function M.enable_parsers(filetypes)
@@ -11,6 +93,8 @@ function M.enable_parsers(filetypes)
 
       -- enable indentation
       vim.bo.indentexpr = 'v:lua.require("nvim-treesitter").indentexpr()'
+
+      M.install_keymaps()
     end,
   })
 end
@@ -80,85 +164,5 @@ require('nvim-treesitter-textobjects').setup({
     set_jumps = true,
   },
 })
-
-local select_keymaps = {
-  -- You can use the capture groups defined in textobjects.scm
-  ['aa'] = '@parameter.outer',
-  ['ia'] = '@parameter.inner',
-  ['af'] = '@function.outer',
-  ['if'] = '@function.inner',
-  ['am'] = '@function.outer',
-  ['im'] = '@function.inner',
-  ['ac'] = '@class.outer',
-  ['ic'] = '@class.inner',
-  ['ab'] = '@block.outer',
-  ['ib'] = '@block.inner',
-}
-
-for k, v in pairs(select_keymaps) do
-  vim.keymap.set({ 'x', 'o' }, k, function()
-    require('nvim-treesitter-textobjects.select').select_textobject(v, 'textobjects')
-  end, { desc = 'ts-textobjects: select ' .. v })
-end
-
-local move_keymaps = {
-  goto_next_start = {
-    [']m'] = '@function.outer',
-    [']b'] = '@block.outer',
-    [']]'] = '@class.outer',
-  },
-  goto_next_end = {
-    [']M'] = '@function.outer',
-    [']B'] = '@block.outer',
-    [']['] = '@class.outer',
-  },
-  goto_previous_start = {
-    ['[m'] = '@function.outer',
-    ['[b'] = '@block.outer',
-    ['[['] = '@class.outer',
-  },
-  goto_previous_end = {
-    ['[M'] = '@function.outer',
-    ['[B'] = '@block.outer',
-    ['[]'] = '@class.outer',
-  },
-}
-
-for fn, maps in pairs(move_keymaps) do
-  for k, v in pairs(maps) do
-    vim.keymap.set({ 'n', 'x', 'o' }, k, function()
-      require('nvim-treesitter-textobjects.move')[fn](v, 'textobjects')
-    end, { desc = 'ts-textobjects: ' .. fn .. ' ' .. v })
-  end
-end
-
-vim.keymap.set('n', '<leader>a', function()
-  require('nvim-treesitter-textobjects.swap').swap_next('@parameter.inner')
-end)
-vim.keymap.set('n', '<leader>A', function()
-  require('nvim-treesitter-textobjects.swap').swap_previous('@parameter.outer')
-end)
-
-local repeatable_move = require('nvim-treesitter-textobjects.repeatable_move')
-
--- workaround for https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/775
--- thanks @seandewar
-local function make_repeat_rhs(dir)
-  return function()
-    local keys = repeatable_move['repeat_last_move_' .. dir]()
-    if keys then
-      vim.cmd(('normal! %d%s'):format(vim.v.count1, vim.keycode(keys)))
-    end
-  end
-end
-
-vim.keymap.set({ 'n', 'x', 'o' }, ';', make_repeat_rhs('next'))
-vim.keymap.set({ 'n', 'x', 'o' }, ',', make_repeat_rhs('previous'))
-
--- Optionally, make builtin f, F, t, T also repeatable with ; and ,
-vim.keymap.set({ 'n', 'x', 'o' }, 'f', repeatable_move.builtin_f_expr, { expr = true })
-vim.keymap.set({ 'n', 'x', 'o' }, 'F', repeatable_move.builtin_F_expr, { expr = true })
-vim.keymap.set({ 'n', 'x', 'o' }, 't', repeatable_move.builtin_t_expr, { expr = true })
-vim.keymap.set({ 'n', 'x', 'o' }, 'T', repeatable_move.builtin_T_expr, { expr = true })
 
 return M
