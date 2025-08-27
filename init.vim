@@ -48,13 +48,6 @@ augroup UserFileType
   autocmd FileType make setlocal sw=8 noet
 augroup END
 
-augroup UserHighlight
-  " make easy to spot trailing white spaces
-  autocmd BufEnter *
-  \ match TrailingWhitespace /\s\+$/ |
-  \ highlight TrailingWhitespace ctermbg=red guibg=red
-augroup END
-
 augroup HelmFiletypeDetect
   autocmd!
   autocmd BufRead,BufNewFile */templates/*\.{yaml,yml,tpl} set ft=helm
