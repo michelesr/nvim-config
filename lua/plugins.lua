@@ -151,31 +151,6 @@ require('lazy').setup({
   },
 
   { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
-
-  {
-    'yetone/avante.nvim',
-    -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`
-    -- ⚠️ must add this setting! ! !
-    build = 'make',
-    cmd = { 'AvanteAsk', 'AvanteChat', 'AvanteToggle' },
-    version = false, -- Never set this value to "*"! Never!:
-    config = function()
-      require('config.avante')
-    end,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      'MunifTanjim/nui.nvim',
-      'Kaiser-Yang/blink-cmp-avante',
-      {
-        -- Make sure to set this up properly if you have lazy=true
-        'MeanderingProgrammer/render-markdown.nvim',
-        opts = {
-          file_types = { 'Avante' },
-        },
-        ft = { 'Avante' },
-      },
-    },
-  },
 }, {
   performance = {
     rtp = {
