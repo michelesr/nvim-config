@@ -1,55 +1,64 @@
--- ---------------------------------------------------------------------------------------------
--- boostrap section: automatically install lazy.nvim package manager if not installed already --
--- ---------------------------------------------------------------------------------------------
-local lazypath = vim.fn.stdpath('data') .. '/lazy/lazy.nvim'
+-- use experimental loader for byte-code compilation and cache of lua modules
+vim.loader.enable()
 
---- fs_stat is indeed a defined field of vim.uv
----@diagnostic disable-next-line: undefined-field
-if not (vim.uv or vim.loop).fs_stat(lazypath) then
-  vim.fn.system({
-    'git',
-    'clone',
-    '--filter=blob:none',
-    'https://github.com/folke/lazy.nvim.git',
-    '--branch=stable', -- latest stable release
-    lazypath,
+local function add_build_hook(plugin_name, cmd_type, cmd)
+  vim.api.nvim_create_autocmd('PackChanged', {
+    callback = function(ev)
+      local name, kind = ev.data.spec.name, ev.data.kind
+
+      if name == plugin_name and (kind == 'install' or kind == 'update') then
+        vim.notify(
+          string.format(
+            'Running build hook: {plugin_name = %s, event = %s, cmd_type = %s, cmd = %s}',
+            vim.inspect(name),
+            vim.inspect(kind),
+            vim.inspect(cmd_type),
+            vim.inspect(cmd)
+          )
+        )
+
+        if not ev.data.active then
+          vim.cmd.packadd(plugin_name)
+        end
+
+        if cmd_type == 'vim' then
+          vim.cmd(cmd)
+        elseif cmd_type == 'system' then
+          vim.system(cmd, { cwd = ev.data.path }):wait()
+        end
+      end
+    end,
   })
 end
-vim.opt.rtp:prepend(lazypath)
 
-require('lazy').setup({
+add_build_hook('nvim-treesitter', 'vim', 'TSUpdate')
+add_build_hook('blink.cmp', 'system', { 'cargo', 'build', '--release' })
+add_build_hook('telescope-fzf-native.nvim', 'system', { 'make' })
+
+vim.pack.add({
   ------------------------------------------------------------------------------------------------
   -- vimscript section: plugins installed here are loaded automatically, no need to run setup() --
   ------------------------------------------------------------------------------------------------
 
   -- Git plugin (and :GB for github.com)
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
+  'https://github.com/tpope/vim-fugitive',
+  'https://github.com/tpope/vim-rhubarb',
 
   --  Vim syntax for Helm templates (yaml + gotmpl + sprig + custom)
-  { 'towolf/vim-helm', lazy = true, ft = 'helm' },
+  'https://github.com/towolf/vim-helm',
+
+  -- Close buffer without closing window
+  'https://github.com/rbgrouleff/bclose.vim',
 
   -- Ranger integration
-  {
-    'francoiscabrol/ranger.vim',
-    lazy = true,
-    cmd = { 'Ranger', 'RangerWorkingDirectory' },
-    dependencies = {
-      -- Close buffer without closing window
-      'rbgrouleff/bclose.vim',
-    },
-  },
+  'https://github.com/francoiscabrol/ranger.vim',
 
   -- Adds indentation text objects
-  'michaeljsmith/vim-indent-object',
+  'https://github.com/michaeljsmith/vim-indent-object',
 
   -- FZF
-  {
-    'junegunn/fzf.vim',
-    lazy = true,
-    cmd = { 'Files', 'History', 'Commits', 'BCommits' },
-    dependencies = { 'junegunn/fzf' },
-  },
+  'https://github.com/junegunn/fzf',
+  'https://github.com/junegunn/fzf.vim',
 
   -- --------------------------------------------------------------------------------------
   -- lua section: plugins installed here needs setup() to be called, you can use opts={} --
@@ -57,105 +66,70 @@ require('lazy').setup({
   -- --------------------------------------------------------------------------------------
 
   -- Comment lines with gc<motion> or a line with gcc
-  { 'numToStr/Comment.nvim', opts = {} },
+  'https://github.com/numToStr/Comment.nvim',
 
   -- Similar to tpope/vim-surround
-  { 'kylechui/nvim-surround', opts = {} },
+  'https://github.com/kylechui/nvim-surround',
 
   -- To install extensions such as language servers
-  {
-    'williamboman/mason.nvim',
-    dependencies = {
-      -- Quickstart configs for Nvim LSP
-      'neovim/nvim-lspconfig',
-    },
-    opts = {},
-  },
+  'https://github.com/williamboman/mason.nvim',
+
+  -- Quickstart configs for Nvim LSP
+  'https://github.com/neovim/nvim-lspconfig',
 
   -- Standalone UI for nvim-lsp progress
-  { 'j-hui/fidget.nvim', opts = {} },
+  'https://github.com/j-hui/fidget.nvim',
+
+  -- optional: provides snippets for the snippet source
+  'https://github.com/rafamadriz/friendly-snippets',
 
   -- Completion engine and extensions
-  {
-    'saghen/blink.cmp',
-    -- optional: provides snippets for the snippet source
-    dependencies = {
-      'rafamadriz/friendly-snippets',
-    },
+  { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
 
-    -- use a release tag to download pre-built binaries
-    version = '1.*',
-    -- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
-    -- build = 'cargo build --release',
-    -- If you use nix, you can build from source using latest nightly rust with:
-    -- build = 'nix run .#build-plugin',
+  'https://github.com/nvim-lua/plenary.nvim',
+  'https://github.com/nvim-telescope/telescope.nvim',
 
-    opts = require('config.blink'),
-    opts_extend = { 'sources.default' },
-  },
-
-  -- Required by telescope
-  {
-    'nvim-telescope/telescope.nvim',
-    lazy = true,
-    cmd = 'Telescope',
-    config = function()
-      require('config.telescope')
-    end,
-    dependencies = {
-      'nvim-lua/plenary.nvim',
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make' },
-    },
-  },
+  'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
 
   -- Tresitter
-  {
-    'nvim-treesitter/nvim-treesitter',
-    branch = 'main',
-    build = ':TSUpdate',
-    dependencies = {
-      { 'nvim-treesitter/nvim-treesitter-textobjects', branch = 'main' },
-    },
-    config = function()
-      require('config.treesitter')
-    end,
-  },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
+  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
 
   -- Colorscheme
-  {
-    'navarasu/onedark.nvim',
-    config = function()
-      require('config.onedark')
-    end,
-  },
+  'https://github.com/navarasu/onedark.nvim',
 
   -- Status line
-  { 'nvim-lualine/lualine.nvim', opts = require('config.lualine') },
+  'https://github.com/nvim-lualine/lualine.nvim',
 
   -- Faster LuaLS setup for Neovim
-  { 'folke/lazydev.nvim', ft = 'lua', opts = {} },
+  'https://github.com/folke/lazydev.nvim',
 
   -- Disable some features on big files for perfomance (e.g. LSP, Treesitter)
-  { 'ouuan/nvim-bigfile', opts = {
-    hook = function()
-      vim.cmd(':NoMatchParen')
-    end,
-  } },
+  'https://github.com/ouuan/nvim-bigfile',
 
   -- Git integration for buffers
-  {
-    'lewis6991/gitsigns.nvim',
-    config = function()
-      require('config.gitsigns')
-    end,
-  },
+  'https://github.com/lewis6991/gitsigns.nvim',
 
-  { 'windwp/nvim-autopairs', event = 'InsertEnter', opts = {} },
-}, {
-  performance = {
-    rtp = {
-      -- keep original entries of runtimepath, for vim files installed by the system package manager
-      reset = false,
-    },
-  },
+  -- Automatically close pairs like quotes or brackets
+  'https://github.com/windwp/nvim-autopairs',
 })
+
+require('Comment').setup()
+require('nvim-surround').setup()
+require('mason').setup()
+require('fidget').setup({})
+require('blink.cmp').setup(require('config.blink'))
+require('config.telescope')
+require('config.treesitter')
+require('config.onedark')
+require('config.lualine')
+require('lazydev').setup()
+
+require('bigfile').setup({
+  hook = function()
+    vim.cmd(':NoMatchParen')
+  end,
+})
+
+require('config.gitsigns')
+require('nvim-autopairs')
