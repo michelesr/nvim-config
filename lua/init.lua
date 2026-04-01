@@ -1,6 +1,11 @@
 -- use experimental loader for byte-code compilation and cache of lua modules
 vim.loader.enable()
 
+-- see :help ui2
+require('vim._core.ui2').enable({
+  enable = true,
+})
+
 local function add_build_hook(plugin_name, cmd_type, cmd)
   vim.api.nvim_create_autocmd('PackChanged', {
     callback = function(ev)
