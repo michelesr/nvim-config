@@ -6,6 +6,11 @@ require('vim._core.ui2').enable({
   enable = true,
 })
 
+-- add :PackUpdate command to update packages
+vim.api.nvim_create_user_command('PackUpdate', function()
+  vim.pack.update()
+end, {})
+
 local function add_build_hook(plugin_name, cmd_type, cmd)
   vim.api.nvim_create_autocmd('PackChanged', {
     callback = function(ev)
