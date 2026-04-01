@@ -101,8 +101,8 @@ vim.pack.add({
   'https://github.com/nvim-telescope/telescope-fzf-native.nvim',
 
   -- Tresitter
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter-textobjects', version = 'main' },
-  { src = 'https://github.com/nvim-treesitter/nvim-treesitter', version = 'main' },
+  'https://github.com/nvim-treesitter/nvim-treesitter',
+  'https://github.com/nvim-treesitter/nvim-treesitter-textobjects',
 
   -- Colorscheme
   'https://github.com/navarasu/onedark.nvim',
