@@ -76,4 +76,6 @@ cnoreabbrev ghd Ghdiffsplit
 cnoreabbrev vr vertical resize
 cnoreabbrev hr horizontal resize
 
+" use experimental loader for byte-code compilation and cache of lua modules
+lua vim.loader.enable()
 luafile ~/.config/nvim/lua/main.lua

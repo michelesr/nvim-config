@@ -1,6 +1,3 @@
--- use experimental loader for byte-code compilation and cache of lua modules
-vim.loader.enable()
-
 -- see :help ui2
 require('vim._core.ui2').enable({
   enable = true,
