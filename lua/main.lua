@@ -8,6 +8,11 @@ vim.api.nvim_create_user_command('PackUpdate', function()
   vim.pack.update()
 end, {})
 
+-- add :PackSync command to sync with the lockfile
+vim.api.nvim_create_user_command('PackSync', function()
+  vim.pack.update(nil, { target = 'lockfile' })
+end, {})
+
 local function add_build_hook(plugin_name, cmd_type, cmd)
   vim.api.nvim_create_autocmd('PackChanged', {
     callback = function(ev)
