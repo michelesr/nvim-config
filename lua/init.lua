@@ -150,3 +150,12 @@ require('gitsigns').setup(require('config.gitsigns'))
 require('nvim-autopairs')
 require('config.lsp')
 require('scripts.tmux')
+
+-- explicit file type detection for helm templates
+vim.filetype.add({
+  pattern = {
+    ['.*/templates/.*%.yaml'] = 'helm',
+    ['.*/templates/.*%.yml'] = 'helm',
+    ['.*/templates/.*%.tpl'] = 'helm',
+  },
+})
