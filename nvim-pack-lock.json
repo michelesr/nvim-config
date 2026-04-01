@@ -9,9 +9,8 @@
       "src": "https://github.com/rbgrouleff/bclose.vim"
     },
     "blink.cmp": {
-      "rev": "dcde5e7e32b6bae5a7ddf343c1587a8490dbd263",
-      "src": "https://github.com/saghen/blink.cmp",
-      "version": "'v1'"
+      "rev": "7886c1b14d4b395ee675306677ce10622a745888",
+      "src": "https://github.com/saghen/blink.cmp"
     },
     "fidget.nvim": {
       "rev": "7fa433a83118a70fe24c1ce88d5f0bd3453c0970",

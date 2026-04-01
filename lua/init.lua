@@ -93,7 +93,7 @@ vim.pack.add({
   'https://github.com/rafamadriz/friendly-snippets',
 
   -- Completion engine and extensions
-  { src = 'https://github.com/saghen/blink.cmp', version = 'v1' },
+  'https://github.com/saghen/blink.cmp',
 
   'https://github.com/nvim-lua/plenary.nvim',
   'https://github.com/nvim-telescope/telescope.nvim',
