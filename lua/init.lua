@@ -61,8 +61,7 @@ vim.pack.add({
   'https://github.com/junegunn/fzf.vim',
 
   -- --------------------------------------------------------------------------------------
-  -- lua section: plugins installed here needs setup() to be called, you can use opts={} --
-  -- shortcut to pass the config table, equivalent to require('plugin-name').setup()     --
+  -- lua section: plugins installed here needs setup() to be called for initialization
   -- --------------------------------------------------------------------------------------
 
   -- Comment lines with gc<motion> or a line with gcc
