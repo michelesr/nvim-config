@@ -1,4 +1,4 @@
-require('gitsigns').setup({
+return {
   signs = {
     add = { text = '+' },
     change = { text = '~' },
@@ -51,4 +51,4 @@ require('gitsigns').setup({
     map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>')
     map({ 'o', 'x' }, 'ah', ':<C-U>Gitsigns select_hunk<CR>')
   end,
-})
+}

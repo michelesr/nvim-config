@@ -1,4 +1,4 @@
-require('onedark').setup({
+return {
   toggle_style_key = '<Plug>(OneDarkToggleKey)',
   -- bundle/onedark.nvim/lua/onedark/palette.lua
   style = 'dark',
@@ -17,5 +17,4 @@ require('onedark').setup({
     PMenu = { bg = '#222738' },
     RenderMarkdownCode = { bg = '#222738' },
   },
-})
-require('onedark').load()
+}

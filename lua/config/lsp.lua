@@ -1,3 +1,5 @@
+local M = {}
+
 local function get_installed_lsp_servers()
   local registry = require('mason-registry')
   local lsp = {}
@@ -12,7 +14,7 @@ local function get_installed_lsp_servers()
 end
 
 -- default on_attach callback
-local on_attach = function(_, bufnr)
+M.default_on_attach = function(_, bufnr)
   -- wrap diagnostic prev and next so that they can be repeated with ; and ,
   local diag_move = require('nvim-treesitter-textobjects.repeatable_move').make_repeatable_move(function(opts)
     if opts.forward then
@@ -83,7 +85,7 @@ local on_attach = function(_, bufnr)
 end
 
 -- server settings
-local settings = {
+M.settings = {
   ['jsonls'] = {
     json = {
       -- type gf to open the url and look at the scheme catalog:
@@ -189,7 +191,7 @@ local settings = {
 
 -- custom on_attach callbacks
 --- @type table<string, fun(client: vim.lsp.Client, bufnr: integer)>
-local callbacks = {
+M.callbacks = {
   yamlls = require('utils.yaml').yaml_on_attach,
   basedpyright = function(client, _)
     -- disable LSP syntax highlighting
@@ -201,26 +203,26 @@ local callbacks = {
 --  - the original on_attach defined in nvim-lspconfig (if defined)
 --  - the generic on_attach defined at the top of this file
 --  - the specific language server on_attach callback (if defined)
-local function merge_on_attach(server_name)
+function M.merge_on_attach(server_name)
   local orig_on_attach = vim.lsp.config[server_name].on_attach
 
   return function(client, bufnr)
     if orig_on_attach then
       orig_on_attach(client, bufnr)
     end
-    on_attach(client, bufnr)
-    if callbacks[server_name] then
-      callbacks[server_name](client, bufnr)
+    M.default_on_attach(client, bufnr)
+    if M.callbacks[server_name] then
+      M.callbacks[server_name](client, bufnr)
     end
   end
 end
 
-local installed_servers = get_installed_lsp_servers()
+M.installed_servers = get_installed_lsp_servers()
 
-for name, _ in pairs(installed_servers) do
+for name, _ in pairs(M.installed_servers) do
   vim.lsp.config(name, {
-    on_attach = merge_on_attach(name),
-    settings = settings[name] or {},
+    on_attach = M.merge_on_attach(name),
+    settings = M.settings[name] or {},
   })
 
   vim.lsp.enable(name)
@@ -239,3 +241,5 @@ vim.api.nvim_create_user_command('LspBufDetach', function()
     vim.lsp.buf_detach_client(0, client.id)
   end
 end, { bar = true })
+
+return M

@@ -131,9 +131,10 @@ if #ensure_installed > 0 then
   end
 
   M.enable_parsers(filetypes)
+  M.filetypes = filetypes
 end
 
-require('nvim-treesitter-textobjects').setup({
+M.treesitter_textobjects_opts = {
   select = {
     -- Automatically jump forward to textobj, similar to targets.vim
     lookahead = true,
@@ -163,6 +164,8 @@ require('nvim-treesitter-textobjects').setup({
   move = {
     set_jumps = true,
   },
-})
+}
+
+require('nvim-treesitter-textobjects').setup(M.treesitter_textobjects_opts)
 
 return M
