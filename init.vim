@@ -76,4 +76,4 @@ cnoreabbrev ghd Ghdiffsplit
 cnoreabbrev vr vertical resize
 cnoreabbrev hr horizontal resize
 
-luafile ~/.config/nvim/lua/init.lua
+luafile ~/.config/nvim/lua/main.lua
