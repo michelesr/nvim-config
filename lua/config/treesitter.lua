@@ -61,19 +61,8 @@ function M.install_keymaps()
 
   local repeatable_move = require('nvim-treesitter-textobjects.repeatable_move')
 
-  -- workaround for https://github.com/nvim-treesitter/nvim-treesitter-textobjects/issues/775
-  -- thanks @seandewar
-  local function make_repeat_rhs(dir)
-    return function()
-      local keys = repeatable_move['repeat_last_move_' .. dir]()
-      if keys then
-        vim.cmd(('normal! %d%s'):format(vim.v.count1, vim.keycode(keys)))
-      end
-    end
-  end
-
-  vim.keymap.set({ 'n', 'x', 'o' }, ';', make_repeat_rhs('next'), { buffer = true })
-  vim.keymap.set({ 'n', 'x', 'o' }, ',', make_repeat_rhs('previous'), { buffer = true })
+  vim.keymap.set({ 'n', 'x', 'o' }, ';', repeatable_move.repeat_last_move_next, { buffer = true })
+  vim.keymap.set({ 'n', 'x', 'o' }, ',', repeatable_move.repeat_last_move_previous, { buffer = true })
 
   -- Optionally, make builtin f, F, t, T also repeatable with ; and ,
   vim.keymap.set({ 'n', 'x', 'o' }, 'f', repeatable_move.builtin_f_expr, { expr = true, buffer = true })
