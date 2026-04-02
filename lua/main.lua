@@ -1,7 +1,5 @@
 -- see :help ui2
-require('vim._core.ui2').enable({
-  enable = true,
-})
+require('vim._core.ui2').enable({})
 
 -- add :PackUpdate command to update packages
 vim.api.nvim_create_user_command('PackUpdate', function()
