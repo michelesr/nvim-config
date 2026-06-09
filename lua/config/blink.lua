@@ -1,10 +1,4 @@
-local fuzzy_implementation = 'lua'
-
-local build = require('blink.cmp').build
-if build ~= nil then
-  fuzzy_implementation = 'prefer_rust_with_warning'
-  build():pwait()
-end
+require('blink.cmp').build():pwait()
 
 vim.keymap.set({ 'n', 'v' }, '<leader>q', function()
   if vim.b.completion == nil then
@@ -69,5 +63,5 @@ return {
   -- when the Rust fuzzy matcher is not available, by using `implementation = "prefer_rust"`
   --
   -- See the fuzzy documentation for more information
-  fuzzy = { implementation = fuzzy_implementation },
+  fuzzy = { implementation = 'prefer_rust_with_warning' },
 }
