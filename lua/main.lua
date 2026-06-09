@@ -121,6 +121,9 @@ vim.pack.add({
 
   -- Automatically close pairs like quotes or brackets
   'https://github.com/windwp/nvim-autopairs',
+
+  -- code completion as-you-type from popular LLMs
+  'https://github.com/milanglacier/minuet-ai.nvim',
 })
 
 require('Comment').setup()
@@ -145,6 +148,8 @@ require('bigfile').setup({
     vim.cmd(':NoMatchParen')
   end,
 })
+
+require('minuet').setup(require('config.minuet'))
 
 require('gitsigns').setup(require('config.gitsigns'))
 require('nvim-autopairs')
