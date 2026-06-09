@@ -42,7 +42,6 @@ local function add_build_hook(plugin_name, cmd_type, cmd)
 end
 
 add_build_hook('nvim-treesitter', 'vim', 'TSUpdate')
-add_build_hook('blink.cmp', 'system', { 'cargo', 'build', '--release' })
 add_build_hook('telescope-fzf-native.nvim', 'system', { 'make' })
 
 vim.pack.add({
@@ -93,6 +92,7 @@ vim.pack.add({
   'https://github.com/rafamadriz/friendly-snippets',
 
   -- Completion engine and extensions
+  'https://github.com/saghen/blink.lib',
   'https://github.com/saghen/blink.cmp',
 
   'https://github.com/nvim-lua/plenary.nvim',
