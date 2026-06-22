@@ -148,7 +148,7 @@ require('bigfile').setup({
 require('minuet').setup(require('config.minuet'))
 
 require('gitsigns').setup(require('config.gitsigns'))
-require('nvim-autopairs')
+require('nvim-autopairs').setup()
 require('config.lsp')
 require('scripts.tmux')
 
