@@ -1,9 +1,5 @@
 {
   "plugins": {
-    "Comment.nvim": {
-      "rev": "e30b7f2008e52442154b66f7c519bfd2f1e32acb",
-      "src": "https://github.com/numToStr/Comment.nvim"
-    },
     "bclose.vim": {
       "rev": "99018b4a2dd18aea1cbd3aa23565b01a0f8c5b73",
       "src": "https://github.com/rbgrouleff/bclose.vim"

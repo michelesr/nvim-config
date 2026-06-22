@@ -73,9 +73,6 @@ vim.pack.add({
   -- lua section: plugins installed here needs setup() to be called for initialization
   -- --------------------------------------------------------------------------------------
 
-  -- Comment lines with gc<motion> or a line with gcc
-  'https://github.com/numToStr/Comment.nvim',
-
   -- Similar to tpope/vim-surround
   'https://github.com/kylechui/nvim-surround',
 
@@ -126,7 +123,6 @@ vim.pack.add({
   'https://github.com/milanglacier/minuet-ai.nvim',
 })
 
-require('Comment').setup()
 require('nvim-surround').setup()
 require('mason').setup()
 require('fidget').setup({})
