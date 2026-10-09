@@ -127,17 +127,20 @@ M.treesitter_textobjects_opts = {
   select = {
     -- Automatically jump forward to textobj, similar to targets.vim
     lookahead = true,
-    -- You can choose the select mode (default is charwise 'v')
-    --
+    -- You can choose the select mode: (default is charwise 'v')
+    --  v: charwise, V: linewise, <c-v>: blockwise
     -- Can also be a function which gets passed a table with the keys
     -- * query_string: eg '@function.inner'
     -- * method: eg 'v' or 'o'
     -- and should return the mode ('v', 'V', or '<c-v>') or a table
     -- mapping query_strings to modes.
     selection_modes = {
-      ['@parameter.outer'] = 'v', -- charwise
-      ['@function.outer'] = 'V', -- linewise
-      ['@class.outer'] = '<c-v>', -- blockwise
+      ['@parameter.outer'] = 'v',
+      ['@parameter.inner'] = 'v',
+      ['@function.outer'] = 'V',
+      ['@function.inner'] = 'V',
+      ['@class.outer'] = 'V',
+      ['@class.inner'] = 'V',
     },
     -- If you set this to `true` (default is `false`) then any textobject is
     -- extended to include preceding or succeeding whitespace. Succeeding
