@@ -20,14 +20,6 @@
       "rev": "b4d01b0fdf3c9a549961c2f9ffe8dc09be166219",
       "src": "https://github.com/rafamadriz/friendly-snippets"
     },
-    "fzf": {
-      "rev": "b1be3a8be1b833ce5b92fbbac11637643d60a046",
-      "src": "https://github.com/junegunn/fzf"
-    },
-    "fzf.vim": {
-      "rev": "023de3c0e158ff9c2b0992175af10be97c2f2158",
-      "src": "https://github.com/junegunn/fzf.vim"
-    },
     "gitsigns.nvim": {
       "rev": "851a051e2bd2caba97e23314c68d69f1b1cf5d19",
       "src": "https://github.com/lewis6991/gitsigns.nvim"

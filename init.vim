@@ -21,8 +21,8 @@ nnoremap <leader>g :Telescope live_grep<CR>
 nnoremap <leader>G :Telescope grep_string<CR>
 nnoremap <leader>/ :Telescope search_history<CR>
 nnoremap <leader>: :Telescope commands<CR>
-nnoremap <leader>c :Commits<CR>
-nnoremap <leader>C :BCommits<CR>
+nnoremap <leader>c :Telescope git_commits<CR>
+nnoremap <leader>C :Telescope git_bcommits<CR>
 
 " telescope
 nnoremap <leader>s :Telescope<CR>

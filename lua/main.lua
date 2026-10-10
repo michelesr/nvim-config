@@ -65,10 +65,6 @@ vim.pack.add({
   -- Adds indentation text objects
   'https://github.com/michaeljsmith/vim-indent-object',
 
-  -- FZF
-  'https://github.com/junegunn/fzf',
-  'https://github.com/junegunn/fzf.vim',
-
   -- --------------------------------------------------------------------------------------
   -- lua section: plugins installed here needs setup() to be called for initialization
   -- --------------------------------------------------------------------------------------
